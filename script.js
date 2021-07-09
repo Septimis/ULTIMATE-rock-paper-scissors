@@ -110,4 +110,4 @@ function game() {
         console.log("The computer won!");
     }
 }
-game();
+//game();

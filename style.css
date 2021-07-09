@@ -1,0 +1,33 @@
+html {
+    height: 100%;
+}
+body {
+    background-color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    color: rgb(32, 32, 32);
+    height: 100%;
+}
+
+#header {
+    text-align: center;
+}
+
+#player_selection {
+    margin-top: 150px;
+    text-align: center;
+}
+
+.centerBtns {
+    width: 200px;
+    height: 200px;
+    margin: 0px 10px 0px 10px;
+}
+
+#scores {
+    text-align: center;
+    margin-top: 100px;
+}
+
+#results {
+    font-size: 40px;
+}

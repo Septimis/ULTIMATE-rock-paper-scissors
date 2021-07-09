@@ -3,10 +3,28 @@
     <head>
         <title>Rock, Paper, Sissors</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
     </head>
-    <body style="background-color: black; color: white;">
-        <h1>ROCK!  PAPER!  SCISSORS!!!!</h1>
-        <p>Open your console to play...</p>
+    <body>
+        <div id="header">
+            <h1>Rock! Paper! Scissors!!!</h1>
+            <p>Choose your weapon below...</p>
+        </div>
+        <div id="player_selection">
+            <img src="img/rock.jpg" alt="rock" class="centerBtns" id="rockBtn">
+            <img src="img/paper.jpg" alt="paper" class="centerBtns" id="rockBtn">
+            <img src="img/scissors.jpg" alt="scissors" class="centerBtns" id="rockBtn">
+        </div>
+        <div id="scores">
+            <span id="user_score_box">
+                <p id="user_score">You: </p>
+            </span>
+            <span id="computer_score_box">
+
+            </span>
+            <p id="results"></p>
+        </div>
+
         <script src="script.js"></script>
     </body>
 </html>
