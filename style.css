@@ -26,6 +26,22 @@ body {
 #scores {
     text-align: center;
     margin-top: 100px;
+    display:flex;
+    
+}
+#user_score_box {
+    margin-left: 750px;
+}
+#user_score {
+    font-size: 40px;
+}
+
+#computer_score_box {
+    margin-left: 200px;
+
+}
+#computer_score {
+    font-size: 40px;
 }
 
 #results {
