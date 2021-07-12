@@ -1,30 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Rock, Paper, Sissors</title>
+        <title>ULTIMATE Rock, Paper, Sissors</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div id="header">
-            <h1>Rock! Paper! Scissors!!!</h1>
-            <p>Choose your weapon below...</p>
+            <h1 class="ultimateHeaderText">ULTIMATE</h1>
+            <h1 class="ultimateHeaderText" id="rpsText">Rock! Paper! Scissors!!!</h1>
+            <button id="startButton">START GAME</button>
         </div>
-        <div id="player_selection">
-            <img src="img/rock.jpg" alt="rock" class="centerBtns" id="rockBtn">
-            <img src="img/paper.jpg" alt="paper" class="centerBtns" id="paperBtn">
-            <img src="img/scissors.jpg" alt="scissors" class="centerBtns" id="scissorsBtn">
-        </div>
-        <div id="scores">
-            <span id="user_score_box">
-                <p id="user_score">You: </p>
-            </span>
-            <span id="computer_score_box">
-                <p id="computer_score">Computer: </p>
-            </span>
-            <p id="results"></p>
-        </div>
-
         <script src="script.js"></script>
+        <div id="mainBody">
+            <div id="userStats">
+                <p id="currentExperience">200 xp</p>
+                <p id="activeEffects">10x Experience Bonus</p>
+            </div>
+            <!-- UPGRADE TABLES -->
+            <p class="containerTitles">Progress</p>
+            <table class="upgradeTables">
+                <tr>
+                    <th>Currently Equipped</th>
+                    <th>Upgrade</th>
+                    <th>Cost</th>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Rock</b><br>
+                        <i>Current Description</i>
+                    </td>
+                    <td>
+                        <button class="progressButtons">Upgrade</button><br>
+                        <i>Upgrade Description</i>
+                    </td>
+                    <td>
+                        50 xp
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Paper</b><br>
+                        <i>CurrentDescription</i>
+                    </td>
+                    <td>
+                        <button class="progressButtons">Upgrade</button><br>
+                        <i>Upgrade Description</i>
+                    </td>
+                    <td>
+                        50 xp
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Scissors</b><br>
+                        <i>Current Description</i>
+                    </td>
+                    <td>
+                        <button class="progressButtons">Upgrade</button><br>
+                        <i>Upgrade Description</i>
+                    </td>
+                    <td>
+                        50 xp
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>2x Experience Bonus</b><br>
+                        <i>For your next game only</i>
+                    </td>
+                    <td>
+                        <button class="progressButtons">Buy</button>
+                    </td>
+                    <td>
+                        50 xp
+                    </td>
+                </tr>
+            </table>
+            <!-- ACHIEVEMENTS TABLE -->
+            <p class="containerTitles">Achievements</p>
+            <table class="upgradeTables">
+                <tr>
+                    <th>Title</th>
+                    <th>Reward</th>
+                </tr>
+                <tr id="welcomeAchievment">
+                    <td>
+                        <b>Welcome!</b><br>
+                        <i>Play Your First Game</i>
+                    </td>
+                    <td>+10 xp</td>
+                </tr>
+                <tr id="onlyRockAchievment">
+                    <td>
+                        <b>Favoritism</b><br>
+                        <i>Win a Game by Only Choosing Either Rock, Paper, or Scissors</i>
+                    </td>
+                    <td>+20 xp</td>
+                </tr>
+                <tr id="perfectionAchievment">
+                    <td>
+                        <b>Perfection</b><br>
+                        <i>End a Game With a Score of 5 to 0</i>
+                    </td>
+                    <td>+20 xp</td>
+                </tr>
+
+                <tr id="rockAchievment">
+                    <td>
+                        <b>Gneiss Work</b><br>
+                        <i>Upgrade Your Rock to Level 5</i>
+                    </td>
+                    <td>+50 xp</td>
+                </tr>
+                <tr id="paperAchievment">
+                    <td>
+                        <b>Not so Tearable</b><br>
+                        <i>Upgrade Your Paper to Level 5</i>
+                    </td>
+                    <td>+50 xp</td>
+                </tr>
+                <tr id="scissorsAchievment">
+                    <td>
+                        <b>A Cut Above the Rest</b><br>
+                        <i>Upgrade Your Scissors to Level 5</i>
+                    </td>
+                    <td>+50 xp</td>
+                </tr>
+                <tr id="trifectaAchievment">
+                    <td>
+                        <b>Trifecta</b><br>
+                        <i>Upgrade Rock, Paper, and Scissors to Level 5</i>
+                    </td>
+                    <td>+100 xp</td>
+                </tr>
+                <tr id="dwayneAchievment">
+                    <td>
+                        <b>Dwayne "the Rock, Paper, Scissors" Johnson</b><br>
+                        <i>Unlock the full power of Dwayne "The Rock" Johnson</i>
+                    </td>
+                    <td>+100 xp</td>
+                </tr>
+            </table>
+        </div>
+        <div id="footer"></div>
     </body>
 </html>

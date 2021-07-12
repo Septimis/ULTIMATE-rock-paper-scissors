@@ -10,7 +10,8 @@ The game is simple, select your weapon: <b>Sturdy Rock, Mystical Paper, or Vicio
 
 1. Each round, the player and computer will chose either Rock, Paper, or Scissors.  The first to 5 points wins the game.
 1. Each game will reward you with points **if** you win.
-    - You will recieve `5 * how many points you won the game by`
+    - You will recieve `5 * the number of points you won by`
+        - For example, if you win 5 to 4, you won by a margin of 1, so your points would be `5 * 1`.  If you win 5 to 0, you won by a margin of 5, so your points would be `5 * 5`.
 1. You may use points to buy upgrades for your rock, paper, or scissors and gain the upper hand.  Asthetic upgrades and other rewards can also be earned.
 #### Upgrades & Items
 -   ROCK
@@ -21,7 +22,7 @@ The game is simple, select your weapon: <b>Sturdy Rock, Mystical Paper, or Vicio
     - Rock III - 200xp to unlock
         - There is a 75% chance on your *next* loss this game that your opponent will not gain a point.
     - Rock IV - 500xp to unlock
-        - There is a 75% chance on your *this* loss that your opponent will not gain a point **and** a 50% chance that your opponent will not gain a point on your *next* loss this game.
+        - There is a 75% chance on a loss *this* round that your opponent will not gain a point **and** a 50% chance that your opponent will not gain a point on your *next* loss this game.
     - Rock V - 1000xp to unlock
         - There is a 90% chance on a loss *this* round that your opponent will not gain a point **and** a 90% chance on your *next* loss this game that your opponent will not gain a point.
 - PAPER

@@ -1,49 +1,92 @@
 html {
-    height: 100%;
-}
-body {
-    background-color: rgb(255, 255, 255);
+    min-height: 100%;
+    background-image: linear-gradient(180deg, #000000, #181818);
     background-repeat: no-repeat;
-    color: rgb(32, 32, 32);
-    height: 100%;
+}
+button {
+    border-radius: 2%;
+    border: none;
+    box-shadow: 0px 0px 5px 1px #7e7e7e;
+}
+button:hover {
+    box-shadow: 0px 0px 5px 3px #7e7e7e;
 }
 
+/* HEADER */
 #header {
     text-align: center;
+    color: white;
 }
-
-#player_selection {
-    margin-top: 150px;
-    text-align: center;
+.ultimateHeaderText {
+    font-size: 40px;
+    font-family: "Copperplate", Times, Serif;
+    margin-bottom: 0px;
+    text-shadow: 0px 0px 5px 1px #7e7e7e;
 }
-
-.centerBtns {
+#rpsText {
+    font-size: 30px;
+    margin-bottom: 30px;
+    margin-top: 2px;
+}
+/* Home Screen Items */
+#startButton {
     width: 200px;
-    height: 200px;
-    margin: 0px 10px 0px 10px;
+    height: 50px;
+    font-size: 19px;
 }
+#startButton:hover {
+    font-size: 20px;
+}
+/* Game Screen Items */
 
-#scores {
+/* BODY */
+#mainBody {
+    color:white;
+    margin-top: 50px
+}
+/* Home Screen Items */
+#userStats {
     text-align: center;
-    margin-top: 100px;
-    display:flex;
-    
+    border: 1px solid #ffffff;
+    width: 300px;
+    margin: 0px auto 50px auto;
 }
-#user_score_box {
-    margin-left: 750px;
+#currentExperience {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 0px;
 }
-#user_score {
-    font-size: 40px;
-}
-
-#computer_score_box {
-    margin-left: 200px;
+#activeEffects {
+    font-size: 20px;
 
 }
-#computer_score {
-    font-size: 40px;
+.containerTitles {
+    text-align: center;
+    font-size: 25px;
+    font-family: "Copperplate", Times, Serif;
+}
+.upgradeTables {
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ffffff;
+}
+.upgradeTables td {
+    padding: 15px;
+}
+.upgradeTables th {
+    font-size: 20px;
+    padding: 15px;
+    text-decoration: underline;
+    text-align: justify;
+}
+.progressButtons {
+    width: 80px;
+    height: 20px;
 }
 
-#results {
-    font-size: 40px;
+/* Game Screen Items */
+
+#footer {
+    padding-top: 50px;
 }
