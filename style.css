@@ -28,6 +28,13 @@ button:hover {
     margin-bottom: 30px;
     margin-top: 2px;
 }
+/* Game Screen Items */
+
+/* BODY */
+#mainBody {
+    color:white;
+    margin-top: 50px
+}
 /* Home Screen Items */
 #startButton {
     width: 200px;
@@ -37,14 +44,6 @@ button:hover {
 #startButton:hover {
     font-size: 20px;
 }
-/* Game Screen Items */
-
-/* BODY */
-#mainBody {
-    color:white;
-    margin-top: 50px
-}
-/* Home Screen Items */
 #userStats {
     text-align: center;
     border: 1px solid #ffffff;
@@ -64,6 +63,7 @@ button:hover {
     text-align: center;
     font-size: 25px;
     font-family: "Copperplate", Times, Serif;
+
 }
 .upgradeTables {
     width:50%;
@@ -83,6 +83,17 @@ button:hover {
 .progressButtons {
     width: 80px;
     height: 20px;
+}
+
+/* Home Screen Items ANIMATIONS */
+.animatedItems {
+    animation-name: floatDown;
+    animation-duration: 2s;
+    position: relative;
+}
+@keyframes floatDown {
+    0%      {bottom: 100%;}
+    100%    {bottom: 0%;}
 }
 
 /* Game Screen Items */

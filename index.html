@@ -9,17 +9,19 @@
         <div id="header">
             <h1 class="ultimateHeaderText">ULTIMATE</h1>
             <h1 class="ultimateHeaderText" id="rpsText">Rock! Paper! Scissors!!!</h1>
-            <button id="startButton">START GAME</button>
+            <button id="startButton" class="animatedItems">START GAME</button>
         </div>
-        <script src="script.js"></script>
+        
         <div id="mainBody">
-            <div id="userStats">
-                <p id="currentExperience">200 xp</p>
-                <p id="activeEffects">10x Experience Bonus</p>
+            <!-- Where the user can see current experience & active effects -->
+            <div id="userStats" class="animatedItems">
+                <p id="currentExperience">0 xp</p>
+                <p id="activeEffects"></p>
             </div>
+
             <!-- UPGRADE TABLES -->
             <p class="containerTitles">Progress</p>
-            <table class="upgradeTables">
+            <table class="upgradeTables animatedItems">
                 <tr>
                     <th>Currently Equipped</th>
                     <th>Upgrade</th>
@@ -31,7 +33,7 @@
                         <i>Current Description</i>
                     </td>
                     <td>
-                        <button class="progressButtons">Upgrade</button><br>
+                        <button id="rockUpgradeBtn" class="progressButtons">Upgrade</button><br>
                         <i>Upgrade Description</i>
                     </td>
                     <td>
@@ -44,7 +46,7 @@
                         <i>CurrentDescription</i>
                     </td>
                     <td>
-                        <button class="progressButtons">Upgrade</button><br>
+                        <button id="paperUpgradeBtn" class="progressButtons">Upgrade</button><br>
                         <i>Upgrade Description</i>
                     </td>
                     <td>
@@ -57,7 +59,7 @@
                         <i>Current Description</i>
                     </td>
                     <td>
-                        <button class="progressButtons">Upgrade</button><br>
+                        <button id="scissorUpgradeBtn" class="progressButtons">Upgrade</button><br>
                         <i>Upgrade Description</i>
                     </td>
                     <td>
@@ -70,7 +72,7 @@
                         <i>For your next game only</i>
                     </td>
                     <td>
-                        <button class="progressButtons">Buy</button>
+                        <button id="expBonusBtn" class="progressButtons">Buy</button>
                     </td>
                     <td>
                         50 xp
@@ -79,7 +81,7 @@
             </table>
             <!-- ACHIEVEMENTS TABLE -->
             <p class="containerTitles">Achievements</p>
-            <table class="upgradeTables">
+            <table class="upgradeTables animatedItems">
                 <tr>
                     <th>Title</th>
                     <th>Reward</th>
@@ -144,5 +146,7 @@
             </table>
         </div>
         <div id="footer"></div>
+
+        <script src="script.js"></script>
     </body>
 </html>
