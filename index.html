@@ -5,23 +5,23 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
+    <body id="body">
         <div id="header">
             <h1 class="ultimateHeaderText">ULTIMATE</h1>
             <h1 class="ultimateHeaderText" id="rpsText">Rock! Paper! Scissors!!!</h1>
-            <button id="startButton" class="animatedItems">START GAME</button>
         </div>
-        
-        <div id="mainBody">
+        <!-- HOME SCREEN ITEMS --> 
+        <div class="mainBody homeScreen">
+            <button id="startButton" class="floatingItems">START GAME</button>
             <!-- Where the user can see current experience & active effects -->
-            <div id="userStats" class="animatedItems">
+            <div id="userStats" class="floatingItems">
                 <p id="currentExperience">0 xp</p>
                 <p id="activeEffects"></p>
             </div>
 
             <!-- UPGRADE TABLES -->
             <p class="containerTitles">Progress</p>
-            <table class="upgradeTables animatedItems">
+            <table class="upgradeTables floatingItems">
                 <tr>
                     <th>Currently Equipped</th>
                     <th>Upgrade</th>
@@ -81,7 +81,7 @@
             </table>
             <!-- ACHIEVEMENTS TABLE -->
             <p class="containerTitles">Achievements</p>
-            <table class="upgradeTables animatedItems">
+            <table class="upgradeTables floatingItems">
                 <tr>
                     <th>Title</th>
                     <th>Reward</th>
@@ -145,7 +145,59 @@
                 </tr>
             </table>
         </div>
-        <div id="footer"></div>
+
+        <!-- GAME SCREEN ITEMS -->
+        <div class="mainBody gameScreen">
+          <div id="backBtnContainer">
+            <p id="backBtn">&lt; Back</p>
+          </div>
+          <!-- Buttons user selects to indicate their choice of rock, paper, or scissors -->
+          <div id="userSelectionBtns" class="fadeInItems">
+            <img src="img/rock/rock.jpg" alt="rock" id="rockBtn" class="userSelectionBtn">
+            <img src="img/paper/paper.jpg" alt="paper" id="paperBtn" class="userSelectionBtn">
+            <img src="img/scissors/scissors.jpg" alt="scissors" id="scissorsBtn" class="userSelectionBtn">
+          </div>
+          <div id="battlefield">
+            <table id="battleTable" class="fadeInItems">
+              <tr>
+                <th>You</th>
+                <th>Computer</th>
+              </tr>
+              <tr>
+                <td>
+                  <img src="img/rock/rock.jpg" alt="userSelection" id="userSelection" class="outcomeImg">
+                </td>
+                <td>
+                  <img src="img/rock/rock.jpg" alt="computerSelection" id="computerSelection" class="outcomeImg">
+                </td>
+              </tr>
+              <tr>
+                <td id="userScore">0</td>
+                <td id="computerScore">0</td>
+              </tr>
+            </table>
+            
+          </div>          
+        </div>
+
+        <div id="gameGuide">
+          <h1 id="guideTitle">Game Guide</h1>
+          <div id="guideContent">
+            <p>
+              The game is simple, select your weapon: <span id="innerDescription">Sturdy Rock, Mystical Paper, or Vicious Scissors</span>. Use these to fight the computer to win perks and upgrades that will aid you in later conquests.
+            </p>
+          </div>
+          <button id="closeGuideBtn">Close</button>
+        </div>
+
+        <div id="footerWrapper">
+          <div id="footer">
+            <span class="footerContent">Game Guide</span>
+            <span>
+              <a href="https://github.com/Septimis/rock-paper-sissors" class="footerContent">GitHub</a>
+              </span>
+          </div>
+        </div>
 
         <script src="script.js"></script>
     </body>
