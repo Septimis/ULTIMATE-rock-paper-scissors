@@ -15,40 +15,57 @@ The game is simple, select your weapon: <b>Sturdy Rock, Mystical Paper, or Vicio
 1. You may use points to buy upgrades for your rock, paper, or scissors and gain the upper hand.  Asthetic upgrades and other rewards can also be earned.
 #### Upgrades & Items
 -   ROCK
-    - Rock I - 50xp to unlock
+    - Rank I: Coal - 50 xp to unlock
         - There is a 50% chance on a loss *this* round that your opponent will not gain a point. 
-    - Rock II - 100xp to unlock
+    - Rank II: Quartz - 100 xp to unlock
         - There is a 75% chance on a loss *this* round that your opponent will not gain a point.
-    - Rock III - 200xp to unlock
+    - Rank III: Topaz - 200 xp to unlock
         - There is a 75% chance on your *next* loss this game that your opponent will not gain a point.
-    - Rock IV - 500xp to unlock
+    - Rank IV: Moissanite - 500 xp to unlock
         - There is a 75% chance on a loss *this* round that your opponent will not gain a point **and** a 50% chance that your opponent will not gain a point on your *next* loss this game.
-    - Rock V - 1000xp to unlock
+    - Rank V: Diamond - 1000 xp to unlock
         - There is a 90% chance on a loss *this* round that your opponent will not gain a point **and** a 90% chance on your *next* loss this game that your opponent will not gain a point.
 - PAPER
-    - Paper I - 50xp to unlock
+    - Rank I: Scroll - 50 xp to unlock
         - Upon winning with paper, there is a 50% chance to activate a common spell, a 5% chance to activate a rare spell, and a 45% chance nothing will happen.
-    - Paper II - 100xp to unlock
+    - Rank II: Spellbook - 100 xp to unlock
         - Upon winning with paper, there is a 75% chance to activate a common spell, a 20% chance to activate a rare spell, and a 5% chance to activate an epic spell.
-    - Paper III - 200xp to unlock
+    - Rank III: Lexicon - 200 xp to unlock
         - Upon winning with paper, there is a 25% chance to activate a common spell, a 50% chance to activate a rare spell, and a 25% chance to activate an epic spell.
-    - Paper IV - 500xp to unlock
+    - Rank IV:Grimoire - 500 xp to unlock
         - Upon winning with paper, there is a 60% chance to activate a rare spell, a 35% chance to activate an epic spell, and a 5% chance to activate a *LEGENDARY* spell.
-    - Paper V - 1000xp to unlock
+    - Rank V: Sovereign Intellect - 1000 xp to unlock
         - Regardless of the outcome, there is a 30% chance to activate a rare spell, a 60% chance to activate an epic spell, and a 10% chance to activate a *LEGENDARY* spell.
 - SCISSORS
-    - Scissors I - 50xp to unlock
+    - Rank I: Kitchen Scissors - 50 xp to unlock
         - Upon winning with scissors, there is a 50% chance to gain an additional point.
-    - Scissors II - 100xp to unlock
+    - RAnk II: Trauma Scissors - 100 xp to unlock
         - Upon winning with scissors, there is a 75% chance to gain an additional point.
-    - Scissors III - 200xp to unlock
+    - Rank III: Sheep Shears - 200 xp to unlock
         - Upon winning with scissors, there is a 75% chance to gain an additional point, or a 10% chance to gain 2 additional points.
-    - Scissors IV - 500xp to unlock
+    - Rank IV: Bolt Cutters - 500 xp to unlock
         - Upon winning with scissors, there is a 75% chance to gain an additional point, or a 20% chance to gain 2 additional points.
-    - Scissors V - 1000xp to unlock
+    - Rank V: Gro'noth, Destroyer of Worlds - 1000 xp to unlock
         - Upon losing with scissors, you have a 50% chance of gaining an additional point.  If you win with scissors, there is a 50% chance to gain 2 additional points, and a 10% chance to win the game immedietly.
 ---
 ## Education
 
 ### Challenges and Learning
-I ran into a problem at the beginning just trying to get my JavaScript file to run.  I found that the link to a JavaScript file needs to be referenced at the bottom of a page, not at the top as any `document.getElementById()` will return with null as the html id's have not been initiated yet.
+#### HTML
+ - I learned the beauty and simplicity of a `<table>`.  Rows and columns were very easy to set up and style.
+ - Nesting divs and spans are your best friend when it comes to positioning and styling.
+#### .CSS
+ - I struggled a lot with getting my `background-image: linear-gradient()` to fill the entire screen regardless of the size of the screen.
+ - In general, getting the website to look the same on different screens was a challenge.  I learned the correct time and place of pixel offsets to percentage.
+ - I learned a lot about different `position` styles and when to use them.
+ - The pop-up `Game Guide` was a really good exercise in position elements as well as adding scroll bars to div's.
+ - Overall this project felt more natural than previous ones in regards to placement of what I want.
+#### JavaScript
+- The \<script> tag needs to be specified at the bottom of an html page, not the top.  Otherwise the JavaScript file will have no idea what elements you're talking about.
+- I had a difficult time getting animations to repeat afte they have already played.  I was able to accomplish this by adding and removing the elements and their classes. This [resource](https://css-tricks.com/restart-css-animation/) was very helpful.
+- Jumping between 2 different screens with only **one** html file was excellent practice in JavaScript *DOM Manipulation*.
+    - Namely I had to create all elements on the html page, then wipe out the ones I wasn't using immedietly using the `remove()` function, then add them on a button click.
+
+### Resources
+Main reference: [w3Schools](https://www.w3schools.com/) \
+Restarting a .CSS animation: [css tricks](https://css-tricks.com/restart-css-animation/)
