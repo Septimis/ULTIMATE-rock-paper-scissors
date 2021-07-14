@@ -12,7 +12,7 @@
         </div>
         <!-- HOME SCREEN ITEMS --> 
         <div class="mainBody homeScreen">
-            <button id="startButton" class="floatingItems">START GAME</button>
+            <button id="startButton" class="floatingItems glow">START GAME</button>
             <!-- Where the user can see current experience & active effects -->
             <div id="userStats" class="floatingItems">
                 <p id="currentExperience">0 xp</p>
@@ -25,54 +25,63 @@
                 <tr>
                     <th>Currently Equipped</th>
                     <th>Upgrade</th>
+										<th></th>
                     <th>Cost</th>
                 </tr>
                 <tr>
                     <td>
-                        <b>Rock</b><br>
-                        <i>Current Description</i>
+                        <span id="equippedRock" class="equippedItems">Rock</span>
                     </td>
                     <td>
-                        <button id="rockUpgradeBtn" class="progressButtons">Upgrade</button><br>
-                        <i>Upgrade Description</i>
+                        <span id="rockUpgradeTitle">Coal</span><br>
+												<span id="rockUpgradeDescription">There is a 50% chance on a loss this round that your opponent will not gain a point.</span>
                     </td>
+										<td>
+											<button id="rockUpgradeBtn" class="progressButtons glow">Upgrade</button> 
+										</td>
                     <td>
-                        50 xp
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <b>Paper</b><br>
-                        <i>CurrentDescription</i>
-                    </td>
-                    <td>
-                        <button id="paperUpgradeBtn" class="progressButtons">Upgrade</button><br>
-                        <i>Upgrade Description</i>
-                    </td>
-                    <td>
-                        50 xp
+                        <span id="rockNextUpgradeReqExp">50 xp</span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <b>Scissors</b><br>
-                        <i>Current Description</i>
+                        <span id="equippedPaper" class="equippedItems">Paper</span>
                     </td>
                     <td>
-                        <button id="scissorUpgradeBtn" class="progressButtons">Upgrade</button><br>
-                        <i>Upgrade Description</i>
+                        <span id="paperUpgradeTitle">Scroll</span><br>
+												<span id="paperUpgradeDescription">Upon winning with paper, there is a 50% chance to activate a common spell, a 5% chance to activate a rare spell, and a 45% chance nothing will happen.</span>
+                    </td>
+										<td>
+											<button id="paperUpgradeBtn" class="progressButtons glow">Upgrade</button>
+										</td>
+                    <td>
+                        <span id="paperNextUpgradeReqExp">50 xp</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="equippedScissors" class="equippedItems">Scissors</span>
                     </td>
                     <td>
-                        50 xp
+                        <span id="scissorsUpgradeTitle">Kitchen Scissors</span><br>
+												<span id="scissorsUpgradeDescription">Upon winning with scissors, there is a 50% chance to gain an additional point.</span>
+                    </td>
+										<td>
+											<button id="scissorUpgradeBtn" class="progressButtons glow">Upgrade</button>
+										</td>
+                    <td>
+                        <span id="scissorsNextUpgradeReqExp">50 xp</span>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <b>2x Experience Bonus</b><br>
-                        <i>For your next game only</i>
                     </td>
+										<td>
+											<i>For your next game only.  You may equip as many as you'd like for a experience multiplier.</i>
+										</td>
                     <td>
-                        <button id="expBonusBtn" class="progressButtons">Buy</button>
+                        <button id="expBonusBtn" class="progressButtons glow">Buy</button>
                     </td>
                     <td>
                         50 xp
@@ -153,12 +162,12 @@
           </div>
           <!-- Buttons user selects to indicate their choice of rock, paper, or scissors -->
           <div id="userSelectionBtns" class="fadeInItems">
-            <img src="img/rock/rock.jpg" alt="rock" id="rockBtn" class="userSelectionBtn">
-            <img src="img/paper/paper.jpg" alt="paper" id="paperBtn" class="userSelectionBtn">
-            <img src="img/scissors/scissors.jpg" alt="scissors" id="scissorsBtn" class="userSelectionBtn">
+            <img src="img/rock/rock.jpg" alt="rock" id="rockBtn" class="userSelectionBtn glow">
+            <img src="img/paper/paper.jpg" alt="paper" id="paperBtn" class="userSelectionBtn glow">
+            <img src="img/scissors/scissors.jpg" alt="scissors" id="scissorsBtn" class="userSelectionBtn glow">
           </div>
           <div id="battlefield">
-            <p id="outcomeText">PLACEHOLDER</p>
+            <p id="outcomeText"></p>
             <table id="battleTable" class="fadeInItems">
               <tr>
                 <th>You</th>
@@ -372,8 +381,31 @@
                 </ul>
             </ul>
           </div>
-          <button id="closeGuideBtn">Close</button>
+          <button id="closeGuideBtn" class="glow">Close</button>
         </div>
+
+				<div id="resultsPage" class="fadeInItems">
+					<h1 id="resultsTitle">Game Results</h1>
+					<h2 id="victoryOrDeath"></h2>
+					<div id="resultsContent">
+						<table id="resultsBreakdown">
+							<tr>
+								<th></th>
+								<th>Base</th>
+								<th>Multiplier</th>
+								<th>Final</th>
+							<tr>
+								<td><b>Experience:</b></td>
+								<td id="baseExpBreakdown"></td>
+								<td id="expMultiplierBreakdown">x1</td>
+								<td id="experienceBreakdown"></td>
+							</tr>
+						</table>
+						<h2>Achievements</h2>
+						<p id="achievmentsEarned"></p>
+					</div>
+					<button id="closeResultsBtn" class="glow">Close</button>
+				</div>
 
         <div id="footerWrapper">
           <div id="footer">

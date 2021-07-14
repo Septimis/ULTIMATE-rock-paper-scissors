@@ -8,8 +8,8 @@ button {
     border: none;
     box-shadow: 0px 0px 5px 1px #7e7e7e;
 }
-button:hover {
-    box-shadow: 0px 0px 5px 3px #7e7e7e;
+.glow:hover {
+	box-shadow: 0px 0px 5px 3px #7e7e7e;
 }
 
 /* HEADER */
@@ -70,6 +70,54 @@ button:hover {
   height: 30px;
 }
 
+/* Results Breakdown Page */
+#resultsPage {
+	position: fixed;
+	top: 25%;
+	left: 32%;
+	z-index: 2;
+	width: 35%;
+	height: 35%;
+
+	background-color: black;
+	color: white;
+	border: 5px solid white;
+	padding: 10px 10px 10px 10px;
+}
+#resultsContent {
+	position: fixed;
+	top: 35%;
+	left: 33.25%;
+	padding: 10px 10px 10px 10px;
+	width: 33%;
+	height: 24%;
+}
+#resultsTitle {
+	text-align: center;
+	text-decoration: underline;
+	margin-bottom: 0px;
+}
+#victoryOrDeath {
+	text-align: center;
+	border: 1px solid white;
+	margin-top: -7px;
+}
+#resultsBreakdown {
+	width: 100%;
+}
+#resultsBreakdown td {
+	  padding: 15px;
+    text-align: center;
+		font-size: 19px;
+}
+#closeResultsBtn {
+	position: absolute;
+	bottom: 10px;
+	left: 42.5%;
+	width: 80px;
+	height: 30px;
+}
+
 /* BODY */
 .mainBody {
     color:white;
@@ -106,7 +154,6 @@ button:hover {
     text-align: center;
     font-size: 25px;
     font-family: "Copperplate", Times, Serif;
-
 }
 .upgradeTables {
     width:50%;
@@ -127,6 +174,10 @@ button:hover {
 .progressButtons {
     width: 80px;
     height: 20px;
+}
+.equippedItems {
+	font-size: 17px;
+	font-weight: bolder;
 }
 
 /* Home Screen Items ANIMATIONS */
