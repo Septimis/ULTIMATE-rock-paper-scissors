@@ -158,6 +158,7 @@
             <img src="img/scissors/scissors.jpg" alt="scissors" id="scissorsBtn" class="userSelectionBtn">
           </div>
           <div id="battlefield">
+            <p id="outcomeText">PLACEHOLDER</p>
             <table id="battleTable" class="fadeInItems">
               <tr>
                 <th>You</th>
@@ -165,10 +166,10 @@
               </tr>
               <tr>
                 <td>
-                  <img src="img/rock/rock.jpg" alt="userSelection" id="userSelection" class="outcomeImg">
+                  <img src="" alt="Your Choice" id="userSelection" class="outcomeImg">
                 </td>
                 <td>
-                  <img src="img/rock/rock.jpg" alt="computerSelection" id="computerSelection" class="outcomeImg">
+                  <img src="" alt="Computer Choice" id="computerSelection" class="outcomeImg">
                 </td>
               </tr>
               <tr>
@@ -176,25 +177,209 @@
                 <td id="computerScore">0</td>
               </tr>
             </table>
-            
           </div>          
         </div>
 
-        <div id="gameGuide">
+        <div id="gameGuide" class="fadeInItems">
           <h1 id="guideTitle">Game Guide</h1>
           <div id="guideContent">
+              <h2><u>Overview</u></h2>
             <p>
-              The game is simple, select your weapon: <span id="innerDescription">Sturdy Rock, Mystical Paper, or Vicious Scissors</span>. Use these to fight the computer to win perks and upgrades that will aid you in later conquests.
+              The game is simple, select your weapon: <span class="textGuide">Sturdy Rock, Mystical Paper, or Vicious Scissors</span>. 
+              Use these to fight the computer to win perks and upgrades that will aid you in later conquests.
             </p>
+            <ol>
+                <li>
+                    Each round, the player and computer will chose either Rock, Paper, or Scissors. 
+                    The first to 5 points wins the game.
+                </li>
+                <li>
+                    Each game will reward you with points if you win. 
+                </li>
+                <ul>
+                    <li>
+                        You will recieve <span class="textGuide">5 * the number of points you won by</span>
+                    </li>
+                    <li>
+                        For example, if you win 5 to 4, you won by a <span class="textGuide">margin of 1</span>, so your points would be 5 * <span class="textGuide">1</span>.
+                         you win 5 to 0, you won by a <span class="textGuide">margin of 5</span>, so your points would be 5 * <span class="textGuide">5</span>.
+                    </li>
+                </ul>
+                <li>
+                    You may use points to buy upgrades for your rock, paper, or scissors and gain the upper hand. 
+                    Asthetic upgrades and other rewards can also be earned.
+                </li>
+            </ol>
+            <h2><u>Upgrades & Items</u></h2>
+            <h4>ROCK</h4>
+            <ul>
+                <li>
+                    Rank 1: Coal - <em>50 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        There is a 50% chance on a loss this round that your opponent will not gain a point.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    Rank 2: Quartz - <em>100 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        There is a 75% chance on a loss this round that your opponent will not gain a point.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    Rank 3: Topaz - <em>200 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        There is a 75% chance on your next loss this game that your opponent will not gain a point.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    Rank 4: Moissanite - <em>500 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        There is a 75% chance on a loss this round that your opponent will not gain a point
+                         and a 50% chance that your opponent will not gain a point on your next loss this game.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    Rank 5: Diamond - <em>1,000 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        There is a 90% chance on a loss this round that your opponent will not gain a point
+                         and a 90% chance on your next loss this game that your opponent will not gain a point.
+                    </li>
+                </ul>
+            </ul>
+
+            <h4>PAPER</h4>
+            <ul>
+                <li>
+                    Rank 1: Scroll - <em>50 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        Upon winning with paper, there is a 50% chance to activate a common spell, 
+                        a 5% chance to activate a rare spell, 
+                        and a 45% chance nothing will happen.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    Rank 2: Spellbook - <em>100 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        Upon winning with paper, there is a 75% chance to activate a common spell, 
+                        a 20% chance to activate a rare spell, 
+                        and a 5% chance to activate an epic spell.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    Rank 3: Lexicon - <em>200 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        Upon winning with paper, there is a 25% chance to activate a common spell, 
+                        a 50% chance to activate a rare spell, 
+                        and a 25% chance to activate an epic spell.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    Rank 4: Grimoire - <em>500 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        Upon winning with paper, there is a 60% chance to activate a rare spell, 
+                        a 35% chance to activate an epic spell, 
+                        and a 5% chance to activate a LEGENDARY spell.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    Rank 5: Sovereign Intellect - <em>1,000 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        Regardless of the outcome, there is a 30% chance to activate a rare spell, 
+                        a 60% chance to activate an epic spell, 
+                        and a 10% chance to activate a LEGENDARY spell.
+                    </li>
+                </ul>
+            </ul>
+
+            <h4>SCISSORS</h4>
+            <ul>
+                <li>
+                    Rank 1: Kitchen Scissors - <em>50 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        Upon winning with scissors, there is a 50% chance to gain an additional point.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    Rank 2: Trauma Scissors - <em>100 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        Upon winning with scissors, there is a 75% chance to gain an additional point.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    Rank 3: Sheep Shears - <em>200 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        Upon winning with scissors, there is a 75% chance to gain an additional point, 
+                        <em>OR</em> a 10% chance to gain 2 additional points.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    Rank 4: Bolt Cutters - <em>500 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        Upon winning with scissors, there is a 75% chance to gain an additional point, 
+                        <em>OR </em>a 20% chance to gain 2 additional points.
+                    </li>
+                </ul>
+                <br>
+                <li>
+                    Rank 5: Gro'noth, Destroyer of Worlds - <em>1,000 xp to unlock</em>
+                </li>
+                <ul>
+                    <li>
+                        Upon losing with scissors, you have a 50% chance of gaining an additional point. 
+                        If you win with scissors, there is a 100% chance of gaining an additional point
+                        <em>AND</em> a 50% chance to gain 2 additional points, 
+                        <em>AND</em> a 10% chance to win the game immedietly.
+                    </li>
+                </ul>
+            </ul>
           </div>
           <button id="closeGuideBtn">Close</button>
         </div>
 
         <div id="footerWrapper">
           <div id="footer">
-            <span class="footerContent">Game Guide</span>
+            <span id="guideLink" class="footerContent">Game Guide</span>
             <span>
-              <a href="https://github.com/Septimis/rock-paper-sissors" class="footerContent">GitHub</a>
+              <a href="https://github.com/Septimis/rock-paper-sissors" target="_blank" rel="noopener noreferrer" class="footerContent">GitHub</a>
               </span>
           </div>
         </div>
