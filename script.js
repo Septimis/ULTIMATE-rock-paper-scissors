@@ -4,16 +4,21 @@ const l_body = document.getElementById("body");
 //GameGuide
 const l_gameGuide = document.getElementById("gameGuide");
 const l_guideLink = document.getElementById("guideLink");
-const l_victoryOrDeath = document.getElementById("victoryOrDeath");
 const l_closeGuideBtn = document.getElementById("closeGuideBtn");
 
 //Results Overview
 const l_resultsScreen = document.getElementById("resultsPage");
 const l_closeResultsBtn = document.getElementById("closeResultsBtn");
+const l_victoryOrDeath = document.getElementById("victoryOrDeath");
+
+const l_baseExpBreakdown = document.getElementById("baseExpBreakdown");
+const l_winMarginText = document.getElementById("winMargin");
+const l_expMultiplierBreakdown = document.getElementById("expMultiplierBreakdown");
+const l_experienceFinal = document.getElementById("experienceBreakdown");
 
 //HOMESCREEN
 const l_homeScreenItems = document.querySelectorAll(".homeScreen");
-let l_startGameBtn = document.getElementById("startButton");
+const l_startGameBtn = document.getElementById("startButton");
 const l_experienceDisplay = document.getElementById("currentExperience");
 const l_activeEffects = document.getElementById("activeEffects");
 
@@ -25,6 +30,10 @@ const l_rockUpgradeBtn = document.getElementById("rockUpgradeBtn");
 const l_paperUpgradeBtn = document.getElementById("paperUpgradeBtn");
 const l_scissorUpgradeBtn = document.getElementById("scissorUpgradeBtn");
 const l_expBonusBtn = document.getElementById("expBonusBtn");
+
+const l_rockRankText = document.getElementById("rockRank");
+const l_paperRankText = document.getElementById("paperRank");
+const l_scissorsRankText = document.getElementById("scissorsRank");
 
 const l_rockUpgradeTitle = document.getElementById("rockUpgradeTitle");
 const l_paperUpgradeTitle = document.getElementById("paperUpgradeTitle");
@@ -87,6 +96,7 @@ let l_playerExperience = 0;
 //player & computer start game at 0 points
 let l_playerPoints = 0;
 let l_computerPoints = 0;
+let l_pointMultiplier = 1;
 
 //BUTTON FUNCTIONALITY
 //game guide
@@ -138,30 +148,35 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 			case 0:
 				l_rockUpgradeCost = 100;
 				l_equippedRock.innerText = "Coal";
+				l_rockRankText.innerText = "I";
 				l_rockUpgradeTitle.innerText = "Quartz";
 				l_rockUpgradeDescription.innerText = "There is a 75% chance on a loss this round that your opponent will not gain a point.";
 				break;
 			case 1:
 				l_rockUpgradeCost = 200;
 				l_equippedRock.innerText = "Quartz";
+				l_rockRankText.innerText = "II";
 				l_rockUpgradeTitle.innerText = "Topaz";
 				l_rockUpgradeDescription.innerText = "There is a 75% chance on your next loss this game that your opponent will not gain a point.";
 				break;
 			case 2:
 				l_rockUpgradeCost = 500;
 				l_equippedRock.innerText = "Topaz"
+				l_rockRankText.innerText = "III";
 				l_rockUpgradeTitle.innerText = "Moissanite";
 				l_rockUpgradeDescription.innerText = "There is a 75% chance on a loss this round that your opponent will not gain a point and a 50% chance that your opponent will not gain a point on your next loss this game.";
 				break;
 			case 3:
 				l_rockUpgradeCost = 1000;
 				l_equippedRock.innerText = "Moissanite";
+				l_rockRankText.innerText = "IV";
 				l_rockUpgradeTitle.innerText = "Diamond";
 				l_rockUpgradeDescription.innerText = "There is a 90% chance on a loss this round that your opponent will not gain a point and a 90% chance on your next loss this game that your opponent will not gain a point.";
 				break;
 			case 4:
 				l_rockUpgradeCost = 9999;
 				l_equippedRock.innerText = "Diamond";
+				l_rockRankText.innerText = "V";
 				l_rockUpgradeTitle.innerText = "Fully Upgraded";
 				l_rockUpgradeDescription.innerText = "";
 				break;
@@ -207,30 +222,35 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 			case 0:
 				l_paperUpgradeCost = 100;
 				l_equippedPaper.innerText = "Scroll";
+				l_paperRankText.innerText = "I";
 				l_paperUpgradeTitle.innerText = "Spellbook";
 				l_paperUpgradeDescription.innerText = "Upon winning with paper, there is a 75% chance to activate a common spell, a 20% chance to activate a rare spell, and a 5% chance to activate an epic spell.";
 				break;
 			case 1:
 				l_paperUpgradeCost = 200;
 				l_equippedPaper.innerText = "Spellbook";
+				l_paperRankText.innerText = "II";
 				l_paperUpgradeTitle.innerText = "Lexicon";
 				l_paperUpgradeDescription.innerText = "Upon winning with paper, there is a 25% chance to activate a common spell, a 50% chance to activate a rare spell, and a 25% chance to activate an epic spell.";
 				break;
 			case 2:
 				l_paperUpgradeCost = 500;
 				l_equippedPaper.innerText = "Lexicon"
+				l_paperRankText.innerText = "III";
 				l_paperUpgradeTitle.innerText = "Grimoire";
 				l_paperUpgradeDescription.innerText = "Upon winning with paper, there is a 60% chance to activate a rare spell, a 35% chance to activate an epic spell, and a 5% chance to activate a LEGENDARY spell.";
 				break;
 			case 3:
 				l_paperUpgradeCost = 1000;
 				l_equippedPaper.innerText = "Grimoire";
+				l_paperRankText.innerText = "IV";
 				l_paperUpgradeTitle.innerText = "Sovereign Intellect";
 				l_paperUpgradeDescription.innerText = "Regardless of the outcome, there is a 30% chance to activate a rare spell, a 60% chance to activate an epic spell, and a 10% chance to activate a LEGENDARY spell.";
 				break;
 			case 4:
 				l_paperUpgradeCost = 9999;
 				l_equippedPaper.innerText = "Sovereign Intellect";
+				l_paperRankText.innerText = "V";
 				l_paperUpgradeTitle.innerText = "Fully Upgraded";
 				l_paperUpgradeDescription.innerText = "";
 				break;
@@ -273,30 +293,35 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 			case 0:
 				l_scissorsUpgradeCost = 100;
 				l_equippedScissors.innerText = "Kitchen Scissors";
+				l_scissorsRankText.innerText = "I";
 				l_scissorsUpgradeTitle.innerText = "Sheep Shears";
 				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point.";
 				break;
 			case 1:
 				l_scissorsUpgradeCost = 200;
 				l_equippedScissors.innerText = "Trauma Scissors";
+				l_scissorsRankText.innerText = "II";
 				l_scissorsUpgradeTitle.innerText = "Sheep Shears";
 				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 10% chance to gain 2 additional points.";
 				break;
 			case 2:
 				l_scissorsUpgradeCost = 500;
 				l_equippedScissors.innerText = "Sheep Shears"
+				l_scissorsRankText.innerText = "III";
 				l_scissorsUpgradeTitle.innerText = "Bolt Cutters";
 				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 20% chance to gain 2 additional points.";
 				break;
 			case 3:
 				l_scissorsUpgradeCost = 1000;
 				l_equippedScissors.innerText = "Bolt Cutters";
+				l_scissorsRankText.innerText = "IV";
 				l_scissorsUpgradeTitle.innerText = "Gro'noth, Destroyer of Worlds";
 				l_scissorsUpgradeDescription.innerText = "Upon losing with scissors, you have a 50% chance of gaining an additional point. If you win with scissors, there is a 50% chance to gain 2 additional points, and a 10% chance to win the game immedietly.";
 				break;
 			case 4:
 				l_scissorsUpgradeCost = 9999;
 				l_equippedScissors.innerText = "Gro'noth, Destroyer of Worlds";
+				l_scissorsRankText.innerText = "V";
 				l_scissorsUpgradeTitle.innerText = "Fully Upgraded";
 				l_scissorsUpgradeDescription.innerText = "";
 				break;
@@ -325,7 +350,9 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 
 //GAMESCREEN
 //button functionality
-l_returnBtn.addEventListener("click", returnToHome());
+l_returnBtn.addEventListener("click", function() {
+	returnToHome();
+});
 
 function returnToHome() {
 	for(let i = 0; i < l_gameScreenItems.length; i++) {
@@ -350,25 +377,24 @@ l_rockBtn.addEventListener("click", function() {
 	//outcome logic
 	if(l_outcome == -1) { //loss
 		l_outcomeText.innerText = "You Lost!";
+		l_outcomeText.style.color = "red";
 		l_computerPoints++;
 		l_computerScore.innerText = l_computerPoints;
 	} else if(l_outcome == 0) { //draw
 		l_outcomeText.innerText = "Draw!";
+		l_outcomeText.style.color = "white";
 	} else if(l_outcome == 1) { //win
 		l_outcomeText.innerText = "You won!";
+		l_outcomeText.style.color = "green";
 		l_playerPoints++;
 		l_userScore.innerText = l_playerPoints;
 	}
 
 	//test if the player or computer has won the game
 	if(l_playerPoints >= 5) {
-		returnToHome();
-		l_victoryOrDeath.innerText = "VICTORY!";
-		showResults();
+		endGame(true);
 	} else if(l_computerPoints == 5) {
-		returnToHome();
-		l_victoryOrDeath.innerText = "DEFEAT";
-		showResults();
+		endGame(false);
 	}
 });
 l_paperBtn.addEventListener("click", function() {
@@ -379,25 +405,23 @@ l_paperBtn.addEventListener("click", function() {
 	//outcome logic
 	if(l_outcome == -1) { //loss
 		l_outcomeText.innerText = "You Lost!";
+		l_outcomeText.style.color = "red";
 		l_computerPoints++;
 		l_computerScore.innerText = l_computerPoints;
 	} else if(l_outcome == 0) { //draw
 		l_outcomeText.innerText = "Draw!";
 	} else if(l_outcome == 1) { //win
 		l_outcomeText.innerText = "You won!";
+		l_outcomeText.style.color = "green";
 		l_playerPoints++;
 		l_userScore.innerText = l_playerPoints;
 	}
 
 	//test if the player or computer has won the game
 	if(l_playerPoints >= 5) {
-		returnToHome();
-		l_victoryOrDeath.innerText = "VICTORY!";
-		showResults();
+		endGame(true);
 	} else if(l_computerPoints == 5) {
-		returnToHome();
-		l_victoryOrDeath.innerText = "DEFEAT";
-		showResults();
+		endGame(false);
 	}
 });
 l_scissorsBtn.addEventListener("click", function() {
@@ -408,24 +432,22 @@ l_scissorsBtn.addEventListener("click", function() {
 	//outcome logic
 	if(l_outcome == -1) { //loss
 		l_outcomeText.innerText = "You Lost!";
+		l_outcomeText.style.color = "red";
 		l_computerPoints++;
 		l_computerScore.innerText = l_computerPoints;
 	} else if(l_outcome == 0) { //draw
 		l_outcomeText.innerText = "Draw!";
 	} else if(l_outcome == 1) { //win
 		l_outcomeText.innerText = "You won!";
+		l_outcomeText.style.color = "green";
 		l_playerPoints++;
 		l_userScore.innerText = l_playerPoints;
 	}
 	//test if the player or computer has won the game
 	if(l_playerPoints >= 5) {
-		returnToHome();
-		l_victoryOrDeath.innerText = "VICTORY!";
-		showResults();
+		endGame(true);
 	} else if(l_computerPoints == 5) {
-		returnToHome();
-		l_victoryOrDeath.innerText = "DEFEAT";
-		showResults();
+		endGame(false);
 	}
 });
 
@@ -465,4 +487,40 @@ function playRound(a_playerChoice) {
   } else {
     return -1;
   }
+}
+
+//wraps up the final score
+function endGame(a_isVictorious) {
+	//reset game Elements
+	l_userScore.innerText = "0";
+	l_computerScore.innerText = "0";
+	l_outcomeText.innerText = "";
+
+	if(a_isVictorious) {
+		returnToHome();
+
+		showResults();
+		l_victoryOrDeath.innerText = "VICTORY!";
+		l_victoryOrDeath.style.color ="green";
+		
+		//calcuate points
+		l_playerExperience += 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier;
+		l_experienceDisplay.innerText = l_playerExperience + " xp";
+
+		l_baseExpBreakdown.innerText = "5";
+		l_winMarginText.innerText = l_playerPoints - l_computerPoints;
+		l_expMultiplierBreakdown.innerText = l_pointMultiplier;
+		l_experienceFinal.innerText = 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier;
+	} else {
+		returnToHome();
+		showResults();
+
+		l_baseExpBreakdown.innerText = 0;
+		l_winMarginText.innerText = 0;
+		l_expMultiplierBreakdown.innerText = l_pointMultiplier;
+		l_experienceFinal.innerText = 0;
+
+		l_victoryOrDeath.innerText = "DEFEAT";
+		l_victoryOrDeath.style.color ="red";
+	}
 }

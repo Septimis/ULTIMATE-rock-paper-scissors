@@ -100,7 +100,7 @@ button {
 #victoryOrDeath {
 	text-align: center;
 	border: 1px solid white;
-	margin-top: -7px;
+	margin-top: 0px;
 }
 #resultsBreakdown {
 	width: 100%;
@@ -178,6 +178,9 @@ button {
 .equippedItems {
 	font-size: 17px;
 	font-weight: bolder;
+}
+.rankText {
+  text-align: center;
 }
 
 /* Home Screen Items ANIMATIONS */
