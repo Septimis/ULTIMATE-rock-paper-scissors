@@ -15,6 +15,13 @@ const l_baseExpBreakdown = document.getElementById("baseExpBreakdown");
 const l_winMarginText = document.getElementById("winMargin");
 const l_expMultiplierBreakdown = document.getElementById("expMultiplierBreakdown");
 const l_experienceFinal = document.getElementById("experienceBreakdown");
+const l_resultsHeaderRow = document.getElementById("resultsHeaderRow");
+
+//spell effect screen & children
+const m_spellEffectScreen = document.getElementById("spellEffect")
+const m_spellEffectTitle = document.getElementById("spellEffectTitle");
+const m_spellDescription = document.getElementById("spellEffectDescription");
+
 
 //HOMESCREEN
 const l_homeScreenItems = document.querySelectorAll(".homeScreen");
@@ -69,11 +76,12 @@ const l_computerScore = document.getElementById("computerScore");
 for(let element of l_gameScreenItems) {
   element.remove();
 }
-//gameGuide is hidden by default
-l_gameGuide.remove();
 
 //results is hidden by default
 l_resultsScreen.remove();
+
+//spell effects are hidden by default
+m_spellEffectScreen.remove();
 
 //computer choice chances are 33.33% at the beginning
 let l_rockChance = 33.33;
@@ -97,6 +105,10 @@ let l_playerExperience = 0;
 let l_playerPoints = 0;
 let l_computerPoints = 0;
 let l_pointMultiplier = 1;
+
+//spell VARIABLES
+let l_spellFlatExperienceBonus = 0;
+let l_spellExperienceMultiplier = 1;
 
 //BUTTON FUNCTIONALITY
 //game guide
@@ -125,7 +137,6 @@ l_startGameBtn.addEventListener("click", function(e) {
     l_body.appendChild(l_gameScreenItems[i]);
 
   }
-
 	//reset points
 	l_playerPoints = 0;
 	l_computerPoints = 0;
@@ -216,7 +227,7 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 		}
 
 		//decrease player Experience accordingly
-		l_playerExperience -= l_rockUpgradeCost;
+		l_playerExperience -= l_paperUpgradeCost;
 
 		switch(l_paperRank) {
 			case 0:
@@ -287,7 +298,7 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 		}
 
 		//decrease player Experience accordingly
-		l_playerExperience -= l_rockUpgradeCost;
+		l_playerExperience -= l_scissorsUpgradeCost;
 
 		switch(l_scissorsRank) {
 			case 0:
@@ -346,6 +357,22 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 	} else {
 		alert(`You need ${l_scissorsUpgradeCost - l_playerExperience} more experience to upgrade!  Play more games to increase your experience!`);
 	}
+});
+
+l_expBonusBtn.addEventListener("click", function() {
+	//deduct experience from user
+	l_playerExperience -= 25;
+
+	//apply bonus xp
+	if(l_pointMultiplier == 1) {
+		l_pointMultiplier = 2;
+	} else {
+		l_pointMultiplier += 2;
+	}
+
+	//reflect changes on active activeEffects & experience
+	l_activeEffects.innerText = `Experience Bonus: ${l_pointMultiplier}`;
+	l_experienceDisplay.innerText = l_playerExperience + " xp";
 });
 
 //GAMESCREEN
@@ -411,6 +438,27 @@ l_paperBtn.addEventListener("click", function() {
 	} else if(l_outcome == 0) { //draw
 		l_outcomeText.innerText = "Draw!";
 	} else if(l_outcome == 1) { //win
+		//spells
+		if(l_paperRank == 1) {
+			let l_determinator = getRandomInt(1, 100);
+			if(l_determinator <= 50) {
+				console.log("casting a common spell");
+				commonSpell();
+			} else if(l_determinator <= 55) {
+				console.log("casting a rare spell");
+				rareSpell();
+			}
+
+		} else if(l_paperRank == 2) {
+
+		} else if(l_paperRank == 3) {
+
+		} else if(l_paperRank == 4) {
+
+		} else if(l_paperRank == 5) {
+
+		}
+
 		l_outcomeText.innerText = "You won!";
 		l_outcomeText.style.color = "green";
 		l_playerPoints++;
@@ -424,6 +472,74 @@ l_paperBtn.addEventListener("click", function() {
 		endGame(false);
 	}
 });
+
+//spell functions
+function commonSpell() {
+	//determine the spell that will be cast
+	const l_determinator = getRandomInt(1, 2);
+	m_spellEffectTitle.innerText = "Common";
+	m_spellEffectTitle.style.color = "grey";
+	
+	if(l_determinator == 1) { //+10 xp
+		l_spellFlatExperienceBonus += getRandomInt(1, 5);
+		m_spellDescription.innerText = `+${l_spellFlatExperienceBonus} experience`;
+	} else if(l_determinator == 2) { //random background Color
+		//repeat if the color isn't dark enough
+		let l_tooLight = true;
+		let l_color;
+		while(l_tooLight) {;
+			//generate the random background
+			let l_options = "0123456789ABCDEF"
+			l_color = "#";
+			for(let i = 0; i < 6; i++) {
+				l_color += l_options[getRandomInt(0, 15)];
+			}
+			console.log(`color: ${l_color}`);
+			//test if the color is too light.
+			if(parseInt(l_color) > 16565444) {
+				l_tooLight = true;
+				console.log("too light");
+			} else {
+				l_tooLight = false;
+			}
+		}
+
+		//set background temporarily
+		l_body.style.backgroundColor = l_color;
+		m_spellDescription.innerText = "Changed background!";
+	}
+	//show the spell
+	showSpell();
+}
+function rareSpell() {
+	m_spellEffectTitle.innerText = "Rare";
+	m_spellEffectTitle.style.color = "blue";
+	showSpell();
+}
+function epicSpell() {
+	m_spellEffectTitle.innerText = "Epic";
+	m_spellEffectTitle.style.color = "purple";
+
+}
+function legendarySpell() {
+	m_spellEffectTitle.innerText = "LEGENDARY";
+	m_spellEffectTitle.style.color = "orange";
+
+}
+async function showSpell() {
+	console.log("START OF SHOW SPELL");
+	l_body.appendChild(m_spellEffectScreen);
+	m_spellEffectScreen.classList.add("fadeInItems");
+	await sleep(2000);
+	m_spellEffectScreen.classList.remove("fadeInItems");
+	m_spellEffectScreen.classList.add("fadeOutItems");
+	await sleep(2000);
+	m_spellEffectScreen.classList.remove("fadeOutItems");
+	m_spellEffectScreen.remove();
+	//m_spellEffectScreen.classList.remove("fadeOutItems");
+	console.log("END OF SHOW SPELL");
+}
+
 l_scissorsBtn.addEventListener("click", function() {
 	l_userChoice.src = "img/scissors/scissors.jpg";
 
@@ -504,13 +620,22 @@ function endGame(a_isVictorious) {
 		l_victoryOrDeath.style.color ="green";
 		
 		//calcuate points
-		l_playerExperience += 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier;
+		l_playerExperience += 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier * l_spellExperienceMultiplier + l_spellFlatExperienceBonus;
 		l_experienceDisplay.innerText = l_playerExperience + " xp";
 
+		//show breakown correctly
 		l_baseExpBreakdown.innerText = "5";
 		l_winMarginText.innerText = l_playerPoints - l_computerPoints;
 		l_expMultiplierBreakdown.innerText = l_pointMultiplier;
 		l_experienceFinal.innerText = 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier;
+
+		//if there was added xp from spells, add that in the table here
+		if(l_spellFlatExperienceBonus > 0) {
+			let l_addedFlatExpCell = l_resultsHeaderRow.insertCell(4);
+			l_addedFlatExpCell.innerText = l_spellFlatExperienceBonus + " xp";
+		}
+		
+
 	} else {
 		returnToHome();
 		showResults();
@@ -523,4 +648,25 @@ function endGame(a_isVictorious) {
 		l_victoryOrDeath.innerText = "DEFEAT";
 		l_victoryOrDeath.style.color ="red";
 	}
+
+	//reset activeEffects
+	l_activeEffects.innerText = "";
+	l_pointMultiplier = 1;
+
+	//reset spell pertinent spell effects
+	l_spellFlatExperienceBonus = 0;
+	l_body.style.backgroundColor = "black";
+	l_spellExperienceMultiplier = 1;
+}
+
+//returns an int between two numbers (ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+}
+
+//sleeps for ms amount (ref: https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep)
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

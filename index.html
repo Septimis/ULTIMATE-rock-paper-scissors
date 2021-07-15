@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html">
     <head>
         <title>ULTIMATE Rock, Paper, Sissors</title>
         <meta charset="UTF-8">
@@ -24,7 +24,7 @@
             <table class="upgradeTables floatingItems">
                 <tr>
                     <th>Currently Equipped</th>
-                    <th>Current Rank</th>
+                    <th class="rankText">Current Rank</th>
                     <th>Upgrade</th>
                     <th></th>
                     <th>Cost</th>
@@ -87,14 +87,15 @@
                     <td>
                         <strong>2x Experience Bonus</strong><br>
                     </td>
-                        <td>
-                            <em>For your next game only.  You may equip as many as you'd like for a experience multiplier.</em>
-                        </td>
+										<td></td>
                     <td>
-                        <button id="expBonusBtn" class="progressButtons glow">Buy</button>
-                    </td>
+											<em>For your next game only.  You may equip as many as you'd like for a experience multiplier.</em>
+											</td>
+										<td>
+											<button id="expBonusBtn" class="progressButtons glow">Buy</button>
+										</td>
                     <td>
-                        50 xp
+                        25 xp
                     </td>
                 </tr>
             </table>
@@ -110,14 +111,14 @@
                         <strong>Welcome!</strong><br>
                         <em>Play Your First Game</em>
                     </td>
-                    <td>+10 xp</td>
+                    <td>+5 xp</td>
                 </tr>
                 <tr id="onlyRockAchievment">
                     <td>
                         <b>Favoritism</b><br>
                         <i>Win a Game by Only Choosing Either Rock, Paper, or Scissors</i>
                     </td>
-                    <td>+20 xp</td>
+                    <td>+10 xp</td>
                 </tr>
                 <tr id="perfectionAchievment">
                     <td>
@@ -160,7 +161,7 @@
                         <b>Dwayne "the Rock, Paper, Scissors" Johnson</b><br>
                         <i>Unlock the full power of Dwayne "The Rock" Johnson</i>
                     </td>
-                    <td>+100 xp</td>
+                    <td>+1,000 xp</td>
                 </tr>
             </table>
         </div>
@@ -399,7 +400,7 @@
             <h2 id="victoryOrDeath"></h2>
             <div id="resultsContent">
                 <table id="resultsBreakdown">
-                    <tr>
+                    <tr id="resultsHeaderRow">
                         <th></th>
                         <th>Base</th>
                         <th>Win Margin</th>
@@ -418,6 +419,11 @@
             </div>
             <button id="closeResultsBtn" class="glow">Close</button>
         </div>
+
+				<div id="spellEffect" class="fadeInItems">
+					<h1 id="spellEffectTitle">Test</h1>
+					<p id="spellEffectDescription">Test</p>
+				</div>
 
         <div id="footerWrapper">
           <div id="footer">

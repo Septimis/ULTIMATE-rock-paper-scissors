@@ -47,6 +47,28 @@ The game is simple, select your weapon: <b>Sturdy Rock, Mystical Paper, or Vicio
         - Upon winning with scissors, there is a 75% chance to gain an additional point, or a 20% chance to gain 2 additional points.
     - Rank V: Gro'noth, Destroyer of Worlds - 1000 xp to unlock
         - Upon losing with scissors, you have a 50% chance of gaining an additional point.  If you win with scissors, there is a 50% chance to gain 2 additional points, and a 10% chance to win the game immedietly.
+#### Spells
+Each category has an equal chance to activate the spell.  Flat experience gains will be added **AFTER** multipliers have been added.  Experience multipliers will stack with each other at the end of the game.  For example, suppose you cast a +10 experience spell, a x2 experience bonus, and a x4 experience bonus.  Your final score would be calculated by: *5 x margin x purchased Experience Bonus' x 2 x 4 + 10*.  Some spell effects are permanent such as the Dwayne cards and the reduced cost of an experience bonus.  Once you have unlocked these, they will be removed from the pool of available spells and can no longer be cast.
+##### Common
+ - +1-5 xp bonus on a win THIS game.
+ - Set the background to a random (dark) color.
+ - Randomize the scores. (Caution!  This could not go in your favor!)
+##### Rare
+ - +20 xp bonus on a win THIS game.
+ - Gain a x2 exp bonus THIS game.
+ - You will win the **next** draw this game.
+ - Reverse the scores.
+##### Epic
+ - Experience bonus costs 10 xp instead of 25 xp.
+ - Gain a x4 exp bonus THIS game.
+ - You win all draws THIS game.
+ - Set your opponents points to 0.
+##### Legendary
+ - Unlock Dwayne "The Rock" Johnson
+ - Unlock Dwayne "The Paper" Johnson
+ - Unlock Dwayne "The Scissors" Johnson
+ - Gain a x8 xp bonus THIS game.
+ - Unlock the SUPERMAN option THIS game.
 ---
 ## Education
 

@@ -1,8 +1,7 @@
-html {
-    min-height: 100%;
-    background-image: linear-gradient(180deg, #000000, #181818);
-    background-repeat: no-repeat;
+body {
+	background-color: #000000;
 }
+/*optional bg: #156F6C */
 button {
     border-radius: 2%;
     border: none;
@@ -74,9 +73,9 @@ button {
 #resultsPage {
 	position: fixed;
 	top: 25%;
-	left: 32%;
+	left: 27%;
 	z-index: 2;
-	width: 35%;
+	width: 45%;
 	height: 35%;
 
 	background-color: black;
@@ -87,9 +86,9 @@ button {
 #resultsContent {
 	position: fixed;
 	top: 35%;
-	left: 33.25%;
+	left: 27%;
 	padding: 10px 10px 10px 10px;
-	width: 33%;
+	width: 40%;
 	height: 24%;
 }
 #resultsTitle {
@@ -104,6 +103,8 @@ button {
 }
 #resultsBreakdown {
 	width: 100%;
+	text-align: left;
+	margin-left: -50px;;;;;
 }
 #resultsBreakdown td {
 	  padding: 15px;
@@ -116,6 +117,24 @@ button {
 	left: 42.5%;
 	width: 80px;
 	height: 30px;
+}
+
+/* spell screen */
+#spellEffect {
+	position: absolute;
+	left: 10%;
+	top: 10%;
+	z-index: 2;
+	width: 15%;
+	height: 20%;
+	background-color: rgb(66, 66, 66);
+	color: white;
+	border: 2px solid white;
+	border-radius: 10%;
+	text-align: center;
+}
+#spellEffectDescription {
+	font-size: 18px;
 }
 
 /* BODY */
@@ -180,7 +199,7 @@ button {
 	font-weight: bolder;
 }
 .rankText {
-  text-align: center;
+  text-align: center !important;
 }
 
 /* Home Screen Items ANIMATIONS */
@@ -203,7 +222,7 @@ button {
 /* Game Screen Items */
 #backBtnContainer {
   text-align: center;
-  background-color: black;
+  background-color: transparent;
   width: 100px;
   height: 35px;
   border-radius: 5px;
@@ -263,6 +282,19 @@ button {
   100%  {
     opacity: 1;
   }
+}
+.fadeOutItems {
+	animation-name: fadeOut;
+	animation-duration: 2s;
+	position: relative;
+}
+@keyframes fadeOut {
+	0%		{
+		opacity: 1;
+	}
+	100%		{
+		opacity: 0;
+	}
 }
 
 #footerWrapper {
