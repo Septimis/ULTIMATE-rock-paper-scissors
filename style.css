@@ -103,8 +103,7 @@ button {
 }
 #resultsBreakdown {
 	width: 100%;
-	text-align: left;
-	margin-left: -50px;;;;;
+	text-align: center;
 }
 #resultsBreakdown td {
 	  padding: 15px;

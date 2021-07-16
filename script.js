@@ -1,3 +1,7 @@
+//NEXT TODO:
+//Fix the Results Page when inserting and deleting cells
+//The final column keeps getting deleted
+
 //Initial VARIABLES
 const l_body = document.getElementById("body");
 
@@ -16,6 +20,7 @@ const l_winMarginText = document.getElementById("winMargin");
 const l_expMultiplierBreakdown = document.getElementById("expMultiplierBreakdown");
 const l_experienceFinal = document.getElementById("experienceBreakdown");
 const l_resultsHeaderRow = document.getElementById("resultsHeaderRow");
+const l_resultsBreakdownRow = document.getElementById("resultsBreakdownRow");
 
 //spell effect screen & children
 const m_spellEffectScreen = document.getElementById("spellEffect")
@@ -124,6 +129,21 @@ function showResults() {
 	l_body.appendChild(l_resultsScreen);
 }
 l_closeResultsBtn.addEventListener("click", function() {
+	//reset spell multiplier
+	if(l_spellExperienceMultiplier > 1) {
+		l_resultsHeaderRow.deleteCell(4);
+		l_resultsBreakdownRow.deleteCell(4);
+	}
+	//reset spell experience gains
+	if(l_spellFlatExperienceBonus > 0){
+		l_resultsHeaderRow.deleteCell(4);
+		l_resultsBreakdownRow.deleteCell(4);
+	}
+
+	//reset spell pertinent spell effects
+	l_spellFlatExperienceBonus = 0;
+	l_spellExperienceMultiplier = 1;
+
 	l_resultsScreen.remove();
 });
 
@@ -476,13 +496,14 @@ l_paperBtn.addEventListener("click", function() {
 //spell functions
 function commonSpell() {
 	//determine the spell that will be cast
-	const l_determinator = getRandomInt(1, 2);
+	const l_determinator = getRandomInt(1, 3);
 	m_spellEffectTitle.innerText = "Common";
 	m_spellEffectTitle.style.color = "grey";
 	
-	if(l_determinator == 1) { //+10 xp
-		l_spellFlatExperienceBonus += getRandomInt(1, 5);
-		m_spellDescription.innerText = `+${l_spellFlatExperienceBonus} experience`;
+	if(l_determinator == 1) { //+1-5 xp
+		let l_awardedXpBonus = getRandomInt(1, 5);
+		l_spellFlatExperienceBonus += l_awardedXpBonus;
+		m_spellDescription.innerText = `+${l_awardedXpBonus} experience`;
 	} else if(l_determinator == 2) { //random background Color
 		//repeat if the color isn't dark enough
 		let l_tooLight = true;
@@ -507,6 +528,12 @@ function commonSpell() {
 		//set background temporarily
 		l_body.style.backgroundColor = l_color;
 		m_spellDescription.innerText = "Changed background!";
+	} else if(l_determinator == 3) { //Randomize the Scores
+		m_spellDescription.innerText = "Randomized Scores!";
+		l_playerPoints = getRandomInt(0, 4);
+		l_userScore.innerText = l_playerPoints;
+		l_computerPoints = getRandomInt(0, 4);
+		l_computerScore.innerText = l_computerPoints;
 	}
 	//show the spell
 	showSpell();
@@ -514,6 +541,32 @@ function commonSpell() {
 function rareSpell() {
 	m_spellEffectTitle.innerText = "Rare";
 	m_spellEffectTitle.style.color = "blue";
+
+	//determine which spell will be cast
+	const l_determinator = getRandomInt(1, 4);
+
+	switch(l_determinator) {
+		//+20 xp bonus
+		case 1:
+			l_spellFlatExperienceBonus += 20;
+			m_spellDescription.innerText = '+20 experience';
+			break;
+		//Gain x2 xp bonus
+		case 2:
+			if(l_spellExperienceMultiplier == 1) {
+				l_spellExperienceMultiplier = 2;
+			} else {
+				l_spellExperienceMultiplier += 2;
+			}
+			break;
+		//Win the next draw
+		case 3:
+			break;
+		//Reverse Scores
+		case 4:
+			break;
+	}
+
 	showSpell();
 }
 function epicSpell() {
@@ -627,15 +680,27 @@ function endGame(a_isVictorious) {
 		l_baseExpBreakdown.innerText = "5";
 		l_winMarginText.innerText = l_playerPoints - l_computerPoints;
 		l_expMultiplierBreakdown.innerText = l_pointMultiplier;
-		l_experienceFinal.innerText = 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier;
+		l_experienceFinal.innerText = 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier * l_spellExperienceMultiplier + l_spellFlatExperienceBonus;
 
 		//if there was added xp from spells, add that in the table here
-		if(l_spellFlatExperienceBonus > 0) {
-			let l_addedFlatExpCell = l_resultsHeaderRow.insertCell(4);
-			l_addedFlatExpCell.innerText = l_spellFlatExperienceBonus + " xp";
-		}
+		if(l_spellExperienceMultiplier > 1) { //tests if there was a multiplier added
+			let l_addedSpellMultiplierTitle = l_resultsHeaderRow.insertCell(4);
+			l_addedSpellMultiplierTitle.innerText = "Spell Multiplier";
+			l_addedSpellMultiplierTitle.style.fontSize = "16px";
+			l_addedSpellMultiplierTitle.style.fontWeight = "bold";
+			let l_addedSpellMultiplierData = l_resultsBreakdownRow.insertCell(4);
+			l_addedSpellMultiplierData.innerText = l_spellExperienceMultiplier;
 		
-
+		}
+		if(l_spellFlatExperienceBonus > 0) {
+			let l_addedFlatExpCellTitle = l_resultsHeaderRow.insertCell(4);
+			l_addedFlatExpCellTitle.innerText = "Flat Spell Bonus";
+			l_addedFlatExpCellTitle.style.fontSize = "16px";
+			l_addedFlatExpCellTitle.style.fontWeight = "bold";
+			let l_addedFlatExpCellData = l_resultsBreakdownRow.insertCell(4);
+			l_addedFlatExpCellData.style.fontSize = "16px";
+			l_addedFlatExpCellData.innerText = `+ ${l_spellFlatExperienceBonus}`;
+		}
 	} else {
 		returnToHome();
 		showResults();
@@ -652,11 +717,7 @@ function endGame(a_isVictorious) {
 	//reset activeEffects
 	l_activeEffects.innerText = "";
 	l_pointMultiplier = 1;
-
-	//reset spell pertinent spell effects
-	l_spellFlatExperienceBonus = 0;
 	l_body.style.backgroundColor = "black";
-	l_spellExperienceMultiplier = 1;
 }
 
 //returns an int between two numbers (ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
