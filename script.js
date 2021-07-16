@@ -1,7 +1,10 @@
-//NEXT TODO:
-//Fix the Results Page when inserting and deleting cells
-//The final column keeps getting deleted
-
+/*NEXT TODO:
+ * - Nerf Rock
+ * - Update README.md
+ * - Make the 'draw' text white with paper & scissors
+ * - Implement scissors specials
+ * - Add function for achievements
+ */
 //Initial VARIABLES
 const l_body = document.getElementById("body");
 
@@ -22,12 +25,6 @@ const l_experienceFinal = document.getElementById("experienceBreakdown");
 const l_resultsHeaderRow = document.getElementById("resultsHeaderRow");
 const l_resultsBreakdownRow = document.getElementById("resultsBreakdownRow");
 
-//spell effect screen & children
-const m_spellEffectScreen = document.getElementById("spellEffect")
-const m_spellEffectTitle = document.getElementById("spellEffectTitle");
-const m_spellDescription = document.getElementById("spellEffectDescription");
-
-
 //HOMESCREEN
 const l_homeScreenItems = document.querySelectorAll(".homeScreen");
 const l_startGameBtn = document.getElementById("startButton");
@@ -42,6 +39,7 @@ const l_rockUpgradeBtn = document.getElementById("rockUpgradeBtn");
 const l_paperUpgradeBtn = document.getElementById("paperUpgradeBtn");
 const l_scissorUpgradeBtn = document.getElementById("scissorUpgradeBtn");
 const l_expBonusBtn = document.getElementById("expBonusBtn");
+const l_expBonusCostSpan = document.getElementById("expBonusCost");
 
 const l_rockRankText = document.getElementById("rockRank");
 const l_paperRankText = document.getElementById("paperRank");
@@ -85,9 +83,6 @@ for(let element of l_gameScreenItems) {
 //results is hidden by default
 l_resultsScreen.remove();
 
-//spell effects are hidden by default
-m_spellEffectScreen.remove();
-
 //computer choice chances are 33.33% at the beginning
 let l_rockChance = 33.33;
 let l_paperChance = 33.33;
@@ -102,6 +97,7 @@ let l_scissorsRank = 0;
 let l_rockUpgradeCost = 50;
 let l_paperUpgradeCost = 50;
 let l_scissorsUpgradeCost = 50;
+let l_expBonusCost = 25;
 
 //players start the game at 0 xp
 let l_playerExperience = 0;
@@ -114,6 +110,16 @@ let l_pointMultiplier = 1;
 //spell VARIABLES
 let l_spellFlatExperienceBonus = 0;
 let l_spellExperienceMultiplier = 1;
+let l_spellWinNextDraw = false;
+let l_spellWinAllDraws = false;
+let l_numEpicSpells = 4;
+let l_numLegendarySpells = 5;
+let m_hasRockDwayne = false;
+let m_hasPaperDwayne = false;
+let m_hasScissorsDwayne = false;
+
+//rock special VARIABLES
+let m_protected = false;
 
 //BUTTON FUNCTIONALITY
 //game guide
@@ -182,6 +188,9 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 				l_rockRankText.innerText = "I";
 				l_rockUpgradeTitle.innerText = "Quartz";
 				l_rockUpgradeDescription.innerText = "There is a 75% chance on a loss this round that your opponent will not gain a point.";
+				if(!m_hasRockDwayne) {
+					l_rockBtn.src = "img/rock/coal.jpg";
+				}
 				break;
 			case 1:
 				l_rockUpgradeCost = 200;
@@ -189,6 +198,9 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 				l_rockRankText.innerText = "II";
 				l_rockUpgradeTitle.innerText = "Topaz";
 				l_rockUpgradeDescription.innerText = "There is a 75% chance on your next loss this game that your opponent will not gain a point.";
+				if(!m_hasRockDwayne) {
+					l_rockBtn.src = "img/rock/quartz.jpg";
+				}
 				break;
 			case 2:
 				l_rockUpgradeCost = 500;
@@ -196,6 +208,9 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 				l_rockRankText.innerText = "III";
 				l_rockUpgradeTitle.innerText = "Moissanite";
 				l_rockUpgradeDescription.innerText = "There is a 75% chance on a loss this round that your opponent will not gain a point and a 50% chance that your opponent will not gain a point on your next loss this game.";
+				if(!m_hasRockDwayne) {
+					l_rockBtn.src = "img/rock/topaz.png";
+				}
 				break;
 			case 3:
 				l_rockUpgradeCost = 1000;
@@ -203,6 +218,9 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 				l_rockRankText.innerText = "IV";
 				l_rockUpgradeTitle.innerText = "Diamond";
 				l_rockUpgradeDescription.innerText = "There is a 90% chance on a loss this round that your opponent will not gain a point and a 90% chance on your next loss this game that your opponent will not gain a point.";
+				if(!m_hasRockDwayne) {
+					l_rockBtn.src = "img/rock/moissanite.png";
+				}
 				break;
 			case 4:
 				l_rockUpgradeCost = 9999;
@@ -210,6 +228,9 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 				l_rockRankText.innerText = "V";
 				l_rockUpgradeTitle.innerText = "Fully Upgraded";
 				l_rockUpgradeDescription.innerText = "";
+				if(!m_hasRockDwayne) {
+					l_rockBtn.src = "img/rock/diamond.png";
+				}
 				break;
 		}
 
@@ -256,6 +277,10 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				l_paperRankText.innerText = "I";
 				l_paperUpgradeTitle.innerText = "Spellbook";
 				l_paperUpgradeDescription.innerText = "Upon winning with paper, there is a 75% chance to activate a common spell, a 20% chance to activate a rare spell, and a 5% chance to activate an epic spell.";
+				if(!m_hasPaperDwayne) { 
+					l_paperBtn.src = "img/paper/scroll.png";
+				}		
+				
 				break;
 			case 1:
 				l_paperUpgradeCost = 200;
@@ -263,6 +288,10 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				l_paperRankText.innerText = "II";
 				l_paperUpgradeTitle.innerText = "Lexicon";
 				l_paperUpgradeDescription.innerText = "Upon winning with paper, there is a 25% chance to activate a common spell, a 50% chance to activate a rare spell, and a 25% chance to activate an epic spell.";
+				if(!m_hasPaperDwayne) { 
+					l_paperBtn.src = "img/paper/spellbook.png";
+				}
+				
 				break;
 			case 2:
 				l_paperUpgradeCost = 500;
@@ -270,6 +299,9 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				l_paperRankText.innerText = "III";
 				l_paperUpgradeTitle.innerText = "Grimoire";
 				l_paperUpgradeDescription.innerText = "Upon winning with paper, there is a 60% chance to activate a rare spell, a 35% chance to activate an epic spell, and a 5% chance to activate a LEGENDARY spell.";
+				if(!m_hasPaperDwayne) {
+					l_paperBtn.src = "img/paper/lexicon.png";
+				}
 				break;
 			case 3:
 				l_paperUpgradeCost = 1000;
@@ -277,6 +309,10 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				l_paperRankText.innerText = "IV";
 				l_paperUpgradeTitle.innerText = "Sovereign Intellect";
 				l_paperUpgradeDescription.innerText = "Regardless of the outcome, there is a 30% chance to activate a rare spell, a 60% chance to activate an epic spell, and a 10% chance to activate a LEGENDARY spell.";
+				if(!m_hasPaperDwayne) {
+					l_paperBtn.src = "img/paper/grimoire.png";
+				}
+				
 				break;
 			case 4:
 				l_paperUpgradeCost = 9999;
@@ -284,6 +320,9 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				l_paperRankText.innerText = "V";
 				l_paperUpgradeTitle.innerText = "Fully Upgraded";
 				l_paperUpgradeDescription.innerText = "";
+				if(!m_hasPaperDwayne) {
+					l_paperBtn.src = "img/paper/sovereignIntellect.jpg";
+				}
 				break;
 		}
 
@@ -327,6 +366,9 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 				l_scissorsRankText.innerText = "I";
 				l_scissorsUpgradeTitle.innerText = "Sheep Shears";
 				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point.";
+				if(!m_hasScissorsDwayne) {
+					l_scissorsBtn.src = "img/scissors/kitchenScissors.png";
+				}
 				break;
 			case 1:
 				l_scissorsUpgradeCost = 200;
@@ -334,6 +376,9 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 				l_scissorsRankText.innerText = "II";
 				l_scissorsUpgradeTitle.innerText = "Sheep Shears";
 				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 10% chance to gain 2 additional points.";
+				if(!m_hasScissorsDwayne) {
+					l_scissorsBtn.src = "img/scissors/traumaScissors.jpg";
+				}
 				break;
 			case 2:
 				l_scissorsUpgradeCost = 500;
@@ -341,6 +386,9 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 				l_scissorsRankText.innerText = "III";
 				l_scissorsUpgradeTitle.innerText = "Bolt Cutters";
 				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 20% chance to gain 2 additional points.";
+				if(!m_hasScissorsDwayne) {
+					l_scissorsBtn.src = "img/scissors/sheepShears.jpg";
+				}
 				break;
 			case 3:
 				l_scissorsUpgradeCost = 1000;
@@ -348,6 +396,9 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 				l_scissorsRankText.innerText = "IV";
 				l_scissorsUpgradeTitle.innerText = "Gro'noth, Destroyer of Worlds";
 				l_scissorsUpgradeDescription.innerText = "Upon losing with scissors, you have a 50% chance of gaining an additional point. If you win with scissors, there is a 50% chance to gain 2 additional points, and a 10% chance to win the game immedietly.";
+				if(!m_hasScissorsDwayne) {
+					l_scissorsBtn.src = "img/scissors/boltCutters.jpg";
+				}
 				break;
 			case 4:
 				l_scissorsUpgradeCost = 9999;
@@ -355,6 +406,9 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 				l_scissorsRankText.innerText = "V";
 				l_scissorsUpgradeTitle.innerText = "Fully Upgraded";
 				l_scissorsUpgradeDescription.innerText = "";
+				if(!m_hasScissorsDwayne) {
+					l_scissorsBtn.src = "img/scissors/worldEnder.png";
+				}
 				break;
 		}
 
@@ -380,19 +434,24 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 });
 
 l_expBonusBtn.addEventListener("click", function() {
-	//deduct experience from user
-	l_playerExperience -= 25;
-
-	//apply bonus xp
-	if(l_pointMultiplier == 1) {
-		l_pointMultiplier = 2;
+	//make sure user has enough points 
+	if(l_playerExperience < l_expBonusCost) {
+		alert(`You need ${l_expBonusCost - l_playerExperience} more experience to buy that!`);
 	} else {
-		l_pointMultiplier += 2;
-	}
+		//deduct experience from user
+		l_playerExperience -= l_expBonusCost;
 
-	//reflect changes on active activeEffects & experience
-	l_activeEffects.innerText = `Experience Bonus: ${l_pointMultiplier}`;
-	l_experienceDisplay.innerText = l_playerExperience + " xp";
+		//apply bonus xp
+		if(l_pointMultiplier == 1) {
+			l_pointMultiplier = 2;
+		} else {
+			l_pointMultiplier += 2;
+		}
+
+		//reflect changes on active activeEffects & experience
+		l_activeEffects.innerText = `Experience Bonus: ${l_pointMultiplier}`;
+		l_experienceDisplay.innerText = l_playerExperience + " xp";
+	}
 });
 
 //GAMESCREEN
@@ -416,11 +475,84 @@ function returnToHome() {
 
 //User Selection Buttons
 l_rockBtn.addEventListener("click", function() {
-  //change image of userSelection to a rock
-  l_userChoice.src = "img/rock/rock.jpg";
-
 	let l_outcome = playRound("rock");
 
+	//Spell to win draws
+	if(l_outcome == 0 && (l_spellWinNextDraw || l_spellWinAllDraws)) {
+		l_outcome = 1;
+		l_spellWinNextDraw = false;
+	}
+
+	  //change image of userSelection to a rock appropriate to their winnings
+	if(m_hasRockDwayne) {
+		l_userChoice.src = "img/rock/Dwayne_rock.png";
+	} else {
+		switch(l_rockRank) {
+			case 1: //Coal
+				l_userChoice.src = "img/rock/coal.jpg";
+
+				//coal special ability
+				if(l_outcome == -1 && getRandomInt(0, 1) == 1) {
+					l_outcome = 1;
+					showPopUp("coal", "Opponent didn't gain a point");
+				}
+				break;
+			case 2: //Quartz
+				l_userChoice.src = "img/rock/quartz.jpg";
+
+				//quartz special ability
+				if(l_outcome == -1 && getRandomInt(0, 3) > 0) {
+					l_outcome = 1;
+					showPopUp('quartz', "Opponent didn't gain a point");
+				}
+				break;
+			case 3: //Topaz
+				l_userChoice.src = "img/rock/topaz.png";
+
+				//topaz special ability
+				if(getRandomInt(0, 3) > 0) {
+					m_protected = true;
+					showPopUp('protection', "Your next loss won't hurt!");
+				}
+				break;
+			case 4: //Moissanite
+				l_userChoice.src = "img/rock/moissanite.png";
+
+				//moissanite special ability
+				if(l_outcome == -1 && getRandomInt(0, 3) > 0) {
+					l_outcome = 1;
+					showPopUp('moissanite', "Opponent didn't gain a point");
+				}
+				if(getRandomInt(0,1) == 1) {
+					m_protected = true;
+					showPopUp('protection', "Your next loss won't hurt!");
+				}
+				break;
+			case 5: //Diamond
+				l_userChoice.src = "img/rock/diamond.png";
+
+				//diamond special ability
+				if(l_outcome == -1 && getRandomInt(1, 10) > 1) {
+					l_outcome = 1;
+					showPopUp('diamond', "Opponent didn't gain a point");
+				}
+				if(getRandomInt(1, 10) > 1) {
+					showPopUp('protection', "Your next loss won't hurt!");
+					m_protected = true;
+				}
+				break;
+			default: //rock
+				l_userChoice.src = "img/rock/rock.jpg";
+				break;
+		}
+	}	
+
+	//rock special
+	if(m_protected && l_outcome == -1) {
+		l_outcome = 1;
+		m_protected = false;
+		showPopUp('rockSpecial', "Opponent didn't gain a point");
+	}
 	//outcome logic
 	if(l_outcome == -1) { //loss
 		l_outcomeText.innerText = "You Lost!";
@@ -445,9 +577,46 @@ l_rockBtn.addEventListener("click", function() {
 	}
 });
 l_paperBtn.addEventListener("click", function() {
-	l_userChoice.src = "img/paper/paper.jpg";
+	//change image of userSelection to a paper appropriate to their winnings
+	if(m_hasPaperDwayne) {
+		l_userChoice.src = "img/paper/Dwayne_paper.png";
+	} else {
+		switch(l_paperRank) {
+			case 1: //Scroll
+				l_userChoice.src = "img/paper/scroll.png";
+				break;
+			case 2: //Spellbook
+				l_userChoice.src = "img/paper/spellbook.png";
+				break;
+			case 3: //Lexicon
+				l_userChoice.src = "img/paper/lexicon.png";
+				break;
+			case 4: //Grimiore
+				l_userChoice.src = "img/paper/grimoire.png";
+				break;
+			case 5: //Sovereign Intellect
+				l_userChoice.src = "img/paper/sovereignIntellect.jpg";
+				break;
+			default: //paper
+				l_userChoice.src = "img/paper/paper.jpg";
+				break;
+		}
+	}	
 
 	let l_outcome = playRound("paper");
+
+	//Spell to win draws
+	if(l_outcome == 0 && (l_spellWinNextDraw || l_spellWinAllDraws)) {
+		l_outcome = 1;
+		l_spellWinNextDraw = false;
+	}
+
+	//rock special
+	if(m_protected && l_outcome == -1) {
+		l_outcome = 1;
+		m_protected = false;
+		showPopUp('rockSpecial', "Opponent didn't gain a point");
+	}
 
 	//outcome logic
 	if(l_outcome == -1) { //loss
@@ -459,8 +628,8 @@ l_paperBtn.addEventListener("click", function() {
 		l_outcomeText.innerText = "Draw!";
 	} else if(l_outcome == 1) { //win
 		//spells
-		if(l_paperRank == 1) {
-			let l_determinator = getRandomInt(1, 100);
+		let l_determinator = getRandomInt(1, 100);
+		if(l_paperRank == 1) { //rank 1
 			if(l_determinator <= 50) {
 				console.log("casting a common spell");
 				commonSpell();
@@ -468,15 +637,36 @@ l_paperBtn.addEventListener("click", function() {
 				console.log("casting a rare spell");
 				rareSpell();
 			}
-
-		} else if(l_paperRank == 2) {
-
-		} else if(l_paperRank == 3) {
-
-		} else if(l_paperRank == 4) {
-
-		} else if(l_paperRank == 5) {
-
+		} else if(l_paperRank == 2) { //rank 2
+			if(l_determinator <= 75) {
+				commonSpell();
+			} else if(l_determinator <= 95) {
+				rareSpell();
+			} else if(l_determinator <= 100) {
+				epicSpell();
+			}
+		} else if(l_paperRank == 3) { //rank 3
+			if(l_determinator <= 25) {
+				commonSpell();
+			} else if(l_determinator <= 75) {
+				rareSpell();
+			} else if(l_determinator <= 100) {
+				epicSpell();
+			}
+		} else if(l_paperRank == 4) { //rank 4
+			if(l_determinator <= 60) {
+				rareSpell();
+			} else if(l_determinator <= 95) {
+				epicSpell();
+			} else if(l_determinator <= 100) {
+				legendarySpell();
+			}
+		} else if(l_paperRank == 5) { //rank 5
+			if(l_determinator <= 80) {
+				epicSpell();
+			} else if(l_determinator <= 100) {
+				legendarySpell();
+			}
 		}
 
 		l_outcomeText.innerText = "You won!";
@@ -497,13 +687,12 @@ l_paperBtn.addEventListener("click", function() {
 function commonSpell() {
 	//determine the spell that will be cast
 	const l_determinator = getRandomInt(1, 3);
-	m_spellEffectTitle.innerText = "Common";
-	m_spellEffectTitle.style.color = "grey";
+	let l_spellDescription = "Default";
 	
 	if(l_determinator == 1) { //+1-5 xp
 		let l_awardedXpBonus = getRandomInt(1, 5);
 		l_spellFlatExperienceBonus += l_awardedXpBonus;
-		m_spellDescription.innerText = `+${l_awardedXpBonus} experience`;
+		l_spellDescription = `+${l_awardedXpBonus} experience`;
 	} else if(l_determinator == 2) { //random background Color
 		//repeat if the color isn't dark enough
 		let l_tooLight = true;
@@ -527,20 +716,19 @@ function commonSpell() {
 
 		//set background temporarily
 		l_body.style.backgroundColor = l_color;
-		m_spellDescription.innerText = "Changed background!";
+		l_spellDescription = "Changed background!";
 	} else if(l_determinator == 3) { //Randomize the Scores
-		m_spellDescription.innerText = "Randomized Scores!";
+		l_spellDescription = "Randomized Scores!";
 		l_playerPoints = getRandomInt(0, 4);
 		l_userScore.innerText = l_playerPoints;
 		l_computerPoints = getRandomInt(0, 4);
 		l_computerScore.innerText = l_computerPoints;
 	}
 	//show the spell
-	showSpell();
+	showPopUp('common', l_spellDescription);
 }
 function rareSpell() {
-	m_spellEffectTitle.innerText = "Rare";
-	m_spellEffectTitle.style.color = "blue";
+	let l_spellDescription = "Default";
 
 	//determine which spell will be cast
 	const l_determinator = getRandomInt(1, 4);
@@ -549,7 +737,7 @@ function rareSpell() {
 		//+20 xp bonus
 		case 1:
 			l_spellFlatExperienceBonus += 20;
-			m_spellDescription.innerText = '+20 experience';
+			l_spellDescription = '+20 experience';
 			break;
 		//Gain x2 xp bonus
 		case 2:
@@ -558,45 +746,150 @@ function rareSpell() {
 			} else {
 				l_spellExperienceMultiplier += 2;
 			}
+			l_spellDescription = 'x2 Experience Multiplier!';
 			break;
 		//Win the next draw
 		case 3:
+			l_spellWinNextDraw = true;
+			l_spellDescription = 'Win NEXT draw this game';
 			break;
 		//Reverse Scores
 		case 4:
+			//change points
+			let l_tempPoints = l_playerPoints;
+			l_playerPoints = l_computerPoints;
+			l_computerPoints = l_tempPoints;
+
+			//reflect that on the DOM
+			l_userScore.innerText = l_playerPoints;
+			l_computerScore.innerText = l_computerPoints;
+
+			l_spellDescription = 'Switch Scores!';
 			break;
 	}
 
-	showSpell();
+	showPopUp('rare', l_spellDescription);
 }
 function epicSpell() {
-	m_spellEffectTitle.innerText = "Epic";
-	m_spellEffectTitle.style.color = "purple";
+	//determine which spell will be cast
+	const l_determinator = getRandomInt(1, l_numEpicSpells);
+	let l_spellDescription = "Default";
 
+	switch(l_determinator) {
+		//Gain x4 exp bonus THIS game
+		case 1:
+			if(l_spellExperienceMultiplier == 1) {
+				l_spellExperienceMultiplier = 4;
+			} else {
+				l_spellExperienceMultiplier += 4;
+			}
+			l_spellDescription = 'x4 Experience Multiplier!';
+			break;
+		//Win all draws this game
+		case 2:
+			l_spellWinAllDraws = true;
+			l_spellDescription = "Win ALL draws this game";
+			break;
+		//Set opponents score to 0
+		case 3:
+			l_computerPoints = 0;
+			l_computerScore.innerText = l_computerPoints;
+			l_spellDescription = "Computer Score set to 0";
+			break;
+		//change experience requirement for experience bonus
+		case 4: 
+			l_numEpicSpells = 3; //user can't cast this anymore
+			l_expBonusCostSpan.innerText = "10 xp";
+			l_expBonusCost = 10;
+			l_spellDescription = "WHOA!  Experience bonus' cost 10 xp now instead of 25 xp!"
+			break;
+	}
+
+	showPopUp('epic', l_spellDescription);
 }
 function legendarySpell() {
-	m_spellEffectTitle.innerText = "LEGENDARY";
-	m_spellEffectTitle.style.color = "orange";
+	let l_spellDescription = "Default";
 
-}
-async function showSpell() {
-	console.log("START OF SHOW SPELL");
-	l_body.appendChild(m_spellEffectScreen);
-	m_spellEffectScreen.classList.add("fadeInItems");
-	await sleep(2000);
-	m_spellEffectScreen.classList.remove("fadeInItems");
-	m_spellEffectScreen.classList.add("fadeOutItems");
-	await sleep(2000);
-	m_spellEffectScreen.classList.remove("fadeOutItems");
-	m_spellEffectScreen.remove();
-	//m_spellEffectScreen.classList.remove("fadeOutItems");
-	console.log("END OF SHOW SPELL");
+	//determine which spell will be cast
+	const l_determinator = getRandomInt(1, l_numLegendarySpells);
+
+	if(l_determinator > 2) { //they get a Dwayne card
+		if(!m_hasRockDwayne) {
+			l_rockBtn.src = 'img/rock/Dwayne_rock.png';
+			l_spellDescription = "UNLOCK!\nDWAYNE 'THE ROCK' JOHNSON";
+			m_hasRockDwayne = true;
+		} else if(!m_hasPaperDwayne) {
+			l_paperBtn.src = 'img/paper/Dwayne_paper.png';
+			l_spellDescription = "UNLOCK!\nDWAYNE 'THE PAPER' JOHNSON";
+			m_hasPaperDwayne = true;
+		} else if(!m_hasScissorsDwayne){
+			l_scissorsBtn.src = 'img/scissors/Dwayne_scissors.png';
+			l_spellDescription = "UNLOCK!\nDWAYNE 'THE SCISSORS' JOHNSON";
+			m_hasScissorsDwayne = true;
+		}
+		l_numLegendarySpells--;
+	} else {
+		if(l_determinator == 1) { // Insta win!
+			l_playerPoints = 10;
+			l_userScore.innerText = 10;
+
+			l_computerPoints = -10;
+			l_computerScore.innerText = -10;
+			l_spellDescription = 'Instant Win!!';
+		} else if(l_determinator == 2) { //x10 multiplier
+			if(l_spellExperienceMultiplier == 1) {
+				l_spellExperienceMultiplier = 10;
+			} else {
+				l_spellExperienceMultiplier += 10;
+			}
+			l_spellDescription = "x10 Experience Multiplier";
+		}
+	}
+
+	showPopUp('legendary', l_spellDescription);
 }
 
 l_scissorsBtn.addEventListener("click", function() {
-	l_userChoice.src = "img/scissors/scissors.jpg";
+	//change image of userSelection to a scissors appropriate to their winnings
+	if(m_hasScissorsDwayne) {
+		l_userChoice.src = "img/scissors/Dwayne_scissors.png";
+	} else {
+		switch(l_scissorsRank) {
+			case 1: //Scroll
+				l_userChoice.src = "img/scissors/kitchenScissors.png";
+				break;
+			case 2: //Spellbook
+				l_userChoice.src = "img/scissors/traumaScissors.jpg";
+				break;
+			case 3: //Lexicon
+				l_userChoice.src = "img/scissors/sheepShears.jpg";
+				break;
+			case 4: //Grimiore
+				l_userChoice.src = "img/scissors/boltCutters.jpg";
+				break;
+			case 5: //Sovereign Intellect
+				l_userChoice.src = "img/scissors/worldEnder.png";
+				break;
+			default: //scissors
+				l_userChoice.src = "img/scissors/scissors.jpg";
+				break;
+		}
+	}
 
 	let l_outcome = playRound("scissors");
+
+	//Spell to win draws
+	if(l_outcome == 0 && (l_spellWinNextDraw || l_spellWinAllDraws)) {
+		l_outcome = 1;
+		l_spellWinNextDraw = false;
+	}
+
+	//rock special
+	if(m_protected && l_outcome == -1) {
+		l_outcome = 1;
+		m_protected = false;
+		showPopUp('rockSpecial', "Opponent didn't gain a point");
+	}
 
 	//outcome logic
 	if(l_outcome == -1) { //loss
@@ -683,15 +976,6 @@ function endGame(a_isVictorious) {
 		l_experienceFinal.innerText = 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier * l_spellExperienceMultiplier + l_spellFlatExperienceBonus;
 
 		//if there was added xp from spells, add that in the table here
-		if(l_spellExperienceMultiplier > 1) { //tests if there was a multiplier added
-			let l_addedSpellMultiplierTitle = l_resultsHeaderRow.insertCell(4);
-			l_addedSpellMultiplierTitle.innerText = "Spell Multiplier";
-			l_addedSpellMultiplierTitle.style.fontSize = "16px";
-			l_addedSpellMultiplierTitle.style.fontWeight = "bold";
-			let l_addedSpellMultiplierData = l_resultsBreakdownRow.insertCell(4);
-			l_addedSpellMultiplierData.innerText = l_spellExperienceMultiplier;
-		
-		}
 		if(l_spellFlatExperienceBonus > 0) {
 			let l_addedFlatExpCellTitle = l_resultsHeaderRow.insertCell(4);
 			l_addedFlatExpCellTitle.innerText = "Flat Spell Bonus";
@@ -701,23 +985,110 @@ function endGame(a_isVictorious) {
 			l_addedFlatExpCellData.style.fontSize = "16px";
 			l_addedFlatExpCellData.innerText = `+ ${l_spellFlatExperienceBonus}`;
 		}
+		if(l_spellExperienceMultiplier > 1) { //tests if there was a multiplier added
+			let l_addedSpellMultiplierTitle = l_resultsHeaderRow.insertCell(4);
+			l_addedSpellMultiplierTitle.innerText = "Spell Multiplier";
+			l_addedSpellMultiplierTitle.style.fontSize = "16px";
+			l_addedSpellMultiplierTitle.style.fontWeight = "bold";
+			let l_addedSpellMultiplierData = l_resultsBreakdownRow.insertCell(4);
+			l_addedSpellMultiplierData.innerText = l_spellExperienceMultiplier;
+		}
 	} else {
 		returnToHome();
 		showResults();
+
+		l_victoryOrDeath.innerText = "DEFEAT";
+		l_victoryOrDeath.style.color ="red";
 
 		l_baseExpBreakdown.innerText = 0;
 		l_winMarginText.innerText = 0;
 		l_expMultiplierBreakdown.innerText = l_pointMultiplier;
 		l_experienceFinal.innerText = 0;
 
-		l_victoryOrDeath.innerText = "DEFEAT";
-		l_victoryOrDeath.style.color ="red";
+		//spell effects on defeat
+		l_spellExperienceMultiplier = 1;
+		l_spellFlatExperienceBonus = 0;
 	}
+
+	//reset spell effects
+	l_spellWinAllDraws = false;
+	l_spellWinNextDraw = false;
 
 	//reset activeEffects
 	l_activeEffects.innerText = "";
 	l_pointMultiplier = 1;
 	l_body.style.backgroundColor = "black";
+}
+
+async function showPopUp(a_title, a_description) {
+	//create a div to show the spell
+	const l_spellEffectScreen = document.createElement("div");
+	l_spellEffectScreen.classList.add("spellEffect");
+	//the div will spawn on a random part of the screen
+	l_spellEffectScreen.style.left = `${getRandomInt(15, 80)}%`;
+	l_spellEffectScreen.style.top = `-${getRandomInt(300, 900)}px`;
+	l_body.appendChild(l_spellEffectScreen);
+
+	const l_spellEffectTitle = document.createElement("H1");
+	l_spellEffectTitle.style.color = "white";
+	l_spellEffectScreen.appendChild(l_spellEffectTitle);
+
+	const l_spellDescription = document.createElement("p");
+	l_spellDescription.style.fontSize = "18px";
+	l_spellDescription.innerText = a_description;
+	l_spellEffectScreen.appendChild(l_spellDescription);
+
+	//change title and description based on rarity of the spell
+	switch(a_title) {
+		case 'common':
+			l_spellEffectTitle.innerText = "Common";
+			l_spellEffectScreen.style.backgroundColor = "grey";
+			break;
+		case 'rare':
+			l_spellEffectTitle.innerText = "Rare";
+			l_spellEffectScreen.style.backgroundColor = "blue";
+			break;
+		case 'epic':
+			l_spellEffectTitle.innerText = "Epic";
+			l_spellEffectScreen.style.backgroundColor = "purple";
+			break;
+		case 'legendary':
+			l_spellEffectTitle.innerText = "Legendary";
+			l_spellEffectScreen.style.backgroundColor = "orange";
+			break;
+		case 'coal':
+			l_spellEffectTitle.innerText = "Coal Special";
+			l_spellEffectScreen.style.backgroundColor = "black";
+			break;
+		case 'quartz':
+			l_spellEffectTitle.innerText = "Quartz Special";
+			l_spellEffectScreen.style.backgroundColor = "#51414F";
+			break;
+		case 'moissanite':
+			l_spellEffectTitle.innerText = "Moissanite Special";
+			l_spellEffectScreen.style.backgroundColor = "#201935";
+			break;
+		case 'diamond':
+			l_spellEffectTitle.innerText = "Diamond Special";
+			l_spellEffectScreen.style.backgroundColor = "#cbe3f0";
+			break;
+		case 'rockSpecial':
+			l_spellEffectTitle.innerText = "Rock Protection!";
+			l_spellEffectScreen.style.backgroundColor = "#918E85";
+			break;
+		case 'protection':
+			l_spellEffectTitle.innerText = "Future Protection";
+			l_spellEffectScreen.style.backgroundColor = "#918E85";
+	}
+	
+
+	l_spellEffectScreen.classList.add("fadeInItems");
+	await sleep(2000);
+	l_spellEffectScreen.classList.remove("fadeInItems");
+	l_spellEffectScreen.classList.add("fadeOutItems");
+	await sleep(2000);
+	l_spellEffectScreen.classList.remove("fadeOutItems");
+	l_spellEffectScreen.remove();
 }
 
 //returns an int between two numbers (ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)

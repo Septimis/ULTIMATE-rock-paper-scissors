@@ -35,7 +35,7 @@ The game is simple, select your weapon: <b>Sturdy Rock, Mystical Paper, or Vicio
     - Rank IV:Grimoire - 500 xp to unlock
         - Upon winning with paper, there is a 60% chance to activate a rare spell, a 35% chance to activate an epic spell, and a 5% chance to activate a *LEGENDARY* spell.
     - Rank V: Sovereign Intellect - 1000 xp to unlock
-        - Regardless of the outcome, there is a 30% chance to activate a rare spell, a 60% chance to activate an epic spell, and a 10% chance to activate a *LEGENDARY* spell.
+        - Upon winning with paper, there is an 80% chance to activate an epic spell, and a 20% chance to activate a *LEGENDARY* spell.
 - SCISSORS
     - Rank I: Kitchen Scissors - 50 xp to unlock
         - Upon winning with scissors, there is a 50% chance to gain an additional point.
@@ -67,8 +67,8 @@ Each category has an equal chance to activate the spell.  Flat experience gains 
  - Unlock Dwayne "The Rock" Johnson
  - Unlock Dwayne "The Paper" Johnson
  - Unlock Dwayne "The Scissors" Johnson
- - Gain a x8 xp bonus THIS game.
- - Unlock the SUPERMAN option THIS game.
+ - Gain a x10 xp bonus THIS game.
+ - Set the score to 10 / -10
 ---
 ## Education
 
