@@ -1,8 +1,4 @@
 /*NEXT TODO:
- * - Nerf Rock
- * - Update README.md
- * - Make the 'draw' text white with paper & scissors
- * - Implement scissors specials
  * - Add function for achievements
  */
 //Initial VARIABLES
@@ -149,6 +145,7 @@ l_closeResultsBtn.addEventListener("click", function() {
 	//reset spell pertinent spell effects
 	l_spellFlatExperienceBonus = 0;
 	l_spellExperienceMultiplier = 1;
+	m_protected = false;
 
 	l_resultsScreen.remove();
 });
@@ -490,64 +487,67 @@ l_rockBtn.addEventListener("click", function() {
 		switch(l_rockRank) {
 			case 1: //Coal
 				l_userChoice.src = "img/rock/coal.jpg";
-
-				//coal special ability
-				if(l_outcome == -1 && getRandomInt(0, 1) == 1) {
-					l_outcome = 1;
-					showPopUp("coal", "Opponent didn't gain a point");
-				}
 				break;
 			case 2: //Quartz
 				l_userChoice.src = "img/rock/quartz.jpg";
-
-				//quartz special ability
-				if(l_outcome == -1 && getRandomInt(0, 3) > 0) {
-					l_outcome = 1;
-					showPopUp('quartz', "Opponent didn't gain a point");
-				}
 				break;
 			case 3: //Topaz
 				l_userChoice.src = "img/rock/topaz.png";
-
-				//topaz special ability
-				if(getRandomInt(0, 3) > 0) {
-					m_protected = true;
-					showPopUp('protection', "Your next loss won't hurt!");
-				}
 				break;
 			case 4: //Moissanite
 				l_userChoice.src = "img/rock/moissanite.png";
-
-				//moissanite special ability
-				if(l_outcome == -1 && getRandomInt(0, 3) > 0) {
-					l_outcome = 1;
-					showPopUp('moissanite', "Opponent didn't gain a point");
-				}
-				if(getRandomInt(0,1) == 1) {
-					m_protected = true;
-					showPopUp('protection', "Your next loss won't hurt!");
-				}
 				break;
 			case 5: //Diamond
 				l_userChoice.src = "img/rock/diamond.png";
-
-				//diamond special ability
-				if(l_outcome == -1 && getRandomInt(1, 10) > 1) {
-					l_outcome = 1;
-					showPopUp('diamond', "Opponent didn't gain a point");
-				}
-				if(getRandomInt(1, 10) > 1) {
-					showPopUp('protection', "Your next loss won't hurt!");
-					m_protected = true;
-				}
 				break;
 			default: //rock
 				l_userChoice.src = "img/rock/rock.jpg";
 				break;
 		}
-	}	
+	}
 
 	//rock special
+	switch(l_rockRank) {
+		case 1: //Coal
+			if(l_outcome == -1 && getRandomInt(0, 3) == 0) {
+				l_outcome = 1;
+				showPopUp("coal", "Opponent didn't gain a point");
+			}
+			break;
+		case 2: //Quartz
+			if(l_outcome == -1 && getRandomInt(0, 3) >= 1) {
+				l_outcome = 1;
+				showPopUp('quartz', "Opponent didn't gain a point");
+			}
+			break;
+		case 3: //Topaz
+			if(getRandomInt(0, 3) > 0 && !m_protected) {
+				m_protected = true;
+				showPopUp('protection', "Your next loss won't hurt!");
+			}
+			break;
+		case 4: //Moissanite
+			if(l_outcome == -1 && getRandomInt(0, 3) > 0) {
+				l_outcome = 1;
+				showPopUp('moissanite', "Opponent didn't gain a point");
+			}
+			if(getRandomInt(0,1) == 1 && !m_protected) {
+				m_protected = true;
+				showPopUp('protection', "Your next loss won't hurt!");
+			}
+			break;
+		case 5: //Diamond
+			if(l_outcome == -1 && getRandomInt(1, 10) > 1) {
+				l_outcome = 1;
+				showPopUp('diamond', "Opponent didn't gain a point");
+			}
+			if(getRandomInt(1, 10) > 1 && !m_protected) {
+				showPopUp('protection', "Your next loss won't hurt!");
+				m_protected = true;
+			}
+			break;
+	}
+	
 	if(m_protected && l_outcome == -1) {
 		l_outcome = 1;
 		m_protected = false;
@@ -626,6 +626,7 @@ l_paperBtn.addEventListener("click", function() {
 		l_computerScore.innerText = l_computerPoints;
 	} else if(l_outcome == 0) { //draw
 		l_outcomeText.innerText = "Draw!";
+		l_outcomeText.style.color = "white";
 	} else if(l_outcome == 1) { //win
 		//spells
 		let l_determinator = getRandomInt(1, 100);
@@ -855,19 +856,19 @@ l_scissorsBtn.addEventListener("click", function() {
 		l_userChoice.src = "img/scissors/Dwayne_scissors.png";
 	} else {
 		switch(l_scissorsRank) {
-			case 1: //Scroll
+			case 1: //Kitchen Scissors
 				l_userChoice.src = "img/scissors/kitchenScissors.png";
 				break;
-			case 2: //Spellbook
+			case 2: //Trauma Scissors
 				l_userChoice.src = "img/scissors/traumaScissors.jpg";
 				break;
-			case 3: //Lexicon
+			case 3: //Sheep Shears
 				l_userChoice.src = "img/scissors/sheepShears.jpg";
 				break;
-			case 4: //Grimiore
+			case 4: //Bolt Cutters
 				l_userChoice.src = "img/scissors/boltCutters.jpg";
 				break;
-			case 5: //Sovereign Intellect
+			case 5: //Gro'noth, Destroyer of Worlds
 				l_userChoice.src = "img/scissors/worldEnder.png";
 				break;
 			default: //scissors
@@ -891,18 +892,84 @@ l_scissorsBtn.addEventListener("click", function() {
 		showPopUp('rockSpecial', "Opponent didn't gain a point");
 	}
 
+	//determine the special ability of scissors
+	let l_extraPoint = 0;
+	let l_rankVSpecial = false;
+	let l_determinator = getRandomInt(1, 100);
+	switch(l_scissorsRank) {
+		case 1: //Kitchen Scissors
+			if(getRandomInt(1, 4) == 1 && l_outcome == 1) {
+				l_extraPoint = 1;
+				showPopUp('scissorsSpecial', 'Extra Point!');
+			}
+			break;
+		case 2: //Trauma Scissors
+			if(getRandomInt(1, 4) > 2 && l_outcome == 1) {
+				l_extraPoint = 1;
+				showPopUp('scissorsSpecial', 'Extra Point!');
+			}
+			break;
+		case 3: //Sheep Shears
+			if(l_determinator <= 75 && l_outcome == 1) {
+				l_extraPoint = 1;
+				showPopUp('scissorsSpecial', 'Extra Point!');
+			} else if(l_determinator <= 85 && l_outcome == 1) {
+				l_extraPoint = 2;
+				showPopUp('scissorsSpecial', 'Extra 2 Points!');
+			}
+			break;
+		case 4: //Bolt Cutters
+			if(l_outcome == 1) {
+				if(l_determinator <= 30) {
+					l_extraPoint = 2;
+					showPopUp('scissorsSpecial', 'Extra 2 Points!');
+				} else {
+					l_extraPoint = 1;
+					showPopUp('scissorsSpecial', 'Extra Point!');
+				}
+			}
+			
+			break;
+		case 5: //Gro'noth, Destroyer of Worlds
+			if(l_outcome == -1 && l_determinator <= 50) {
+				l_rankVSpecial = true;
+				l_extraPoint = 1;
+				showPopUp('gronathSpecial', 'Extra Point!');
+			} else if(l_outcome == 1) {
+				if(l_determinator <= 50) {
+					l_extraPoint = 2;
+					showPopUp('gronathSpecial', 'Extra 2 Point!');
+				} else if(l_determinator <= 70) {
+					l_playerPoints = 10;
+					l_userScore.innerText = l_playerPoints;
+					l_computerPoints = -10;
+					l_computerScore.innerText = l_computerPoints;
+					showPopUp('gronathSpecial', 'Destroyer of Worlds');
+				} else {
+					showPopUp('scissorsSpecial', 'Extra Point!');
+					l_extraPoint = 1;
+				}
+			}
+			break;
+	}
+
 	//outcome logic
 	if(l_outcome == -1) { //loss
+		if(l_rankVSpecial) {
+			l_playerPoints += l_extraPoint;
+		}
 		l_outcomeText.innerText = "You Lost!";
 		l_outcomeText.style.color = "red";
 		l_computerPoints++;
 		l_computerScore.innerText = l_computerPoints;
 	} else if(l_outcome == 0) { //draw
 		l_outcomeText.innerText = "Draw!";
+		l_outcomeText.style.color = "white";
 	} else if(l_outcome == 1) { //win
 		l_outcomeText.innerText = "You won!";
 		l_outcomeText.style.color = "green";
 		l_playerPoints++;
+		l_playerPoints += l_extraPoint;
 		l_userScore.innerText = l_playerPoints;
 	}
 	//test if the player or computer has won the game
@@ -1079,6 +1146,15 @@ async function showPopUp(a_title, a_description) {
 		case 'protection':
 			l_spellEffectTitle.innerText = "Future Protection";
 			l_spellEffectScreen.style.backgroundColor = "#918E85";
+			break;
+		case 'scissorsSpecial':
+			l_spellEffectTitle.innerText = "Slice and Dice";
+			l_spellEffectScreen.style.backgroundColor = "#43464B";
+			break;
+		case 'gronathSpecial':
+			l_spellEffectTitle.innerText = "GRO'NOTH";
+			l_spellEffectScreen.style.backgroundColor = "#bc153b";
+			break;
 	}
 	
 
