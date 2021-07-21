@@ -1,5 +1,5 @@
 /*NEXT TODO:
- * - Add function for achievements
+ * - Add function for final button
  */
 //Initial VARIABLES
 const l_body = document.getElementById("body");
@@ -57,6 +57,8 @@ const l_rockNextUpgradeReqExp = document.getElementById("rockNextUpgradeReqExp")
 const l_paperNextUpgradeReqExp = document.getElementById("paperNextUpgradeReqExp");
 const l_scissorsNextUpgradeReqExp = document.getElementById("scissorsNextUpgradeReqExp");
 
+const m_endGameBtn = document.getElementById("endGameBtn");
+
 //GAMESCREEN
 const l_gameScreenItems = document.querySelectorAll(".gameScreen");
 const l_returnBtn = document.getElementById("backBtnContainer");
@@ -72,6 +74,7 @@ const l_computerScore = document.getElementById("computerScore");
 
 //ACHIEVEMENTS
 const m_paperDwayne = document.getElementById("dwayneAchievment");
+const m_achievements = document.querySelectorAll(".achievments");
 
 //DEFAULTS
 //gameScreen elements are hidden by default
@@ -121,10 +124,8 @@ let m_hasScissorsDwayne = false;
 let m_virginPlayer = true;
 let m_favoritism = false;
 let m_perfection = false;
-let m_hasRockV = false;
-let m_hasPaperV = false;
-let m_hasScissorsV = false;
 let m_hasExpAchiev = false;
+
 let m_numRockPlays = 0;
 let m_numPaperPlays = 0;
 let m_numScissorsPlays = 0;
@@ -167,14 +168,14 @@ l_closeResultsBtn.addEventListener("click", function() {
 
 //homeScreen
 l_startGameBtn.addEventListener("click", function(e) {
-  for(let i = 0; i < l_homeScreenItems.length; i++) {
-    //remove homeScreen items
-    l_homeScreenItems[i].remove();
+	for(let i = 0; i < l_homeScreenItems.length; i++) {
+	//remove homeScreen items
+	l_homeScreenItems[i].remove();
 
-    //add gameScreen items
-    l_body.appendChild(l_gameScreenItems[i]);
+	//add gameScreen items
+	l_body.appendChild(l_gameScreenItems[i]);
 
-  }
+	}
 	//reset points
 	l_playerPoints = 0;
 	l_computerPoints = 0;
@@ -506,6 +507,48 @@ l_expBonusBtn.addEventListener("click", function() {
 		l_experienceDisplay.innerText = l_playerExperience + " xp";
 	}
 });
+
+m_endGameBtn.addEventListener("click", function() {
+	//check if player qualifies
+	let l_hasAllAchievments = !m_virginPlayer && //played first game
+							   m_favoritism && //favortism achievment
+							   m_perfection && //perfection achievment
+							   l_rockRank == 5 && //has Rock, Paper, & Scissors at rank V
+							   l_paperRank == 5 &&
+							   l_scissorsRank == 5 &&
+							   m_hasRockDwayne && //has Dwayne 'the rock paper scissors' Johnson
+							   m_hasPaperDwayne &&
+							   m_hasScissorsDwayne &&
+							   m_hasExpAchiev; //has overloaded achievment
+
+	if(l_playerExperience >= 20000 && l_hasAllAchievments) {
+		for(let i = 0; i < l_homeScreenItems.length; i++) {
+			//remove homescreen items
+			l_homeScreenItems[i].remove();
+		}
+
+		//add end game credits
+		rollCredits();
+	} else {
+		if(!l_hasAllAchievments && l_playerExperience < 20000) {
+			alert("You need to get the remaining achievments");
+		} else if(l_hasAllAchievments && l_playerExperience >= 20000) {
+			alert("You only need more experience!  Keep grinding!");
+		} else {
+			alert("Not enough achievments and not enough experience...");
+		}
+	}
+});
+
+//END GAME CREDITS
+function rollCredits() {
+	//create a floating div
+	const l_creditsScreen = document.createElement("div");
+	l_creditsScreen.classList.add("fadeIn");
+
+	//add credits to the screen
+	l_body.appendChild(l_creditsScreen);
+}
 
 //GAMESCREEN
 //button functionality
