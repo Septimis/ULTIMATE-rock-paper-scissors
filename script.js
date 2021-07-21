@@ -70,6 +70,9 @@ const l_computerChoice = document.getElementById("computerSelection");
 const l_userScore = document.getElementById("userScore");
 const l_computerScore = document.getElementById("computerScore");
 
+//ACHIEVEMENTS
+const m_paperDwayne = document.getElementById("dwayneAchievment");
+
 //DEFAULTS
 //gameScreen elements are hidden by default
 for(let element of l_gameScreenItems) {
@@ -109,10 +112,22 @@ let l_spellExperienceMultiplier = 1;
 let l_spellWinNextDraw = false;
 let l_spellWinAllDraws = false;
 let l_numEpicSpells = 4;
-let l_numLegendarySpells = 5;
+let l_numLegendarySpells = 3;
 let m_hasRockDwayne = false;
 let m_hasPaperDwayne = false;
 let m_hasScissorsDwayne = false;
+
+//achievement VARIABLES
+let m_virginPlayer = true;
+let m_favoritism = false;
+let m_perfection = false;
+let m_hasRockV = false;
+let m_hasPaperV = false;
+let m_hasScissorsV = false;
+let m_hasExpAchiev = false;
+let m_numRockPlays = 0;
+let m_numPaperPlays = 0;
+let m_numScissorsPlays = 0;
 
 //rock special VARIABLES
 let m_protected = false;
@@ -220,13 +235,26 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 				}
 				break;
 			case 4:
-				l_rockUpgradeCost = 9999;
+				l_rockUpgradeCost = NaN;
 				l_equippedRock.innerText = "Diamond";
 				l_rockRankText.innerText = "V";
 				l_rockUpgradeTitle.innerText = "Fully Upgraded";
 				l_rockUpgradeDescription.innerText = "";
 				if(!m_hasRockDwayne) {
 					l_rockBtn.src = "img/rock/diamond.png";
+				}
+				//achievement for getting rank V 
+				showPopUp("achievement", "Upgrade Your Rock to Level 5\n+50 xp");
+				document.getElementById("rockAchievment").style.color = "green";
+				l_playerExperience += 50;
+				l_experienceDisplay.innerText = l_playerExperience;
+
+				//check if all are at rank V
+				if(l_scissorsRank == 5 && l_paperRank == 5) {
+					showPopUp("achievement", "Upgrade Rock, Paper, and Scissors to Level 5\n+100 xp");
+					document.getElementById("trifectaAchievment").style.color = "green";
+					l_playerExperience += 100;
+					l_experienceDisplay.innerText = l_playerExperience;
 				}
 				break;
 		}
@@ -312,7 +340,7 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				
 				break;
 			case 4:
-				l_paperUpgradeCost = 9999;
+				l_paperUpgradeCost = NaN;
 				l_equippedPaper.innerText = "Sovereign Intellect";
 				l_paperRankText.innerText = "V";
 				l_paperUpgradeTitle.innerText = "Fully Upgraded";
@@ -320,7 +348,21 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				if(!m_hasPaperDwayne) {
 					l_paperBtn.src = "img/paper/sovereignIntellect.jpg";
 				}
+
+				//achievement for getting rank V 
+				showPopUp("achievement", "Upgrade Your Paper to Level 5\n+50 xp");
+				document.getElementById("paperAchievment").style.color = "green";
+				l_playerExperience += 50;
+				l_experienceDisplay.innerText = l_playerExperience;
 				break;
+
+				//check if all are at rank V
+				if(l_rockRank == 5 && l_scissorsRank == 5) {
+					showPopUp("achievement", "Upgrade Rock, Paper, and Scissors to Level 5\n+100 xp");
+					document.getElementById("trifectaAchievment").style.color = "green";
+					l_playerExperience += 100;
+					l_experienceDisplay.innerText = l_playerExperience;
+				}
 		}
 
 		//incrase rank of paper
@@ -398,13 +440,27 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 				}
 				break;
 			case 4:
-				l_scissorsUpgradeCost = 9999;
+				l_scissorsUpgradeCost = NaN;
 				l_equippedScissors.innerText = "Gro'noth, Destroyer of Worlds";
 				l_scissorsRankText.innerText = "V";
 				l_scissorsUpgradeTitle.innerText = "Fully Upgraded";
 				l_scissorsUpgradeDescription.innerText = "";
 				if(!m_hasScissorsDwayne) {
 					l_scissorsBtn.src = "img/scissors/worldEnder.png";
+				}
+
+				//achievement for getting rank V 
+				showPopUp("achievement", "Upgrade Your Scissors to Level 5\n+50 xp");
+				document.getElementById("scissorsAchievment").style.color = "green";
+				l_playerExperience += 50;
+				l_experienceDisplay.innerText = l_playerExperience;
+
+				//check if all are at rank V
+				if(l_rockRank == 5 && l_paperRank == 5) {
+					showPopUp("achievement", "Upgrade Rock, Paper, and Scissors to Level 5\n+100 xp");
+					document.getElementById("trifectaAchievment").style.color = "green";
+					l_playerExperience += 100;
+					l_experienceDisplay.innerText = l_playerExperience;
 				}
 				break;
 		}
@@ -472,6 +528,9 @@ function returnToHome() {
 
 //User Selection Buttons
 l_rockBtn.addEventListener("click", function() {
+	//increment rock counter (for achievement)
+	m_numRockPlays += 1;
+
 	let l_outcome = playRound("rock");
 
 	//Spell to win draws
@@ -577,6 +636,9 @@ l_rockBtn.addEventListener("click", function() {
 	}
 });
 l_paperBtn.addEventListener("click", function() {
+	//increment the counter for paper (for achievement)
+	m_numPaperPlays += 1;
+
 	//change image of userSelection to a paper appropriate to their winnings
 	if(m_hasPaperDwayne) {
 		l_userChoice.src = "img/paper/Dwayne_paper.png";
@@ -814,7 +876,21 @@ function legendarySpell() {
 	//determine which spell will be cast
 	const l_determinator = getRandomInt(1, l_numLegendarySpells);
 
-	if(l_determinator > 2) { //they get a Dwayne card
+	if(l_determinator == 1) { // Insta win!
+		l_playerPoints = 10;
+		l_userScore.innerText = 10;
+
+		l_computerPoints = -10;
+		l_computerScore.innerText = -10;
+		l_spellDescription = 'Instant Win!!';
+	} else if(l_determinator == 2) { //x10 multiplier
+		if(l_spellExperienceMultiplier == 1) {
+			l_spellExperienceMultiplier = 10;
+		} else {
+			l_spellExperienceMultiplier += 10;
+		}
+		l_spellDescription = "x10 Experience Multiplier";
+	} else if(l_determinator == 3) {
 		if(!m_hasRockDwayne) {
 			l_rockBtn.src = 'img/rock/Dwayne_rock.png';
 			l_spellDescription = "UNLOCK!\nDWAYNE 'THE ROCK' JOHNSON";
@@ -823,27 +899,18 @@ function legendarySpell() {
 			l_paperBtn.src = 'img/paper/Dwayne_paper.png';
 			l_spellDescription = "UNLOCK!\nDWAYNE 'THE PAPER' JOHNSON";
 			m_hasPaperDwayne = true;
-		} else if(!m_hasScissorsDwayne){
+		} else if(!m_hasScissorsDwayne) {
 			l_scissorsBtn.src = 'img/scissors/Dwayne_scissors.png';
 			l_spellDescription = "UNLOCK!\nDWAYNE 'THE SCISSORS' JOHNSON";
 			m_hasScissorsDwayne = true;
-		}
-		l_numLegendarySpells--;
-	} else {
-		if(l_determinator == 1) { // Insta win!
-			l_playerPoints = 10;
-			l_userScore.innerText = 10;
 
-			l_computerPoints = -10;
-			l_computerScore.innerText = -10;
-			l_spellDescription = 'Instant Win!!';
-		} else if(l_determinator == 2) { //x10 multiplier
-			if(l_spellExperienceMultiplier == 1) {
-				l_spellExperienceMultiplier = 10;
-			} else {
-				l_spellExperienceMultiplier += 10;
-			}
-			l_spellDescription = "x10 Experience Multiplier";
+			//unlock achievement
+			showPopUp("achievement", "Unlock the full power of Dwayne The Rock Johnson");
+			m_paperDwayne.style.color = "green";
+			l_playerExperience += 1000;
+			l_experienceDisplay.innerText = l_playerExperience;
+
+			l_numLegendarySpells--;
 		}
 	}
 
@@ -851,6 +918,9 @@ function legendarySpell() {
 }
 
 l_scissorsBtn.addEventListener("click", function() {
+	//increment the scissors counter (for achievement)
+	m_numScissorsPlays += 1;
+
 	//change image of userSelection to a scissors appropriate to their winnings
 	if(m_hasScissorsDwayne) {
 		l_userChoice.src = "img/scissors/Dwayne_scissors.png";
@@ -1033,14 +1103,15 @@ function endGame(a_isVictorious) {
 		l_victoryOrDeath.style.color ="green";
 		
 		//calcuate points
-		l_playerExperience += 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier * l_spellExperienceMultiplier + l_spellFlatExperienceBonus;
+		l_experience = 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier * l_spellExperienceMultiplier + l_spellFlatExperienceBonus;
+		l_playerExperience += l_experience;
 		l_experienceDisplay.innerText = l_playerExperience + " xp";
 
 		//show breakown correctly
 		l_baseExpBreakdown.innerText = "5";
 		l_winMarginText.innerText = l_playerPoints - l_computerPoints;
 		l_expMultiplierBreakdown.innerText = l_pointMultiplier;
-		l_experienceFinal.innerText = 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier * l_spellExperienceMultiplier + l_spellFlatExperienceBonus;
+		l_experienceFinal.innerText = l_experience;
 
 		//if there was added xp from spells, add that in the table here
 		if(l_spellFlatExperienceBonus > 0) {
@@ -1080,6 +1151,46 @@ function endGame(a_isVictorious) {
 	//reset spell effects
 	l_spellWinAllDraws = false;
 	l_spellWinNextDraw = false;
+
+	//achievements
+	//first game
+	if(m_virginPlayer) {
+		m_virginPlayer = false;
+		showPopUp("achievement", "Play Your First Game\n+5 xp");
+		document.getElementById("welcomeAchievment").style.color = "green";
+		l_playerExperience += 5;
+		l_experienceDisplay.innerText = l_playerExperience;
+	}
+	//win by only choosing rock, paper, or scissors
+	if(!m_favoritism && a_isVictorious && (
+		(m_numRockPlays == 0 && m_numPaperPlays == 0 && m_numScissorsPlays >= 5) ||
+		(m_numScissorsPlays == 0 && m_numRockPlays == 0 && m_numPaperPlays >= 5) ||
+		(m_numPaperPlays == 0 && m_numScissorsPlays == 0 && m_numRockPlays >= 5) 
+	)) {
+		m_favoritism = true;
+		showPopUp("achievement", "Win a Game by Only Choosing Either Rock, Paper, or Scissors\n+10 xp");
+		document.getElementById("onlyOneAchievment").style.color = "green";
+		l_playerExperience += 10;
+		l_experienceDisplay.innerText = l_playerExperience;
+	}
+	m_numRockPlays = 0;
+	m_numPaperPlays = 0;
+	m_numScissorsPlays = 0;
+	//win a perfect game
+	if(!m_perfection && l_playerPoints >= 5 && l_computerPoints <= 0) {
+		m_perfection = true;
+		showPopUp("achievement", "End a Game With a Score of 5 to 0\n+20 xp");
+		document.getElementById("perfectionAchievment").style.color = "green";
+		l_playerExperience += 20;
+		l_experienceDisplay.innerText = l_playerExperience;
+	}
+	if(l_experience >= 10000 && !m_hasExpAchiev) {
+		m_hasExpAchiev = true;
+		showPopUp("achievement", "Earn over 10,000 xp in one game!");
+		document.getElementById("expAchievment").style.color = "green";
+		l_playerExperience += 1000;
+		l_experienceDisplay.innerText = l_playerExperience;
+	}
 
 	//reset activeEffects
 	l_activeEffects.innerText = "";
@@ -1155,6 +1266,9 @@ async function showPopUp(a_title, a_description) {
 			l_spellEffectTitle.innerText = "GRO'NOTH";
 			l_spellEffectScreen.style.backgroundColor = "#bc153b";
 			break;
+		case 'achievement':
+			l_spellEffectTitle.innerText = "ACHIEVEMENT";
+			l_spellEffectScreen.style.backgroundColor = "#00FFFF";
 	}
 	
 
