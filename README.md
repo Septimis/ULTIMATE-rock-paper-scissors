@@ -57,7 +57,7 @@ Each category has an equal chance to activate the spell.  Flat experience gains 
  - +20 xp bonus on a win THIS game.
  - Gain a x2 exp bonus THIS game.
  - You will win the **next** draw this game.
- - Reverse the scores.
+ - Reverse the scores (Caution!  This could not go in your favor).
 ##### Epic
  - Experience bonus costs 10 xp instead of 25 xp.
  - Gain a x4 exp bonus THIS game.
