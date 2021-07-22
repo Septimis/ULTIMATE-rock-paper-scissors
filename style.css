@@ -32,11 +32,11 @@ button {
 /* Game Guide */
 #gameGuide {
   position: fixed;
-  top: 25%;
+  top: 15%;
   left: 25%;
   z-index: 1;
   width: 50%;
-  height: 50%;
+  height: 70%;
 
   background-color: black;
   color:white;
@@ -46,12 +46,12 @@ button {
 }
 #guideContent {
   position: fixed;
-  top: 34%;
+  top: 25%;
   left: 26.5%;
   overflow-y:auto;
   text-align: left;
   border:1px solid white;
-  height: 35%;
+  height: 55%;
   width: 47%;
   padding: 10px 10px 10px 10px;
   margin-bottom: 10px;
