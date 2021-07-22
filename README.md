@@ -17,13 +17,13 @@ The game is simple, select your weapon: <b>Sturdy Rock, Mystical Paper, or Vicio
 -   ROCK
     - Rank I: Coal - 50 xp to unlock
         - There is a 25% chance on a loss *this* round that your opponent will not gain a point. 
-    - Rank II: Quartz - 100 xp to unlock
+    - Rank II: Stone - 100 xp to unlock
         - There is a 50% chance on a loss *this* round that your opponent will not gain a point.
-    - Rank III: Topaz - 200 xp to unlock
+    - Rank III: Crystal - 200 xp to unlock
         - There is a 75% chance on your *next* loss this game that your opponent will not gain a point.
-    - Rank IV: Moissanite - 500 xp to unlock
+    - Rank IV: Diamond - 500 xp to unlock
         - There is a 75% chance on a loss *this* round that your opponent will not gain a point **and** a 50% chance that your opponent will not gain a point on your *next* loss this game.
-    - Rank V: Diamond - 1000 xp to unlock
+    - Rank V: Talisman - 1000 xp to unlock
         - There is a 90% chance on a loss *this* round that your opponent will not gain a point **and** a 90% chance on your *next* loss this game that your opponent will not gain a point.
 - PAPER
     - Rank I: Scroll - 50 xp to unlock
@@ -34,18 +34,18 @@ The game is simple, select your weapon: <b>Sturdy Rock, Mystical Paper, or Vicio
         - Upon winning with paper, there is a 25% chance to activate a common spell, a 50% chance to activate a rare spell, and a 25% chance to activate an epic spell.
     - Rank IV:Grimoire - 500 xp to unlock
         - Upon winning with paper, there is a 60% chance to activate a rare spell, a 35% chance to activate an epic spell, and a 5% chance to activate a *LEGENDARY* spell.
-    - Rank V: Sovereign Intellect - 1000 xp to unlock
+    - Rank V: Necronomicon - 1000 xp to unlock
         - Upon winning with paper, there is an 80% chance to activate an epic spell, and a 20% chance to activate a *LEGENDARY* spell.
 - SCISSORS
-    - Rank I: Kitchen Scissors - 50 xp to unlock
+    - Rank I: Razor - 50 xp to unlock
         - Upon winning with scissors, there is a 25% chance to gain an additional point.
-    - RAnk II: Trauma Scissors - 100 xp to unlock
+    - RAnk II: Shears - 100 xp to unlock
         - Upon winning with scissors, there is a 50% chance to gain an additional point.
-    - Rank III: Sheep Shears - 200 xp to unlock
+    - Rank III: Ritual Knife - 200 xp to unlock
         - Upon winning with scissors, there is a 75% chance to gain an additional point, or a 10% chance to gain 2 additional points.
-    - Rank IV: Bolt Cutters - 500 xp to unlock
+    - Rank IV: Daisho - 500 xp to unlock
         - Upon winning with scissors, there is a 100% chance to gain an additional point, or a 30% chance to gain 2 additional points.
-    - Rank V: Gro'noth, Destroyer of Worlds - 1000 xp to unlock
+    - Rank V: Scyth - 1000 xp to unlock
         - Upon losing with scissors, you have a 50% chance of gaining an additional point.  If you win with scissors, there is a 100% chance to gain a point, a 50% chance to gain 2 additional points, and a 20% chance to set player points to 10 and computer points to -10.
 #### Spells
 Each category has an equal chance to activate the spell.  Flat experience gains will be added **AFTER** multipliers have been added.  Experience multipliers will stack with each other at the end of the game.  For example, suppose you cast a +10 experience spell, a x2 experience bonus, and a x4 experience bonus.  Your final score would be calculated by: *5 x margin x purchased Experience Bonus' x 2 x 4 + 10*.  Some spell effects are permanent such as the Dwayne cards and the reduced cost of an experience bonus.  Once you have unlocked these, they will be removed from the pool of available spells and can no longer be cast.

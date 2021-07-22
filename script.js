@@ -1,6 +1,5 @@
-/*NEXT TODO:
- * - Add function for final button
- */
+//start the time 
+const m_startTime = new Date().getTime();
 //Initial VARIABLES
 const l_body = document.getElementById("body");
 
@@ -199,50 +198,50 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 				l_rockUpgradeCost = 100;
 				l_equippedRock.innerText = "Coal";
 				l_rockRankText.innerText = "I";
-				l_rockUpgradeTitle.innerText = "Quartz";
-				l_rockUpgradeDescription.innerText = "There is a 75% chance on a loss this round that your opponent will not gain a point.";
+				l_rockUpgradeTitle.innerText = "Stone";
+				l_rockUpgradeDescription.innerText = "There is a 50% chance on a loss this round that your opponent will not gain a point.";
 				if(!m_hasRockDwayne) {
 					l_rockBtn.src = "img/rock/coal.jpg";
 				}
 				break;
 			case 1:
 				l_rockUpgradeCost = 200;
-				l_equippedRock.innerText = "Quartz";
+				l_equippedRock.innerText = "Stone";
 				l_rockRankText.innerText = "II";
-				l_rockUpgradeTitle.innerText = "Topaz";
+				l_rockUpgradeTitle.innerText = "Crystal";
 				l_rockUpgradeDescription.innerText = "There is a 75% chance on your next loss this game that your opponent will not gain a point.";
 				if(!m_hasRockDwayne) {
-					l_rockBtn.src = "img/rock/quartz.jpg";
+					l_rockBtn.src = "img/rock/stone.jpg";
 				}
 				break;
 			case 2:
 				l_rockUpgradeCost = 500;
-				l_equippedRock.innerText = "Topaz"
+				l_equippedRock.innerText = "Crystal"
 				l_rockRankText.innerText = "III";
-				l_rockUpgradeTitle.innerText = "Moissanite";
+				l_rockUpgradeTitle.innerText = "Diamond";
 				l_rockUpgradeDescription.innerText = "There is a 75% chance on a loss this round that your opponent will not gain a point and a 50% chance that your opponent will not gain a point on your next loss this game.";
 				if(!m_hasRockDwayne) {
-					l_rockBtn.src = "img/rock/topaz.png";
+					l_rockBtn.src = "img/rock/crystal.png";
 				}
 				break;
 			case 3:
 				l_rockUpgradeCost = 1000;
-				l_equippedRock.innerText = "Moissanite";
+				l_equippedRock.innerText = "Diamond";
 				l_rockRankText.innerText = "IV";
-				l_rockUpgradeTitle.innerText = "Diamond";
+				l_rockUpgradeTitle.innerText = "Talisman";
 				l_rockUpgradeDescription.innerText = "There is a 90% chance on a loss this round that your opponent will not gain a point and a 90% chance on your next loss this game that your opponent will not gain a point.";
 				if(!m_hasRockDwayne) {
-					l_rockBtn.src = "img/rock/moissanite.png";
+					l_rockBtn.src = "img/rock/diamond.png";
 				}
 				break;
 			case 4:
 				l_rockUpgradeCost = NaN;
-				l_equippedRock.innerText = "Diamond";
+				l_equippedRock.innerText = "Talisman";
 				l_rockRankText.innerText = "V";
 				l_rockUpgradeTitle.innerText = "Fully Upgraded";
 				l_rockUpgradeDescription.innerText = "";
 				if(!m_hasRockDwayne) {
-					l_rockBtn.src = "img/rock/diamond.png";
+					l_rockBtn.src = "img/rock/talisman.png";
 				}
 				//achievement for getting rank V 
 				showPopUp("achievement", "Upgrade Your Rock to Level 5\n+50 xp");
@@ -333,7 +332,7 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				l_paperUpgradeCost = 1000;
 				l_equippedPaper.innerText = "Grimoire";
 				l_paperRankText.innerText = "IV";
-				l_paperUpgradeTitle.innerText = "Sovereign Intellect";
+				l_paperUpgradeTitle.innerText = "Necronomicon";
 				l_paperUpgradeDescription.innerText = "Regardless of the outcome, there is a 30% chance to activate a rare spell, a 60% chance to activate an epic spell, and a 10% chance to activate a LEGENDARY spell.";
 				if(!m_hasPaperDwayne) {
 					l_paperBtn.src = "img/paper/grimoire.png";
@@ -342,12 +341,12 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				break;
 			case 4:
 				l_paperUpgradeCost = NaN;
-				l_equippedPaper.innerText = "Sovereign Intellect";
+				l_equippedPaper.innerText = "Necronomicon";
 				l_paperRankText.innerText = "V";
 				l_paperUpgradeTitle.innerText = "Fully Upgraded";
 				l_paperUpgradeDescription.innerText = "";
 				if(!m_hasPaperDwayne) {
-					l_paperBtn.src = "img/paper/sovereignIntellect.jpg";
+					l_paperBtn.src = "img/paper/necronomicon.jpg";
 				}
 
 				//achievement for getting rank V 
@@ -402,52 +401,52 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 		switch(l_scissorsRank) {
 			case 0:
 				l_scissorsUpgradeCost = 100;
-				l_equippedScissors.innerText = "Kitchen Scissors";
+				l_equippedScissors.innerText = "Razor";
 				l_scissorsRankText.innerText = "I";
-				l_scissorsUpgradeTitle.innerText = "Sheep Shears";
-				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point.";
+				l_scissorsUpgradeTitle.innerText = "Shears";
+				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 50% chance to gain an additional point.";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/kitchenScissors.png";
+					l_scissorsBtn.src = "img/scissors/razor.png";
 				}
 				break;
 			case 1:
 				l_scissorsUpgradeCost = 200;
-				l_equippedScissors.innerText = "Trauma Scissors";
+				l_equippedScissors.innerText = "Shears";
 				l_scissorsRankText.innerText = "II";
-				l_scissorsUpgradeTitle.innerText = "Sheep Shears";
+				l_scissorsUpgradeTitle.innerText = "Ritual Knife";
 				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 10% chance to gain 2 additional points.";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/traumaScissors.jpg";
+					l_scissorsBtn.src = "img/scissors/shears.jpg";
 				}
 				break;
 			case 2:
 				l_scissorsUpgradeCost = 500;
-				l_equippedScissors.innerText = "Sheep Shears"
+				l_equippedScissors.innerText = "Ritual Knife"
 				l_scissorsRankText.innerText = "III";
-				l_scissorsUpgradeTitle.innerText = "Bolt Cutters";
+				l_scissorsUpgradeTitle.innerText = "Daisho";
 				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 20% chance to gain 2 additional points.";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/sheepShears.jpg";
+					l_scissorsBtn.src = "img/scissors/ritualKnife.jpg";
 				}
 				break;
 			case 3:
 				l_scissorsUpgradeCost = 1000;
-				l_equippedScissors.innerText = "Bolt Cutters";
+				l_equippedScissors.innerText = "Daisho";
 				l_scissorsRankText.innerText = "IV";
-				l_scissorsUpgradeTitle.innerText = "Gro'noth, Destroyer of Worlds";
+				l_scissorsUpgradeTitle.innerText = "Scyth";
 				l_scissorsUpgradeDescription.innerText = "Upon losing with scissors, you have a 50% chance of gaining an additional point. If you win with scissors, there is a 50% chance to gain 2 additional points, and a 10% chance to win the game immedietly.";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/boltCutters.jpg";
+					l_scissorsBtn.src = "img/scissors/daisho.jpg";
 				}
 				break;
 			case 4:
 				l_scissorsUpgradeCost = NaN;
-				l_equippedScissors.innerText = "Gro'noth, Destroyer of Worlds";
+				l_equippedScissors.innerText = "Scyth";
 				l_scissorsRankText.innerText = "V";
 				l_scissorsUpgradeTitle.innerText = "Fully Upgraded";
 				l_scissorsUpgradeDescription.innerText = "";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/worldEnder.png";
+					l_scissorsBtn.src = "img/scissors/scyth.png";
 				}
 
 				//achievement for getting rank V 
@@ -542,11 +541,88 @@ m_endGameBtn.addEventListener("click", function() {
 
 //END GAME CREDITS
 function rollCredits() {
+	//calclate their game time
+	const l_finishTime = new Date((new Date().getTime() - m_startTime));
+
 	//create a floating div
 	const l_creditsScreen = document.createElement("div");
-	l_creditsScreen.classList.add("fadeIn");
+	l_creditsScreen.classList.add("floatingItems");
+	l_creditsScreen.style.border = "2px solid white";
+	l_creditsScreen.style.color = "white";
+	l_creditsScreen.style.position = "fixed";
+	l_creditsScreen.style.left = "25%";
+	l_creditsScreen.style.top = "15%";
+	l_creditsScreen.style.zIndex = "1";
+	l_creditsScreen.style.width = "50%";
+	l_creditsScreen.style.height = "70%";
+	l_creditsScreen.style.padding = "0px 10px 10px 20px";
+
+	//create a header
+	const l_creditCongrats = document.createElement("p");
+	l_creditCongrats.innerText = "CONGRATULATIONS!";
+	l_creditCongrats.style.fontSize = "46px";
+	l_creditCongrats.style.textAlign = "Center";
+	l_creditCongrats.style.marginBottom = "0px";
+
+	const l_timePlayed = document.createElement("p");
+	l_timePlayed.innerText = `Your Time: ${l_finishTime.getUTCHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:${l_finishTime.getUTCMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:${l_finishTime.getUTCSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:${l_finishTime.getUTCMilliseconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}`;
+
+	l_timePlayed.style.textAlign = "Center";
+	l_timePlayed.style.fontSize = "18px";
+
+	const l_creditTitle = document.createElement("h2");
+	l_creditTitle.innerText = "Credits";
+	l_creditTitle.style.textDecoration = "underline";
+
+	//create the content
+	const l_creditCreatorTitle = document.createElement("span");
+	l_creditCreatorTitle.innerText = "Creator: ";
+	l_creditCreatorTitle.style.fontWeight = "bolder";
+	l_creditCreatorTitle.style.fontSize = "18px";
+
+	const l_creditCreator = document.createElement("span");
+	l_creditCreator.innerText = "Connor Meads\nHandled game design and the programming.\n\n";
+	l_creditCreator.style.fontSize = "18px";
+
+	const l_creditArtistTitle = document.createElement("span");
+	l_creditArtistTitle.innerText = "Artist: ";
+	l_creditArtistTitle.style.fontSize = "18px";
+	l_creditArtistTitle.style.fontWeight = "bolder";
+
+	const l_creditArtist = document.createElement("span");
+	l_creditArtist.innerText = "Jessica Allman\nHandled the upgrade names and designs.";
+	l_creditArtist.style.fontSize = "18px";
+
+	const l_creditThanks = document.createElement("h2");
+	l_creditThanks.innerText = "Thanks for playing my game!";
+	l_creditThanks.style.textAlign = "Center";
+	l_creditThanks.style.marginTop = "100px";
+
+	const l_creditExitBtn = document.createElement("button");
+	l_creditExitBtn.style.position = "absolute";
+	l_creditExitBtn.style.left = "44%";
+	l_creditExitBtn.style.height = "40px";
+	l_creditExitBtn.style.width = "100px";
+	l_creditExitBtn.style.fontSize = "18px";
+	l_creditExitBtn.classList.add("glow");
+	l_creditExitBtn.classList.add("progressButtons");
+	l_creditExitBtn.innerText = "Restart";
+
+	l_creditExitBtn.addEventListener("click", function() {
+		location.reload();
+	});
 
 	//add credits to the screen
+	l_creditsScreen.appendChild(l_creditCongrats);
+	l_creditsScreen.appendChild(l_timePlayed);
+	l_creditsScreen.appendChild(l_creditTitle);
+	l_creditsScreen.appendChild(l_creditCreatorTitle);
+	l_creditsScreen.appendChild(l_creditCreator);
+	l_creditsScreen.appendChild(l_creditArtistTitle);
+	l_creditsScreen.appendChild(l_creditArtist);
+	l_creditsScreen.appendChild(l_creditThanks);
+	l_creditsScreen.appendChild(l_creditExitBtn);
+
 	l_body.appendChild(l_creditsScreen);
 }
 
@@ -590,17 +666,17 @@ l_rockBtn.addEventListener("click", function() {
 			case 1: //Coal
 				l_userChoice.src = "img/rock/coal.jpg";
 				break;
-			case 2: //Quartz
-				l_userChoice.src = "img/rock/quartz.jpg";
+			case 2: //Stone
+				l_userChoice.src = "img/rock/stone.jpg";
 				break;
-			case 3: //Topaz
-				l_userChoice.src = "img/rock/topaz.png";
+			case 3: //Crystal
+				l_userChoice.src = "img/rock/crystal.png";
 				break;
-			case 4: //Moissanite
-				l_userChoice.src = "img/rock/moissanite.png";
-				break;
-			case 5: //Diamond
+			case 4: //Diamond
 				l_userChoice.src = "img/rock/diamond.png";
+				break;
+			case 5: //Talisman
+				l_userChoice.src = "img/rock/talisman.png";
 				break;
 			default: //rock
 				l_userChoice.src = "img/rock/rock.jpg";
@@ -616,32 +692,32 @@ l_rockBtn.addEventListener("click", function() {
 				showPopUp("coal", "Opponent didn't gain a point");
 			}
 			break;
-		case 2: //Quartz
+		case 2: //Stone
 			if(l_outcome == -1 && getRandomInt(0, 3) >= 1) {
 				l_outcome = 1;
-				showPopUp('quartz', "Opponent didn't gain a point");
+				showPopUp('stone', "Opponent didn't gain a point");
 			}
 			break;
-		case 3: //Topaz
+		case 3: //Crystal
 			if(getRandomInt(0, 3) > 0 && !m_protected) {
 				m_protected = true;
 				showPopUp('protection', "Your next loss won't hurt!");
 			}
 			break;
-		case 4: //Moissanite
+		case 4: //Diamond
 			if(l_outcome == -1 && getRandomInt(0, 3) > 0) {
 				l_outcome = 1;
-				showPopUp('moissanite', "Opponent didn't gain a point");
+				showPopUp('diamond', "Opponent didn't gain a point");
 			}
 			if(getRandomInt(0,1) == 1 && !m_protected) {
 				m_protected = true;
 				showPopUp('protection', "Your next loss won't hurt!");
 			}
 			break;
-		case 5: //Diamond
+		case 5: //Talisman
 			if(l_outcome == -1 && getRandomInt(1, 10) > 1) {
 				l_outcome = 1;
-				showPopUp('diamond', "Opponent didn't gain a point");
+				showPopUp('talisman', "Opponent didn't gain a point");
 			}
 			if(getRandomInt(1, 10) > 1 && !m_protected) {
 				showPopUp('protection', "Your next loss won't hurt!");
@@ -700,7 +776,7 @@ l_paperBtn.addEventListener("click", function() {
 				l_userChoice.src = "img/paper/grimoire.png";
 				break;
 			case 5: //Sovereign Intellect
-				l_userChoice.src = "img/paper/sovereignIntellect.jpg";
+				l_userChoice.src = "img/paper/necronomicon.jpg";
 				break;
 			default: //paper
 				l_userChoice.src = "img/paper/paper.jpg";
@@ -737,10 +813,8 @@ l_paperBtn.addEventListener("click", function() {
 		let l_determinator = getRandomInt(1, 100);
 		if(l_paperRank == 1) { //rank 1
 			if(l_determinator <= 50) {
-				console.log("casting a common spell");
 				commonSpell();
 			} else if(l_determinator <= 55) {
-				console.log("casting a rare spell");
 				rareSpell();
 			}
 		} else if(l_paperRank == 2) { //rank 2
@@ -814,7 +888,6 @@ function commonSpell() {
 			//test if the color is too light.
 			if(parseInt(l_color) > 16565444) {
 				l_tooLight = true;
-				console.log("too light");
 			} else {
 				l_tooLight = false;
 			}
@@ -970,19 +1043,19 @@ l_scissorsBtn.addEventListener("click", function() {
 	} else {
 		switch(l_scissorsRank) {
 			case 1: //Kitchen Scissors
-				l_userChoice.src = "img/scissors/kitchenScissors.png";
+				l_userChoice.src = "img/scissors/razor.png";
 				break;
 			case 2: //Trauma Scissors
-				l_userChoice.src = "img/scissors/traumaScissors.jpg";
+				l_userChoice.src = "img/scissors/shears.jpg";
 				break;
 			case 3: //Sheep Shears
-				l_userChoice.src = "img/scissors/sheepShears.jpg";
+				l_userChoice.src = "img/scissors/ritualKnife.jpg";
 				break;
 			case 4: //Bolt Cutters
-				l_userChoice.src = "img/scissors/boltCutters.jpg";
+				l_userChoice.src = "img/scissors/daisho.jpg";
 				break;
 			case 5: //Gro'noth, Destroyer of Worlds
-				l_userChoice.src = "img/scissors/worldEnder.png";
+				l_userChoice.src = "img/scissors/scyth.png";
 				break;
 			default: //scissors
 				l_userChoice.src = "img/scissors/scissors.jpg";
@@ -1047,17 +1120,17 @@ l_scissorsBtn.addEventListener("click", function() {
 			if(l_outcome == -1 && l_determinator <= 50) {
 				l_rankVSpecial = true;
 				l_extraPoint = 1;
-				showPopUp('gronathSpecial', 'Extra Point!');
+				showPopUp('scythSpecial', 'Extra Point!');
 			} else if(l_outcome == 1) {
 				if(l_determinator <= 50) {
 					l_extraPoint = 2;
-					showPopUp('gronathSpecial', 'Extra 2 Point!');
+					showPopUp('scythSpecial', 'Extra 2 Point!');
 				} else if(l_determinator <= 70) {
 					l_playerPoints = 10;
 					l_userScore.innerText = l_playerPoints;
 					l_computerPoints = -10;
 					l_computerScore.innerText = l_computerPoints;
-					showPopUp('gronathSpecial', 'Destroyer of Worlds');
+					showPopUp('scythSpecial', 'Consume Souls');
 				} else {
 					showPopUp('scissorsSpecial', 'Extra Point!');
 					l_extraPoint = 1;
@@ -1244,10 +1317,22 @@ function endGame(a_isVictorious) {
 async function showPopUp(a_title, a_description) {
 	//create a div to show the spell
 	const l_spellEffectScreen = document.createElement("div");
-	l_spellEffectScreen.classList.add("spellEffect");
 	//the div will spawn on a random part of the screen
 	l_spellEffectScreen.style.left = `${getRandomInt(15, 80)}%`;
-	l_spellEffectScreen.style.top = `-${getRandomInt(300, 900)}px`;
+	l_spellEffectScreen.style.top = `${getRandomInt(15, 80)}%`;
+
+	//style the div
+	l_spellEffectScreen.style.position = "absolute";
+	l_spellEffectScreen.style.zIndex = "2";
+	l_spellEffectScreen.style.width = "20%";
+	l_spellEffectScreen.style.height = "25%";
+	l_spellEffectScreen.style.backgroundColor = "rgba(100, 100, 100, 0.3)";
+	l_spellEffectScreen.style.color = "white";
+	l_spellEffectScreen.style.border = "2px solid white";
+	l_spellEffectScreen.style.borderRadius = "10%";
+	l_spellEffectScreen.style.textAlign = "Center";
+	l_spellEffectScreen.style.pointerEvents = "none";
+
 	l_body.appendChild(l_spellEffectScreen);
 
 	const l_spellEffectTitle = document.createElement("H1");
@@ -1281,16 +1366,16 @@ async function showPopUp(a_title, a_description) {
 			l_spellEffectTitle.innerText = "Coal Special";
 			l_spellEffectScreen.style.backgroundColor = "black";
 			break;
-		case 'quartz':
-			l_spellEffectTitle.innerText = "Quartz Special";
+		case 'stone':
+			l_spellEffectTitle.innerText = "Stone Special";
 			l_spellEffectScreen.style.backgroundColor = "#51414F";
-			break;
-		case 'moissanite':
-			l_spellEffectTitle.innerText = "Moissanite Special";
-			l_spellEffectScreen.style.backgroundColor = "#201935";
 			break;
 		case 'diamond':
 			l_spellEffectTitle.innerText = "Diamond Special";
+			l_spellEffectScreen.style.backgroundColor = "#201935";
+			break;
+		case 'talisman':
+			l_spellEffectTitle.innerText = "Talisman Special";
 			l_spellEffectScreen.style.backgroundColor = "#cbe3f0";
 			break;
 		case 'rockSpecial':
@@ -1305,19 +1390,18 @@ async function showPopUp(a_title, a_description) {
 			l_spellEffectTitle.innerText = "Slice and Dice";
 			l_spellEffectScreen.style.backgroundColor = "#43464B";
 			break;
-		case 'gronathSpecial':
-			l_spellEffectTitle.innerText = "GRO'NOTH";
+		case 'scythSpecial':
+			l_spellEffectTitle.innerText = "REAPER";
 			l_spellEffectScreen.style.backgroundColor = "#bc153b";
 			break;
 		case 'achievement':
 			l_spellEffectTitle.innerText = "ACHIEVEMENT";
-			l_spellEffectScreen.style.backgroundColor = "#00FFFF";
-	}
-	
+			l_spellEffectScreen.style.backgroundColor = "#be29ec";
+	}	
 
-	l_spellEffectScreen.classList.add("fadeInItems");
+	l_spellEffectScreen.classList.add("popUpFadeInItems");
 	await sleep(2000);
-	l_spellEffectScreen.classList.remove("fadeInItems");
+	l_spellEffectScreen.classList.remove("popUpFadeInItems");
 	l_spellEffectScreen.classList.add("fadeOutItems");
 	await sleep(2000);
 	l_spellEffectScreen.classList.remove("fadeOutItems");
