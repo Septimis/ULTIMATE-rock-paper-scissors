@@ -135,7 +135,85 @@ let m_protected = false;
 //BUTTON FUNCTIONALITY
 //game guide
 l_guideLink.addEventListener("click", function() {
-  l_body.appendChild(l_gameGuide); //opens game guide
+	//create the game guide 
+	const l_gameGuideContainer = document.createElement("div");
+	l_gameGuideContainer.style.position = "fixed";
+	l_gameGuideContainer.style.top = "15%";
+	l_gameGuideContainer.style.left = "25%";
+	l_gameGuideContainer.style.zIndex = "1";
+	l_gameGuideContainer.style.width = "50%";
+	l_gameGuideContainer.style.height = "70%";
+	l_gameGuideContainer.style.backgroundColor = "black";
+	l_gameGuideContainer.style.color = "white";
+	l_gameGuideContainer.style.border = "5px solid white";
+	l_gameGuideContainer.style.textAlign = "center";
+	l_gameGuideContainer.style.padding = "10px 10px 10px 10px";
+	l_gameGuideContainer.classList.add("fadeInItems");
+
+	const l_gameGuideTitle = document.createElement("h1");
+	l_gameGuideTitle.innerText = "Game Guide";
+
+	l_gameGuideContainer.appendChild(l_gameGuideTitle);
+
+	const l_gameGuideContent = document.createElement("div");
+	l_gameGuideContent.style.position = "fixed";
+	l_gameGuideContent.style.top = "25%";
+	l_gameGuideContent.style.left = "26.5%";
+	l_gameGuideContent.style.overflowY = "auto";
+	l_gameGuideContent.style.textAlign = "left";
+	l_gameGuideContent.style.border = "1px solid white";
+	l_gameGuideContent.style.height = "55%";
+	l_gameGuideContent.style.width = "47%";
+	l_gameGuideContent.style.padding = "10px 10px 10px 10px";
+	l_gameGuideContent.style.marginBottom = "10px";
+	l_gameGuideContent.style.fontSize = "20px";
+
+	l_gameGuideContainer.appendChild(l_gameGuideContent);
+
+	//overview
+	const l_overviewH2 = document.createElement("h2");
+	l_overviewH2.innerText = "Overview";
+	l_overviewH2.style.textDecoration = "underline";
+
+	l_gameGuideContent.appendChild(l_overviewH2);
+
+	const l_span_initDescription1 = document.createElement("span");
+	l_span_initDescription1.innerText = "The game is simple, select your weapon: ";
+
+	l_gameGuideContent.appendChild(l_span_initDescription1);
+
+	const l_span_initDescription2 = document.createElement("span");
+	l_span_initDescription2.innerText = "Sturdy Rock, Mystical Paper, or Vicious Scissors";
+	l_span_initDescription2.classList.add("textGuide");
+
+	l_gameGuideContent.appendChild(l_span_initDescription2);
+
+	const l_span_initDescription3 = document.createElement("span");
+	l_span_initDescription3.innerText = ".Use these to fight the computer to win perks and upgrades that will aid you in later conquests.";
+
+	l_gameGuideContent.appendChild(l_span_initDescription3);
+
+	const l_ol_initDescription4 = document.createElement("ol");
+	l_gameGuideContent.appendChild(l_ol_initDescription4);
+	l_li_initDescription4_1 = document.createElement("li");
+	l_li_initDescription4_1.innerText = ""
+	l_ol_initDescription4.appendChild(l_li_initDescription4_1);
+
+	const l_closeGuideBtn = document.createElement("button");
+	l_closeGuideBtn.style.position = "absolute";
+	l_closeGuideBtn.style.bottom = "10px";
+	l_closeGuideBtn.style.left = "46%";
+	l_closeGuideBtn.style.width = "80px";
+	l_closeGuideBtn.style.height = "30px";
+	l_closeGuideBtn.style.backgroundColor = "white";
+	l_closeGuideBtn.style.color = "black";
+	l_closeGuideBtn.style.paddingTop = "3px";
+	l_closeGuideBtn.innerText = "Close";
+	l_closeGuideBtn.classList.add("glow");
+
+	l_gameGuideContainer.appendChild(l_closeGuideBtn);
+
+	l_body.appendChild(l_gameGuideContainer);
 });
 l_closeGuideBtn.addEventListener("click", function() {
   l_gameGuide.remove();
@@ -201,7 +279,7 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 				l_rockUpgradeTitle.innerText = "Stone";
 				l_rockUpgradeDescription.innerText = "There is a 50% chance on a loss this round that your opponent will not gain a point.";
 				if(!m_hasRockDwayne) {
-					l_rockBtn.src = "img/rock/coal.jpg";
+					l_rockBtn.src = "img/rock/coal.png";
 				}
 				break;
 			case 1:
@@ -211,7 +289,7 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 				l_rockUpgradeTitle.innerText = "Crystal";
 				l_rockUpgradeDescription.innerText = "There is a 75% chance on your next loss this game that your opponent will not gain a point.";
 				if(!m_hasRockDwayne) {
-					l_rockBtn.src = "img/rock/stone.jpg";
+					l_rockBtn.src = "img/rock/stone.png";
 				}
 				break;
 			case 2:
@@ -346,7 +424,7 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				l_paperUpgradeTitle.innerText = "Fully Upgraded";
 				l_paperUpgradeDescription.innerText = "";
 				if(!m_hasPaperDwayne) {
-					l_paperBtn.src = "img/paper/necronomicon.jpg";
+					l_paperBtn.src = "img/paper/necronomicon.png";
 				}
 
 				//achievement for getting rank V 
@@ -416,7 +494,7 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 				l_scissorsUpgradeTitle.innerText = "Ritual Knife";
 				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 10% chance to gain 2 additional points.";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/shears.jpg";
+					l_scissorsBtn.src = "img/scissors/shears.png";
 				}
 				break;
 			case 2:
@@ -426,7 +504,7 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 				l_scissorsUpgradeTitle.innerText = "Daisho";
 				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 20% chance to gain 2 additional points.";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/ritualKnife.jpg";
+					l_scissorsBtn.src = "img/scissors/ritualKnife.png";
 				}
 				break;
 			case 3:
@@ -446,7 +524,7 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 				l_scissorsUpgradeTitle.innerText = "Fully Upgraded";
 				l_scissorsUpgradeDescription.innerText = "";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/scyth.png";
+					l_scissorsBtn.src = "img/scissors/scythe.png";
 				}
 
 				//achievement for getting rank V 
@@ -664,10 +742,10 @@ l_rockBtn.addEventListener("click", function() {
 	} else {
 		switch(l_rockRank) {
 			case 1: //Coal
-				l_userChoice.src = "img/rock/coal.jpg";
+				l_userChoice.src = "img/rock/coal.png";
 				break;
 			case 2: //Stone
-				l_userChoice.src = "img/rock/stone.jpg";
+				l_userChoice.src = "img/rock/stone.png";
 				break;
 			case 3: //Crystal
 				l_userChoice.src = "img/rock/crystal.png";
@@ -776,7 +854,7 @@ l_paperBtn.addEventListener("click", function() {
 				l_userChoice.src = "img/paper/grimoire.png";
 				break;
 			case 5: //Sovereign Intellect
-				l_userChoice.src = "img/paper/necronomicon.jpg";
+				l_userChoice.src = "img/paper/necronomicon.png";
 				break;
 			default: //paper
 				l_userChoice.src = "img/paper/paper.jpg";
@@ -1046,16 +1124,16 @@ l_scissorsBtn.addEventListener("click", function() {
 				l_userChoice.src = "img/scissors/razor.png";
 				break;
 			case 2: //Trauma Scissors
-				l_userChoice.src = "img/scissors/shears.jpg";
+				l_userChoice.src = "img/scissors/shears.png";
 				break;
 			case 3: //Sheep Shears
-				l_userChoice.src = "img/scissors/ritualKnife.jpg";
+				l_userChoice.src = "img/scissors/ritualKnife.png";
 				break;
 			case 4: //Bolt Cutters
 				l_userChoice.src = "img/scissors/daisho.jpg";
 				break;
 			case 5: //Gro'noth, Destroyer of Worlds
-				l_userChoice.src = "img/scissors/scyth.png";
+				l_userChoice.src = "img/scissors/scythe.png";
 				break;
 			default: //scissors
 				l_userChoice.src = "img/scissors/scissors.jpg";
@@ -1219,7 +1297,7 @@ function endGame(a_isVictorious) {
 		l_victoryOrDeath.style.color ="green";
 		
 		//calcuate points
-		l_experience = 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier * l_spellExperienceMultiplier + l_spellFlatExperienceBonus;
+		let l_experience = 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier * l_spellExperienceMultiplier + l_spellFlatExperienceBonus;
 		l_playerExperience += l_experience;
 		l_experienceDisplay.innerText = l_playerExperience + " xp";
 
