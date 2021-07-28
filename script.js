@@ -193,11 +193,24 @@ l_guideLink.addEventListener("click", function() {
 
 	l_gameGuideContent.appendChild(l_span_initDescription3);
 
+	//initial list
 	const l_ol_initDescription4 = document.createElement("ol");
 	l_gameGuideContent.appendChild(l_ol_initDescription4);
-	l_li_initDescription4_1 = document.createElement("li");
-	l_li_initDescription4_1.innerText = ""
+
+	const l_li_initDescription4_1 = document.createElement("li");
+	l_li_initDescription4_1.innerText = "Each round, the player and computer will chose either Rock, Paper, or Scissors. The first to 5 points wins the game.";
 	l_ol_initDescription4.appendChild(l_li_initDescription4_1);
+
+	const l_li_initDescription4_2 = document.createElement("li");
+	l_li_initDescription4_2.innerText = "Each game will reward you with points if you win.";
+	l_ol_initDescription4.appendChild(l_li_initDescription4_2);
+
+	const l_ul_initSubDescription4 = document.createElement("ul");
+	l_gameGuideContent.appendChild(l_ul_initSubDescription4);
+
+	const l_li_initDescription4_3 = document.createElement("li");
+	l_li_initDescription4_3.innerText = "You may use points to buy upgrades for your rock, paper, or scissors and gain the upper hand. Asthetic upgrades and other rewards can also be earned.";
+	l_ol_initDescription4.appendChild(l_li_initDescription4_3);
 
 	const l_closeGuideBtn = document.createElement("button");
 	l_closeGuideBtn.style.position = "absolute";
@@ -210,6 +223,10 @@ l_guideLink.addEventListener("click", function() {
 	l_closeGuideBtn.style.paddingTop = "3px";
 	l_closeGuideBtn.innerText = "Close";
 	l_closeGuideBtn.classList.add("glow");
+
+	l_closeGuideBtn.addEventListener("click", function() {
+		l_gameGuideContainer.remove();
+	});
 
 	l_gameGuideContainer.appendChild(l_closeGuideBtn);
 
