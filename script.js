@@ -1,75 +1,86 @@
+/* Credit:
+ *   Connor Meads
+ *   https://github.com/Septimis/rock-paper-scissors
+ * 
+ * VARIABLE NAMING CONVENTION
+ * -----------------------------
+ * l_ = local variable
+ * m_ = member variable
+ * a_ = argument variable
+ */
+
 //start the time 
 const m_startTime = new Date().getTime();
 //Initial VARIABLES
-const l_body = document.getElementById("body");
+const m_body = document.getElementById("body");
 
 //GameGuide
 let m_guideIsOpen = false;
 showGuide(); //opens the guide by default
-const l_guideLink = document.getElementById("guideLink");
+const m_guideLink = document.getElementById("guideLink");
 
 //Results Overview
-const l_resultsScreen = document.getElementById("resultsPage");
-const l_closeResultsBtn = document.getElementById("closeResultsBtn");
-const l_victoryOrDeath = document.getElementById("victoryOrDeath");
+const m_resultsScreen = document.getElementById("resultsPage");
+const m_closeResultsBtn = document.getElementById("closeResultsBtn");
+const m_victoryOrDeath = document.getElementById("victoryOrDeath");
 
-const l_baseExpBreakdown = document.getElementById("baseExpBreakdown");
-const l_winMarginText = document.getElementById("winMargin");
-const l_expMultiplierBreakdown = document.getElementById("expMultiplierBreakdown");
-const l_experienceFinal = document.getElementById("experienceBreakdown");
-const l_resultsHeaderRow = document.getElementById("resultsHeaderRow");
-const l_resultsBreakdownRow = document.getElementById("resultsBreakdownRow");
+const m_baseExpBreakdown = document.getElementById("baseExpBreakdown");
+const m_winMarginText = document.getElementById("winMargin");
+const m_expMultiplierBreakdown = document.getElementById("expMultiplierBreakdown");
+const m_experienceFinal = document.getElementById("experienceBreakdown");
+const m_resultsHeaderRow = document.getElementById("resultsHeaderRow");
+const m_resultsBreakdownRow = document.getElementById("resultsBreakdownRow");
 
 //HOMESCREEN
-const l_homeScreenItems = document.querySelectorAll(".homeScreen");
-const l_startGameBtn = document.getElementById("startButton");
-const l_experienceDisplay = document.getElementById("currentExperience");
-const l_activeEffects = document.getElementById("activeEffects");
+const m_homeScreenItems = document.querySelectorAll(".homeScreen");
+const m_startGameBtn = document.getElementById("startButton");
+const m_experienceDisplay = document.getElementById("currentExperience");
+const m_activeEffects = document.getElementById("activeEffects");
 
 //floatDown animation items
-const l_floatItems = document.querySelectorAll(".animatedItems");
+const m_floatItems = document.querySelectorAll(".animatedItems");
 
 //upgrade table
-const l_rockUpgradeBtn = document.getElementById("rockUpgradeBtn");
-const l_paperUpgradeBtn = document.getElementById("paperUpgradeBtn");
-const l_scissorUpgradeBtn = document.getElementById("scissorUpgradeBtn");
-const l_expBonusBtn = document.getElementById("expBonusBtn");
-const l_expBonusCostSpan = document.getElementById("expBonusCost");
+const m_rockUpgradeBtn = document.getElementById("rockUpgradeBtn");
+const m_paperUpgradeBtn = document.getElementById("paperUpgradeBtn");
+const m_scissorUpgradeBtn = document.getElementById("scissorUpgradeBtn");
+const m_expBonusBtn = document.getElementById("expBonusBtn");
+const m_expBonusCostSpan = document.getElementById("expBonusCost");
 
-const l_rockRankText = document.getElementById("rockRank");
-const l_paperRankText = document.getElementById("paperRank");
-const l_scissorsRankText = document.getElementById("scissorsRank");
+const m_rockRankText = document.getElementById("rockRank");
+const m_paperRankText = document.getElementById("paperRank");
+const m_scissorsRankText = document.getElementById("scissorsRank");
 
-const l_rockUpgradeTitle = document.getElementById("rockUpgradeTitle");
-const l_paperUpgradeTitle = document.getElementById("paperUpgradeTitle");
-const l_scissorsUpgradeTitle = document.getElementById("scissorsUpgradeTitle");
+const m_rockUpgradeTitle = document.getElementById("rockUpgradeTitle");
+const m_paperUpgradeTitle = document.getElementById("paperUpgradeTitle");
+const m_scissorsUpgradeTitle = document.getElementById("scissorsUpgradeTitle");
 
-const l_rockUpgradeDescription = document.getElementById("rockUpgradeDescription");
-const l_paperUpgradeDescription = document.getElementById("paperUpgradeDescription");
-const l_scissorsUpgradeDescription = document.getElementById("scissorsUpgradeDescription");
+const m_rockUpgradeDescription = document.getElementById("rockUpgradeDescription");
+const m_paperUpgradeDescription = document.getElementById("paperUpgradeDescription");
+const m_scissorsUpgradeDescription = document.getElementById("scissorsUpgradeDescription");
 
-const l_equippedRock = document.getElementById("equippedRock");
-const l_equippedPaper = document.getElementById("equippedPaper");
-const l_equippedScissors = document.getElementById("equippedScissors");
+const m_equippedRock = document.getElementById("equippedRock");
+const m_equippedPaper = document.getElementById("equippedPaper");
+const m_equippedScissors = document.getElementById("equippedScissors");
 
-const l_rockNextUpgradeReqExp = document.getElementById("rockNextUpgradeReqExp");
-const l_paperNextUpgradeReqExp = document.getElementById("paperNextUpgradeReqExp");
-const l_scissorsNextUpgradeReqExp = document.getElementById("scissorsNextUpgradeReqExp");
+const m_rockNextUpgradeReqExp = document.getElementById("rockNextUpgradeReqExp");
+const m_paperNextUpgradeReqExp = document.getElementById("paperNextUpgradeReqExp");
+const m_scissorsNextUpgradeReqExp = document.getElementById("scissorsNextUpgradeReqExp");
 
 const m_endGameBtn = document.getElementById("endGameBtn");
 
 //GAMESCREEN
-const l_gameScreenItems = document.querySelectorAll(".gameScreen");
-const l_returnBtn = document.getElementById("backBtnContainer");
-const l_outcomeText = document.getElementById("outcomeText");
-const l_rockBtn = document.getElementById("rockBtn");
-const l_paperBtn = document.getElementById("paperBtn");
-const l_scissorsBtn = document.getElementById("scissorsBtn");
+const m_gameScreenItems = document.querySelectorAll(".gameScreen");
+const m_returnBtn = document.getElementById("backBtnContainer");
+const m_outcomeText = document.getElementById("outcomeText");
+const m_rockBtn = document.getElementById("rockBtn");
+const m_paperBtn = document.getElementById("paperBtn");
+const m_scissorsBtn = document.getElementById("scissorsBtn");
 
-const l_userChoice = document.getElementById("userSelection");
-const l_computerChoice = document.getElementById("computerSelection");
-const l_userScore = document.getElementById("userScore");
-const l_computerScore = document.getElementById("computerScore");
+const m_userChoice = document.getElementById("userSelection");
+const m_computerChoice = document.getElementById("computerSelection");
+const m_userScore = document.getElementById("userScore");
+const m_computerScore = document.getElementById("computerScore");
 
 //ACHIEVEMENTS
 const m_paperDwayne = document.getElementById("dwayneAchievment");
@@ -77,44 +88,44 @@ const m_achievements = document.querySelectorAll(".achievments");
 
 //DEFAULTS
 //gameScreen elements are hidden by default
-for(let element of l_gameScreenItems) {
+for(let element of m_gameScreenItems) {
   element.remove();
 }
 
 //results is hidden by default
-l_resultsScreen.remove();
+m_resultsScreen.remove();
 
 //computer choice chances are 33.33% at the beginning
-let l_rockChance = 33.33;
-let l_paperChance = 33.33;
-let l_scissorsChance = 33.33;
+let m_rockChance = 33.33;
+let m_paperChance = 33.33;
+let m_scissorsChance = 33.33;
 
 //rank of each is 0 at the start
-let l_rockRank = 0;
-let l_paperRank = 0;
-let l_scissorsRank = 0;
+let m_rockRank = 0;
+let m_paperRank = 0;
+let m_scissorsRank = 0;
 
 //cost of each upgrade
-let l_rockUpgradeCost = 50;
-let l_paperUpgradeCost = 50;
-let l_scissorsUpgradeCost = 50;
-let l_expBonusCost = 25;
+let m_rockUpgradeCost = 50;
+let m_paperUpgradeCost = 50;
+let m_scissorsUpgradeCost = 50;
+let m_expBonusCost = 25;
 
 //players start the game at 0 xp
-let l_playerExperience = 0;
+let m_playerExperience = 0;
 
 //player & computer start game at 0 points
-let l_playerPoints = 0;
-let l_computerPoints = 0;
-let l_pointMultiplier = 1;
+let m_playerPoints = 0;
+let m_computerPoints = 0;
+let m_pointMultiplier = 1;
 
 //spell VARIABLES
-let l_spellFlatExperienceBonus = 0;
-let l_spellExperienceMultiplier = 1;
-let l_spellWinNextDraw = false;
-let l_spellWinAllDraws = false;
-let l_numEpicSpells = 4;
-let l_numLegendarySpells = 3;
+let m_spellFlatExperienceBonus = 0;
+let m_spellExperienceMultiplier = 1;
+let m_spellWinNextDraw = false;
+let m_spellWinAllDraws = false;
+let m_numEpicSpells = 4;
+let m_numLegendarySpells = 3;
 let m_hasRockDwayne = false;
 let m_hasPaperDwayne = false;
 let m_hasScissorsDwayne = false;
@@ -134,7 +145,7 @@ let m_protected = false;
 
 //BUTTON FUNCTIONALITY
 //game guide
-l_guideLink.addEventListener("click", showGuide());
+m_guideLink.addEventListener("click", showGuide());
 function showGuide() {
 	//check if there is already a game guide open
 	if(!m_guideIsOpen) {
@@ -566,373 +577,373 @@ function showGuide() {
 
 		l_gameGuideContainer.appendChild(l_closeGuideBtn);
 
-		l_body.appendChild(l_gameGuideContainer);
+		m_body.appendChild(l_gameGuideContainer);
 	}
 }
 
 //results overview
 function showResults() {
-	l_body.appendChild(l_resultsScreen);
+	m_body.appendChild(m_resultsScreen);
 }
-l_closeResultsBtn.addEventListener("click", function() {
+m_closeResultsBtn.addEventListener("click", function() {
 	//reset spell multiplier
-	if(l_spellExperienceMultiplier > 1) {
-		l_resultsHeaderRow.deleteCell(4);
-		l_resultsBreakdownRow.deleteCell(4);
+	if(m_spellExperienceMultiplier > 1) {
+		m_resultsHeaderRow.deleteCell(4);
+		m_resultsBreakdownRow.deleteCell(4);
 	}
 	//reset spell experience gains
-	if(l_spellFlatExperienceBonus > 0){
-		l_resultsHeaderRow.deleteCell(4);
-		l_resultsBreakdownRow.deleteCell(4);
+	if(m_spellFlatExperienceBonus > 0){
+		m_resultsHeaderRow.deleteCell(4);
+		m_resultsBreakdownRow.deleteCell(4);
 	}
 
 	//reset spell pertinent spell effects
-	l_spellFlatExperienceBonus = 0;
-	l_spellExperienceMultiplier = 1;
+	m_spellFlatExperienceBonus = 0;
+	m_spellExperienceMultiplier = 1;
 	m_protected = false;
 
-	l_resultsScreen.remove();
+	m_resultsScreen.remove();
 });
 
 //homeScreen
-l_startGameBtn.addEventListener("click", function(e) {
-	for(let i = 0; i < l_homeScreenItems.length; i++) {
+m_startGameBtn.addEventListener("click", function(e) {
+	for(let i = 0; i < m_homeScreenItems.length; i++) {
 	//remove homeScreen items
-	l_homeScreenItems[i].remove();
+	m_homeScreenItems[i].remove();
 
 	//add gameScreen items
-	l_body.appendChild(l_gameScreenItems[i]);
+	m_body.appendChild(m_gameScreenItems[i]);
 
 	}
 	//reset points
-	l_playerPoints = 0;
-	l_computerPoints = 0;
+	m_playerPoints = 0;
+	m_computerPoints = 0;
 });
 //upgrade buttons
-l_rockUpgradeBtn.addEventListener("click", function() {
+m_rockUpgradeBtn.addEventListener("click", function() {
 	//check if they even have enough xp
-	if(l_playerExperience >= l_rockUpgradeCost) {
-		if(l_rockRank == 4) {
-			l_rockUpgradeBtn.disabled = true;
-			l_rockUpgradeBtn.innerText = "Maxed Out";
-			l_rockUpgradeBtn.classList.remove("glow");
+	if(m_playerExperience >= m_rockUpgradeCost) {
+		if(m_rockRank == 4) {
+			m_rockUpgradeBtn.disabled = true;
+			m_rockUpgradeBtn.innerText = "Maxed Out";
+			m_rockUpgradeBtn.classList.remove("glow");
 		}
 
 		//decrease player Experience accordingly
-		l_playerExperience -= l_rockUpgradeCost;
+		m_playerExperience -= m_rockUpgradeCost;
 
 		//increase cost of next upgrade
-		switch(l_rockRank) {
+		switch(m_rockRank) {
 			case 0:
-				l_rockUpgradeCost = 100;
-				l_equippedRock.innerText = "Coal";
-				l_rockRankText.innerText = "I";
-				l_rockUpgradeTitle.innerText = "Stone";
-				l_rockUpgradeDescription.innerText = "There is a 50% chance on a loss this round that your opponent will not gain a point.";
+				m_rockUpgradeCost = 100;
+				m_equippedRock.innerText = "Coal";
+				m_rockRankText.innerText = "I";
+				m_rockUpgradeTitle.innerText = "Stone";
+				m_rockUpgradeDescription.innerText = "There is a 50% chance on a loss this round that your opponent will not gain a point.";
 				if(!m_hasRockDwayne) {
-					l_rockBtn.src = "img/rock/coal.png";
+					m_rockBtn.src = "img/rock/coal.png";
 				}
 				break;
 			case 1:
-				l_rockUpgradeCost = 500;
-				l_equippedRock.innerText = "Stone";
-				l_rockRankText.innerText = "II";
-				l_rockUpgradeTitle.innerText = "Crystal";
-				l_rockUpgradeDescription.innerText = "There is a 75% chance on your next loss this game that your opponent will not gain a point.";
+				m_rockUpgradeCost = 500;
+				m_equippedRock.innerText = "Stone";
+				m_rockRankText.innerText = "II";
+				m_rockUpgradeTitle.innerText = "Crystal";
+				m_rockUpgradeDescription.innerText = "There is a 75% chance on your next loss this game that your opponent will not gain a point.";
 				if(!m_hasRockDwayne) {
-					l_rockBtn.src = "img/rock/stone.png";
+					m_rockBtn.src = "img/rock/stone.png";
 				}
 				break;
 			case 2:
-				l_rockUpgradeCost = 1000;
-				l_equippedRock.innerText = "Crystal"
-				l_rockRankText.innerText = "III";
-				l_rockUpgradeTitle.innerText = "Diamond";
-				l_rockUpgradeDescription.innerText = "There is a 75% chance on a loss this round that your opponent will not gain a point and a 50% chance that your opponent will not gain a point on your next loss this game.";
+				m_rockUpgradeCost = 1000;
+				m_equippedRock.innerText = "Crystal"
+				m_rockRankText.innerText = "III";
+				m_rockUpgradeTitle.innerText = "Diamond";
+				m_rockUpgradeDescription.innerText = "There is a 75% chance on a loss this round that your opponent will not gain a point and a 50% chance that your opponent will not gain a point on your next loss this game.";
 				if(!m_hasRockDwayne) {
-					l_rockBtn.src = "img/rock/crystal.png";
+					m_rockBtn.src = "img/rock/crystal.png";
 				}
 				break;
 			case 3:
-				l_rockUpgradeCost = 5000;
-				l_equippedRock.innerText = "Diamond";
-				l_rockRankText.innerText = "IV";
-				l_rockUpgradeTitle.innerText = "Talisman";
-				l_rockUpgradeDescription.innerText = "There is a 90% chance on a loss this round that your opponent will not gain a point and a 90% chance on your next loss this game that your opponent will not gain a point.";
+				m_rockUpgradeCost = 5000;
+				m_equippedRock.innerText = "Diamond";
+				m_rockRankText.innerText = "IV";
+				m_rockUpgradeTitle.innerText = "Talisman";
+				m_rockUpgradeDescription.innerText = "There is a 90% chance on a loss this round that your opponent will not gain a point and a 90% chance on your next loss this game that your opponent will not gain a point.";
 				if(!m_hasRockDwayne) {
-					l_rockBtn.src = "img/rock/diamond.png";
+					m_rockBtn.src = "img/rock/diamond.png";
 				}
 				break;
 			case 4:
-				l_rockUpgradeCost = NaN;
-				l_equippedRock.innerText = "Talisman";
-				l_rockRankText.innerText = "V";
-				l_rockUpgradeTitle.innerText = "Fully Upgraded";
-				l_rockUpgradeDescription.innerText = "";
+				m_rockUpgradeCost = NaN;
+				m_equippedRock.innerText = "Talisman";
+				m_rockRankText.innerText = "V";
+				m_rockUpgradeTitle.innerText = "Fully Upgraded";
+				m_rockUpgradeDescription.innerText = "";
 				if(!m_hasRockDwayne) {
-					l_rockBtn.src = "img/rock/talisman.png";
+					m_rockBtn.src = "img/rock/talisman.png";
 				}
 				//achievement for getting rank V 
 				showPopUp("achievement", "Upgrade Your Rock to Level 5\n+50 xp");
 				document.getElementById("rockAchievment").style.color = "green";
-				l_playerExperience += 50;
-				l_experienceDisplay.innerText = l_playerExperience;
+				m_playerExperience += 50;
+				m_experienceDisplay.innerText = m_playerExperience;
 
 				//check if all are at rank V
-				if(l_scissorsRank == 5 && l_paperRank == 5) {
+				if(m_scissorsRank == 5 && m_paperRank == 5) {
 					showPopUp("achievement", "Upgrade Rock, Paper, and Scissors to Level 5\n+100 xp");
 					document.getElementById("trifectaAchievment").style.color = "green";
-					l_playerExperience += 100;
-					l_experienceDisplay.innerText = l_playerExperience;
+					m_playerExperience += 100;
+					m_experienceDisplay.innerText = m_playerExperience;
 				}
 				break;
 		}
 
 		//increase rank of rock
-		l_rockRank++;
+		m_rockRank++;
 
 		//update the expreience counter at the Top 
-		l_experienceDisplay.innerText = l_playerExperience + " xp";
+		m_experienceDisplay.innerText = m_playerExperience + " xp";
 
 
 		//adjust the necessary elements to reflect the upgrade
-		if(l_rockRank == 5) {
-			l_rockNextUpgradeReqExp.innerText = "";
+		if(m_rockRank == 5) {
+			m_rockNextUpgradeReqExp.innerText = "";
 		} else {
-			l_rockNextUpgradeReqExp.innerText = l_rockUpgradeCost + " xp";
+			m_rockNextUpgradeReqExp.innerText = m_rockUpgradeCost + " xp";
 		}
 		
 		
 		//adjust the chance that the computer will choose paper over rock and scissors
-		l_rockChance -= 1;
-		l_paperChance += 2;
-		l_scissorsChance -= 1;
+		m_rockChance -= 1;
+		m_paperChance += 2;
+		m_scissorsChance -= 1;
 	} else {
-		alert(`You need ${l_rockUpgradeCost - l_playerExperience} more experience to upgrade!  Play more games to increase your experience!`);
+		alert(`You need ${m_rockUpgradeCost - m_playerExperience} more experience to upgrade!  Play more games to increase your experience!`);
 	}
 	
 });
 
-l_paperUpgradeBtn.addEventListener("click", function() {
-	if(l_playerExperience >= l_paperUpgradeCost) {
-		if(l_paperRank == 4) {
-			l_paperUpgradeBtn.disabled = true;
-			l_paperUpgradeBtn.innerText = "Maxed Out";
-			l_paperUpgradeBtn.classList.remove("glow");
+m_paperUpgradeBtn.addEventListener("click", function() {
+	if(m_playerExperience >= m_paperUpgradeCost) {
+		if(m_paperRank == 4) {
+			m_paperUpgradeBtn.disabled = true;
+			m_paperUpgradeBtn.innerText = "Maxed Out";
+			m_paperUpgradeBtn.classList.remove("glow");
 		}
 
 		//decrease player Experience accordingly
-		l_playerExperience -= l_paperUpgradeCost;
+		m_playerExperience -= m_paperUpgradeCost;
 
-		switch(l_paperRank) {
+		switch(m_paperRank) {
 			case 0:
-				l_paperUpgradeCost = 100;
-				l_equippedPaper.innerText = "Scroll";
-				l_paperRankText.innerText = "I";
-				l_paperUpgradeTitle.innerText = "Spellbook";
-				l_paperUpgradeDescription.innerText = "Upon winning with paper, there is a 75% chance to activate a common spell, a 20% chance to activate a rare spell, and a 5% chance to activate an epic spell.";
+				m_paperUpgradeCost = 100;
+				m_equippedPaper.innerText = "Scroll";
+				m_paperRankText.innerText = "I";
+				m_paperUpgradeTitle.innerText = "Spellbook";
+				m_paperUpgradeDescription.innerText = "Upon winning with paper, there is a 75% chance to activate a common spell, a 20% chance to activate a rare spell, and a 5% chance to activate an epic spell.";
 				if(!m_hasPaperDwayne) { 
-					l_paperBtn.src = "img/paper/scroll.png";
+					m_paperBtn.src = "img/paper/scroll.png";
 				}		
 				
 				break;
 			case 1:
-				l_paperUpgradeCost = 500;
-				l_equippedPaper.innerText = "Spellbook";
-				l_paperRankText.innerText = "II";
-				l_paperUpgradeTitle.innerText = "Lexicon";
-				l_paperUpgradeDescription.innerText = "Upon winning with paper, there is a 25% chance to activate a common spell, a 50% chance to activate a rare spell, and a 25% chance to activate an epic spell.";
+				m_paperUpgradeCost = 500;
+				m_equippedPaper.innerText = "Spellbook";
+				m_paperRankText.innerText = "II";
+				m_paperUpgradeTitle.innerText = "Lexicon";
+				m_paperUpgradeDescription.innerText = "Upon winning with paper, there is a 25% chance to activate a common spell, a 50% chance to activate a rare spell, and a 25% chance to activate an epic spell.";
 				if(!m_hasPaperDwayne) { 
-					l_paperBtn.src = "img/paper/spellbook.png";
+					m_paperBtn.src = "img/paper/spellbook.png";
 				}
 				
 				break;
 			case 2:
-				l_paperUpgradeCost = 1000;
-				l_equippedPaper.innerText = "Lexicon"
-				l_paperRankText.innerText = "III";
-				l_paperUpgradeTitle.innerText = "Grimoire";
-				l_paperUpgradeDescription.innerText = "Upon winning with paper, there is a 60% chance to activate a rare spell, a 35% chance to activate an epic spell, and a 5% chance to activate a LEGENDARY spell.";
+				m_paperUpgradeCost = 1000;
+				m_equippedPaper.innerText = "Lexicon"
+				m_paperRankText.innerText = "III";
+				m_paperUpgradeTitle.innerText = "Grimoire";
+				m_paperUpgradeDescription.innerText = "Upon winning with paper, there is a 60% chance to activate a rare spell, a 35% chance to activate an epic spell, and a 5% chance to activate a LEGENDARY spell.";
 				if(!m_hasPaperDwayne) {
-					l_paperBtn.src = "img/paper/lexicon.png";
+					m_paperBtn.src = "img/paper/lexicon.png";
 				}
 				break;
 			case 3:
-				l_paperUpgradeCost = 5000;
-				l_equippedPaper.innerText = "Grimoire";
-				l_paperRankText.innerText = "IV";
-				l_paperUpgradeTitle.innerText = "Necronomicon";
-				l_paperUpgradeDescription.innerText = "Regardless of the outcome, there is a 30% chance to activate a rare spell, a 60% chance to activate an epic spell, and a 10% chance to activate a LEGENDARY spell.";
+				m_paperUpgradeCost = 5000;
+				m_equippedPaper.innerText = "Grimoire";
+				m_paperRankText.innerText = "IV";
+				m_paperUpgradeTitle.innerText = "Necronomicon";
+				m_paperUpgradeDescription.innerText = "Regardless of the outcome, there is a 30% chance to activate a rare spell, a 60% chance to activate an epic spell, and a 10% chance to activate a LEGENDARY spell.";
 				if(!m_hasPaperDwayne) {
-					l_paperBtn.src = "img/paper/grimoire.png";
+					m_paperBtn.src = "img/paper/grimoire.png";
 				}
 				
 				break;
 			case 4:
-				l_paperUpgradeCost = NaN;
-				l_equippedPaper.innerText = "Necronomicon";
-				l_paperRankText.innerText = "V";
-				l_paperUpgradeTitle.innerText = "Fully Upgraded";
-				l_paperUpgradeDescription.innerText = "";
+				m_paperUpgradeCost = NaN;
+				m_equippedPaper.innerText = "Necronomicon";
+				m_paperRankText.innerText = "V";
+				m_paperUpgradeTitle.innerText = "Fully Upgraded";
+				m_paperUpgradeDescription.innerText = "";
 				if(!m_hasPaperDwayne) {
-					l_paperBtn.src = "img/paper/necronomicon.png";
+					m_paperBtn.src = "img/paper/necronomicon.png";
 				}
 
 				//achievement for getting rank V 
 				showPopUp("achievement", "Upgrade Your Paper to Level 5\n+50 xp");
 				document.getElementById("paperAchievment").style.color = "green";
-				l_playerExperience += 50;
-				l_experienceDisplay.innerText = l_playerExperience;
+				m_playerExperience += 50;
+				m_experienceDisplay.innerText = m_playerExperience;
 				break;
 
 				//check if all are at rank V
-				if(l_rockRank == 5 && l_scissorsRank == 5) {
+				if(m_rockRank == 5 && m_scissorsRank == 5) {
 					showPopUp("achievement", "Upgrade Rock, Paper, and Scissors to Level 5\n+100 xp");
 					document.getElementById("trifectaAchievment").style.color = "green";
-					l_playerExperience += 100;
-					l_experienceDisplay.innerText = l_playerExperience;
+					m_playerExperience += 100;
+					m_experienceDisplay.innerText = m_playerExperience;
 				}
 		}
 
 		//incrase rank of paper
-		l_paperRank++;
+		m_paperRank++;
 
 		//update the expreience counter at the Top 
-		l_experienceDisplay.innerText = l_playerExperience + " xp";
+		m_experienceDisplay.innerText = m_playerExperience + " xp";
 
-		if(l_paperRank == 5) {
-			l_paperNextUpgradeReqExp.innerText = "";
+		if(m_paperRank == 5) {
+			m_paperNextUpgradeReqExp.innerText = "";
 		} else {
-			l_paperNextUpgradeReqExp.innerText = l_paperUpgradeCost + " xp";
+			m_paperNextUpgradeReqExp.innerText = m_paperUpgradeCost + " xp";
 		}
 
 		//adjust the chance that the computer will choose paper over rock or scissors
-		l_rockChance -= 1;
-		l_paperChance -= 1;
-		l_scissorsChance += 2;
+		m_rockChance -= 1;
+		m_paperChance -= 1;
+		m_scissorsChance += 2;
 	} else {
-		alert(`You need ${l_paperUpgradeCost - l_playerExperience} more experience to upgrade!  Play more games to increase your experience!`);
+		alert(`You need ${m_paperUpgradeCost - m_playerExperience} more experience to upgrade!  Play more games to increase your experience!`);
 	}
 	
 });
 
-l_scissorUpgradeBtn.addEventListener("click", function() {
-	if(l_playerExperience >= l_scissorsUpgradeCost) {
-		if(l_scissorsRank == 4) {
-			l_scissorUpgradeBtn.disabled = true;
-			l_scissorUpgradeBtn.innerText = "Maxed Out";
-			l_scissorUpgradeBtn.classList.remove("glow");
+m_scissorUpgradeBtn.addEventListener("click", function() {
+	if(m_playerExperience >= m_scissorsUpgradeCost) {
+		if(m_scissorsRank == 4) {
+			m_scissorUpgradeBtn.disabled = true;
+			m_scissorUpgradeBtn.innerText = "Maxed Out";
+			m_scissorUpgradeBtn.classList.remove("glow");
 		}
 
 		//decrease player Experience accordingly
-		l_playerExperience -= l_scissorsUpgradeCost;
+		m_playerExperience -= m_scissorsUpgradeCost;
 
-		switch(l_scissorsRank) {
+		switch(m_scissorsRank) {
 			case 0:
-				l_scissorsUpgradeCost = 100;
-				l_equippedScissors.innerText = "Razor";
-				l_scissorsRankText.innerText = "I";
-				l_scissorsUpgradeTitle.innerText = "Shears";
-				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 50% chance to gain an additional point.";
+				m_scissorsUpgradeCost = 100;
+				m_equippedScissors.innerText = "Razor";
+				m_scissorsRankText.innerText = "I";
+				m_scissorsUpgradeTitle.innerText = "Shears";
+				m_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 50% chance to gain an additional point.";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/razor.png";
+					m_scissorsBtn.src = "img/scissors/razor.png";
 				}
 				break;
 			case 1:
-				l_scissorsUpgradeCost = 500;
-				l_equippedScissors.innerText = "Shears";
-				l_scissorsRankText.innerText = "II";
-				l_scissorsUpgradeTitle.innerText = "Ritual Knife";
-				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 10% chance to gain 2 additional points.";
+				m_scissorsUpgradeCost = 500;
+				m_equippedScissors.innerText = "Shears";
+				m_scissorsRankText.innerText = "II";
+				m_scissorsUpgradeTitle.innerText = "Ritual Knife";
+				m_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 10% chance to gain 2 additional points.";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/shears.png";
+					m_scissorsBtn.src = "img/scissors/shears.png";
 				}
 				break;
 			case 2:
-				l_scissorsUpgradeCost = 1000;
-				l_equippedScissors.innerText = "Ritual Knife"
-				l_scissorsRankText.innerText = "III";
-				l_scissorsUpgradeTitle.innerText = "Daisho";
-				l_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 20% chance to gain 2 additional points.";
+				m_scissorsUpgradeCost = 1000;
+				m_equippedScissors.innerText = "Ritual Knife"
+				m_scissorsRankText.innerText = "III";
+				m_scissorsUpgradeTitle.innerText = "Daisho";
+				m_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 20% chance to gain 2 additional points.";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/ritualKnife.png";
+					m_scissorsBtn.src = "img/scissors/ritualKnife.png";
 				}
 				break;
 			case 3:
-				l_scissorsUpgradeCost = 5000;
-				l_equippedScissors.innerText = "Daisho";
-				l_scissorsRankText.innerText = "IV";
-				l_scissorsUpgradeTitle.innerText = "Scyth";
-				l_scissorsUpgradeDescription.innerText = "Upon losing with scissors, you have a 50% chance of gaining an additional point. If you win with scissors, there is a 50% chance to gain 2 additional points, and a 10% chance to win the game immedietly.";
+				m_scissorsUpgradeCost = 5000;
+				m_equippedScissors.innerText = "Daisho";
+				m_scissorsRankText.innerText = "IV";
+				m_scissorsUpgradeTitle.innerText = "Scyth";
+				m_scissorsUpgradeDescription.innerText = "Upon losing with scissors, you have a 50% chance of gaining an additional point. If you win with scissors, there is a 50% chance to gain 2 additional points, and a 10% chance to win the game immedietly.";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/daisho.jpg";
+					m_scissorsBtn.src = "img/scissors/daisho.jpg";
 				}
 				break;
 			case 4:
-				l_scissorsUpgradeCost = NaN;
-				l_equippedScissors.innerText = "Scyth";
-				l_scissorsRankText.innerText = "V";
-				l_scissorsUpgradeTitle.innerText = "Fully Upgraded";
-				l_scissorsUpgradeDescription.innerText = "";
+				m_scissorsUpgradeCost = NaN;
+				m_equippedScissors.innerText = "Scyth";
+				m_scissorsRankText.innerText = "V";
+				m_scissorsUpgradeTitle.innerText = "Fully Upgraded";
+				m_scissorsUpgradeDescription.innerText = "";
 				if(!m_hasScissorsDwayne) {
-					l_scissorsBtn.src = "img/scissors/scythe.png";
+					m_scissorsBtn.src = "img/scissors/scythe.png";
 				}
 
 				//achievement for getting rank V 
 				showPopUp("achievement", "Upgrade Your Scissors to Level 5\n+50 xp");
 				document.getElementById("scissorsAchievment").style.color = "green";
-				l_playerExperience += 50;
-				l_experienceDisplay.innerText = l_playerExperience;
+				m_playerExperience += 50;
+				m_experienceDisplay.innerText = m_playerExperience;
 
 				//check if all are at rank V
-				if(l_rockRank == 5 && l_paperRank == 5) {
+				if(m_rockRank == 5 && m_paperRank == 5) {
 					showPopUp("achievement", "Upgrade Rock, Paper, and Scissors to Level 5\n+100 xp");
 					document.getElementById("trifectaAchievment").style.color = "green";
-					l_playerExperience += 100;
-					l_experienceDisplay.innerText = l_playerExperience;
+					m_playerExperience += 100;
+					m_experienceDisplay.innerText = m_playerExperience;
 				}
 				break;
 		}
 
 		//increase rank of scissors
-		l_scissorsRank++;
+		m_scissorsRank++;
 
 		//update the expreience counter at the Top 
-		l_experienceDisplay.innerText = l_playerExperience + " xp";
+		m_experienceDisplay.innerText = m_playerExperience + " xp";
 
-		if(l_scissorsRank == 5) {
-			l_scissorsNextUpgradeReqExp.innerText = "";
+		if(m_scissorsRank == 5) {
+			m_scissorsNextUpgradeReqExp.innerText = "";
 		} else {
-			l_scissorsNextUpgradeReqExp.innerText = l_scissorsUpgradeCost + " xp";
+			m_scissorsNextUpgradeReqExp.innerText = m_scissorsUpgradeCost + " xp";
 		}
 
 		//adjust the chance that the computer will choose scissors over rock or paper
-		l_rockChance += 2;
-		l_paperChance -= 1;
-		l_scissorsChance -= 1;
+		m_rockChance += 2;
+		m_paperChance -= 1;
+		m_scissorsChance -= 1;
 	} else {
-		alert(`You need ${l_scissorsUpgradeCost - l_playerExperience} more experience to upgrade!  Play more games to increase your experience!`);
+		alert(`You need ${m_scissorsUpgradeCost - m_playerExperience} more experience to upgrade!  Play more games to increase your experience!`);
 	}
 });
 
-l_expBonusBtn.addEventListener("click", function() {
+m_expBonusBtn.addEventListener("click", function() {
 	//make sure user has enough points 
-	if(l_playerExperience < l_expBonusCost) {
-		alert(`You need ${l_expBonusCost - l_playerExperience} more experience to buy that!`);
+	if(m_playerExperience < m_expBonusCost) {
+		alert(`You need ${m_expBonusCost - m_playerExperience} more experience to buy that!`);
 	} else {
 		//deduct experience from user
-		l_playerExperience -= l_expBonusCost;
+		m_playerExperience -= m_expBonusCost;
 
 		//apply bonus xp
-		if(l_pointMultiplier == 1) {
-			l_pointMultiplier = 2;
+		if(m_pointMultiplier == 1) {
+			m_pointMultiplier = 2;
 		} else {
-			l_pointMultiplier += 2;
+			m_pointMultiplier += 2;
 		}
 
 		//reflect changes on active activeEffects & experience
-		l_activeEffects.innerText = `Experience Bonus: ${l_pointMultiplier}`;
-		l_experienceDisplay.innerText = l_playerExperience + " xp";
+		m_activeEffects.innerText = `Experience Bonus: ${m_pointMultiplier}`;
+		m_experienceDisplay.innerText = m_playerExperience + " xp";
 	}
 });
 
@@ -941,26 +952,26 @@ m_endGameBtn.addEventListener("click", function() {
 	let l_hasAllAchievments = !m_virginPlayer && //played first game
 							   m_favoritism && //favortism achievment
 							   m_perfection && //perfection achievment
-							   l_rockRank == 5 && //has Rock, Paper, & Scissors at rank V
-							   l_paperRank == 5 &&
-							   l_scissorsRank == 5 &&
+							   m_rockRank == 5 && //has Rock, Paper, & Scissors at rank V
+							   m_paperRank == 5 &&
+							   m_scissorsRank == 5 &&
 							   m_hasRockDwayne && //has Dwayne 'the rock paper scissors' Johnson
 							   m_hasPaperDwayne &&
 							   m_hasScissorsDwayne &&
 							   m_hasExpAchiev; //has overloaded achievment
 
-	if(l_playerExperience >= 100000 && l_hasAllAchievments) {
-		for(let i = 0; i < l_homeScreenItems.length; i++) {
+	if(m_playerExperience >= 100000 && l_hasAllAchievments) {
+		for(let i = 0; i < m_homeScreenItems.length; i++) {
 			//remove homescreen items
-			l_homeScreenItems[i].remove();
+			m_homeScreenItems[i].remove();
 		}
 
 		//add end game credits
 		rollCredits();
 	} else {
-		if(!l_hasAllAchievments && l_playerExperience < 20000) {
+		if(!l_hasAllAchievments && m_playerExperience < 20000) {
 			alert("You need to get the remaining achievments");
-		} else if(l_hasAllAchievments && l_playerExperience >= 20000) {
+		} else if(l_hasAllAchievments && m_playerExperience >= 20000) {
 			alert("You only need more experience!  Keep grinding!");
 		} else {
 			alert("Not enough achievments and not enough experience...");
@@ -970,64 +981,64 @@ m_endGameBtn.addEventListener("click", function() {
 
 //GAMESCREEN
 //button functionality
-l_returnBtn.addEventListener("click", function() {
+m_returnBtn.addEventListener("click", function() {
 	returnToHome();
 });
 
 function returnToHome() {
-	for(let i = 0; i < l_gameScreenItems.length; i++) {
+	for(let i = 0; i < m_gameScreenItems.length; i++) {
     //remove gameScreen items
-    l_gameScreenItems[i].remove();
+    m_gameScreenItems[i].remove();
 
     //add homeScreen items
-    l_body.appendChild(l_homeScreenItems[i]);
+    m_body.appendChild(m_homeScreenItems[i]);
   }
   //reset the images of the choices
-  l_userChoice.src = "";
-  l_computerChoice.src = "";
+  m_userChoice.src = "";
+  m_computerChoice.src = "";
 }
 
 //User Selection Buttons
-l_rockBtn.addEventListener("click", function() {
+m_rockBtn.addEventListener("click", function() {
 	//increment rock counter (for achievement)
 	m_numRockPlays += 1;
 
 	let l_outcome = playRound("rock");
 
 	//Spell to win draws
-	if(l_outcome == 0 && (l_spellWinNextDraw || l_spellWinAllDraws)) {
+	if(l_outcome == 0 && (m_spellWinNextDraw || m_spellWinAllDraws)) {
 		l_outcome = 1;
-		l_spellWinNextDraw = false;
+		m_spellWinNextDraw = false;
 	}
 
 	  //change image of userSelection to a rock appropriate to their winnings
 	if(m_hasRockDwayne) {
-		l_userChoice.src = "img/rock/Dwayne_rock.png";
+		m_userChoice.src = "img/rock/Dwayne_rock.png";
 	} else {
-		switch(l_rockRank) {
+		switch(m_rockRank) {
 			case 1: //Coal
-				l_userChoice.src = "img/rock/coal.png";
+				m_userChoice.src = "img/rock/coal.png";
 				break;
 			case 2: //Stone
-				l_userChoice.src = "img/rock/stone.png";
+				m_userChoice.src = "img/rock/stone.png";
 				break;
 			case 3: //Crystal
-				l_userChoice.src = "img/rock/crystal.png";
+				m_userChoice.src = "img/rock/crystal.png";
 				break;
 			case 4: //Diamond
-				l_userChoice.src = "img/rock/diamond.png";
+				m_userChoice.src = "img/rock/diamond.png";
 				break;
 			case 5: //Talisman
-				l_userChoice.src = "img/rock/talisman.png";
+				m_userChoice.src = "img/rock/talisman.png";
 				break;
 			default: //rock
-				l_userChoice.src = "img/rock/rock.jpg";
+				m_userChoice.src = "img/rock/rock.jpg";
 				break;
 		}
 	}
 
 	//rock special
-	switch(l_rockRank) {
+	switch(m_rockRank) {
 		case 1: //Coal
 			if(l_outcome == -1 && getRandomInt(0, 3) == 0) {
 				l_outcome = 1;
@@ -1075,53 +1086,53 @@ l_rockBtn.addEventListener("click", function() {
 	}
 	//outcome logic
 	if(l_outcome == -1) { //loss
-		l_outcomeText.innerText = "You Lost!";
-		l_outcomeText.style.color = "red";
-		l_computerPoints++;
-		l_computerScore.innerText = l_computerPoints;
+		m_outcomeText.innerText = "You Lost!";
+		m_outcomeText.style.color = "red";
+		m_computerPoints++;
+		m_computerScore.innerText = m_computerPoints;
 	} else if(l_outcome == 0) { //draw
-		l_outcomeText.innerText = "Draw!";
-		l_outcomeText.style.color = "white";
+		m_outcomeText.innerText = "Draw!";
+		m_outcomeText.style.color = "white";
 	} else if(l_outcome == 1) { //win
-		l_outcomeText.innerText = "You won!";
-		l_outcomeText.style.color = "green";
-		l_playerPoints++;
-		l_userScore.innerText = l_playerPoints;
+		m_outcomeText.innerText = "You won!";
+		m_outcomeText.style.color = "green";
+		m_playerPoints++;
+		m_userScore.innerText = m_playerPoints;
 	}
 
 	//test if the player or computer has won the game
-	if(l_playerPoints >= 5) {
+	if(m_playerPoints >= 5) {
 		endGame(true);
-	} else if(l_computerPoints == 5) {
+	} else if(m_computerPoints == 5) {
 		endGame(false);
 	}
 });
-l_paperBtn.addEventListener("click", function() {
+m_paperBtn.addEventListener("click", function() {
 	//increment the counter for paper (for achievement)
 	m_numPaperPlays += 1;
 
 	//change image of userSelection to a paper appropriate to their winnings
 	if(m_hasPaperDwayne) {
-		l_userChoice.src = "img/paper/Dwayne_paper.png";
+		m_userChoice.src = "img/paper/Dwayne_paper.png";
 	} else {
-		switch(l_paperRank) {
+		switch(m_paperRank) {
 			case 1: //Scroll
-				l_userChoice.src = "img/paper/scroll.png";
+				m_userChoice.src = "img/paper/scroll.png";
 				break;
 			case 2: //Spellbook
-				l_userChoice.src = "img/paper/spellbook.png";
+				m_userChoice.src = "img/paper/spellbook.png";
 				break;
 			case 3: //Lexicon
-				l_userChoice.src = "img/paper/lexicon.png";
+				m_userChoice.src = "img/paper/lexicon.png";
 				break;
 			case 4: //Grimiore
-				l_userChoice.src = "img/paper/grimoire.png";
+				m_userChoice.src = "img/paper/grimoire.png";
 				break;
 			case 5: //Sovereign Intellect
-				l_userChoice.src = "img/paper/necronomicon.png";
+				m_userChoice.src = "img/paper/necronomicon.png";
 				break;
 			default: //paper
-				l_userChoice.src = "img/paper/paper.jpg";
+				m_userChoice.src = "img/paper/paper.jpg";
 				break;
 		}
 	}	
@@ -1129,9 +1140,9 @@ l_paperBtn.addEventListener("click", function() {
 	let l_outcome = playRound("paper");
 
 	//Spell to win draws
-	if(l_outcome == 0 && (l_spellWinNextDraw || l_spellWinAllDraws)) {
+	if(l_outcome == 0 && (m_spellWinNextDraw || m_spellWinAllDraws)) {
 		l_outcome = 1;
-		l_spellWinNextDraw = false;
+		m_spellWinNextDraw = false;
 	}
 
 	//rock special
@@ -1143,23 +1154,23 @@ l_paperBtn.addEventListener("click", function() {
 
 	//outcome logic
 	if(l_outcome == -1) { //loss
-		l_outcomeText.innerText = "You Lost!";
-		l_outcomeText.style.color = "red";
-		l_computerPoints++;
-		l_computerScore.innerText = l_computerPoints;
+		m_outcomeText.innerText = "You Lost!";
+		m_outcomeText.style.color = "red";
+		m_computerPoints++;
+		m_computerScore.innerText = m_computerPoints;
 	} else if(l_outcome == 0) { //draw
-		l_outcomeText.innerText = "Draw!";
-		l_outcomeText.style.color = "white";
+		m_outcomeText.innerText = "Draw!";
+		m_outcomeText.style.color = "white";
 	} else if(l_outcome == 1) { //win
 		//spells
 		let l_determinator = getRandomInt(1, 100);
-		if(l_paperRank == 1) { //rank 1
+		if(m_paperRank == 1) { //rank 1
 			if(l_determinator <= 50) {
 				commonSpell();
 			} else if(l_determinator <= 55) {
 				rareSpell();
 			}
-		} else if(l_paperRank == 2) { //rank 2
+		} else if(m_paperRank == 2) { //rank 2
 			if(l_determinator <= 75) {
 				commonSpell();
 			} else if(l_determinator <= 95) {
@@ -1167,7 +1178,7 @@ l_paperBtn.addEventListener("click", function() {
 			} else if(l_determinator <= 100) {
 				epicSpell();
 			}
-		} else if(l_paperRank == 3) { //rank 3
+		} else if(m_paperRank == 3) { //rank 3
 			if(l_determinator <= 25) {
 				commonSpell();
 			} else if(l_determinator <= 75) {
@@ -1175,7 +1186,7 @@ l_paperBtn.addEventListener("click", function() {
 			} else if(l_determinator <= 100) {
 				epicSpell();
 			}
-		} else if(l_paperRank == 4) { //rank 4
+		} else if(m_paperRank == 4) { //rank 4
 			if(l_determinator <= 60) {
 				rareSpell();
 			} else if(l_determinator <= 95) {
@@ -1183,7 +1194,7 @@ l_paperBtn.addEventListener("click", function() {
 			} else if(l_determinator <= 100) {
 				legendarySpell();
 			}
-		} else if(l_paperRank == 5) { //rank 5
+		} else if(m_paperRank == 5) { //rank 5
 			if(l_determinator <= 80) {
 				epicSpell();
 			} else if(l_determinator <= 100) {
@@ -1191,16 +1202,16 @@ l_paperBtn.addEventListener("click", function() {
 			}
 		}
 
-		l_outcomeText.innerText = "You won!";
-		l_outcomeText.style.color = "green";
-		l_playerPoints++;
-		l_userScore.innerText = l_playerPoints;
+		m_outcomeText.innerText = "You won!";
+		m_outcomeText.style.color = "green";
+		m_playerPoints++;
+		m_userScore.innerText = m_playerPoints;
 	}
 
 	//test if the player or computer has won the game
-	if(l_playerPoints >= 5) {
+	if(m_playerPoints >= 5) {
 		endGame(true);
-	} else if(l_computerPoints == 5) {
+	} else if(m_computerPoints == 5) {
 		endGame(false);
 	}
 });
@@ -1213,7 +1224,7 @@ function commonSpell() {
 	
 	if(l_determinator == 1) { //+1-5 xp
 		let l_awardedXpBonus = getRandomInt(1, 5);
-		l_spellFlatExperienceBonus += l_awardedXpBonus;
+		m_spellFlatExperienceBonus += l_awardedXpBonus;
 		l_spellDescription = `+${l_awardedXpBonus} experience`;
 	} else if(l_determinator == 2) { //random background Color
 		//repeat if the color isn't dark enough
@@ -1236,14 +1247,14 @@ function commonSpell() {
 		}
 
 		//set background temporarily
-		l_body.style.backgroundColor = l_color;
+		m_body.style.backgroundColor = l_color;
 		l_spellDescription = "Changed background!";
 	} else if(l_determinator == 3) { //Randomize the Scores
 		l_spellDescription = "Randomized Scores!";
-		l_playerPoints = getRandomInt(0, 4);
-		l_userScore.innerText = l_playerPoints;
-		l_computerPoints = getRandomInt(0, 4);
-		l_computerScore.innerText = l_computerPoints;
+		m_playerPoints = getRandomInt(0, 4);
+		m_userScore.innerText = m_playerPoints;
+		m_computerPoints = getRandomInt(0, 4);
+		m_computerScore.innerText = m_computerPoints;
 	}
 	//show the spell
 	showPopUp('common', l_spellDescription);
@@ -1257,33 +1268,33 @@ function rareSpell() {
 	switch(l_determinator) {
 		//+20 xp bonus
 		case 1:
-			l_spellFlatExperienceBonus += 20;
+			m_spellFlatExperienceBonus += 20;
 			l_spellDescription = '+20 experience';
 			break;
 		//Gain x2 xp bonus
 		case 2:
-			if(l_spellExperienceMultiplier == 1) {
-				l_spellExperienceMultiplier = 2;
+			if(m_spellExperienceMultiplier == 1) {
+				m_spellExperienceMultiplier = 2;
 			} else {
-				l_spellExperienceMultiplier += 2;
+				m_spellExperienceMultiplier += 2;
 			}
 			l_spellDescription = 'x2 Experience Multiplier!';
 			break;
 		//Win the next draw
 		case 3:
-			l_spellWinNextDraw = true;
+			m_spellWinNextDraw = true;
 			l_spellDescription = 'Win NEXT draw this game';
 			break;
 		//Reverse Scores
 		case 4:
 			//change points
-			let l_tempPoints = l_playerPoints;
-			l_playerPoints = l_computerPoints;
-			l_computerPoints = l_tempPoints;
+			let l_tempPoints = m_playerPoints;
+			m_playerPoints = m_computerPoints;
+			m_computerPoints = l_tempPoints;
 
 			//reflect that on the DOM
-			l_userScore.innerText = l_playerPoints;
-			l_computerScore.innerText = l_computerPoints;
+			m_userScore.innerText = m_playerPoints;
+			m_computerScore.innerText = m_computerPoints;
 
 			l_spellDescription = 'Switch Scores!';
 			break;
@@ -1293,35 +1304,35 @@ function rareSpell() {
 }
 function epicSpell() {
 	//determine which spell will be cast
-	const l_determinator = getRandomInt(1, l_numEpicSpells);
+	const l_determinator = getRandomInt(1, m_numEpicSpells);
 	let l_spellDescription = "Default";
 
 	switch(l_determinator) {
 		//Gain x4 exp bonus THIS game
 		case 1:
-			if(l_spellExperienceMultiplier == 1) {
-				l_spellExperienceMultiplier = 4;
+			if(m_spellExperienceMultiplier == 1) {
+				m_spellExperienceMultiplier = 4;
 			} else {
-				l_spellExperienceMultiplier += 4;
+				m_spellExperienceMultiplier += 4;
 			}
 			l_spellDescription = 'x4 Experience Multiplier!';
 			break;
 		//Win all draws this game
 		case 2:
-			l_spellWinAllDraws = true;
+			m_spellWinAllDraws = true;
 			l_spellDescription = "Win ALL draws this game";
 			break;
 		//Set opponents score to 0
 		case 3:
-			l_computerPoints = 0;
-			l_computerScore.innerText = l_computerPoints;
+			m_computerPoints = 0;
+			m_computerScore.innerText = m_computerPoints;
 			l_spellDescription = "Computer Score set to 0";
 			break;
 		//change experience requirement for experience bonus
 		case 4: 
-			l_numEpicSpells = 3; //user can't cast this anymore
-			l_expBonusCostSpan.innerText = "10 xp";
-			l_expBonusCost = 10;
+			m_numEpicSpells = 3; //user can't cast this anymore
+			m_expBonusCostSpan.innerText = "10 xp";
+			m_expBonusCost = 10;
 			l_spellDescription = "WHOA!  Experience bonus' cost 10 xp now instead of 25 xp!"
 			break;
 	}
@@ -1332,75 +1343,75 @@ function legendarySpell() {
 	let l_spellDescription = "Default";
 
 	//determine which spell will be cast
-	const l_determinator = getRandomInt(1, l_numLegendarySpells);
+	const l_determinator = getRandomInt(1, m_numLegendarySpells);
 
 	if(l_determinator == 1) { // Insta win!
-		l_playerPoints = 10;
-		l_userScore.innerText = 10;
+		m_playerPoints = 10;
+		m_userScore.innerText = 10;
 
-		l_computerPoints = -10;
-		l_computerScore.innerText = -10;
+		m_computerPoints = -10;
+		m_computerScore.innerText = -10;
 		l_spellDescription = 'Instant Win!!';
 	} else if(l_determinator == 2) { //x10 multiplier
-		if(l_spellExperienceMultiplier == 1) {
-			l_spellExperienceMultiplier = 10;
+		if(m_spellExperienceMultiplier == 1) {
+			m_spellExperienceMultiplier = 10;
 		} else {
-			l_spellExperienceMultiplier += 10;
+			m_spellExperienceMultiplier += 10;
 		}
 		l_spellDescription = "x10 Experience Multiplier";
 	} else if(l_determinator == 3) {
 		if(!m_hasRockDwayne) {
-			l_rockBtn.src = 'img/rock/Dwayne_rock.png';
+			m_rockBtn.src = 'img/rock/Dwayne_rock.png';
 			l_spellDescription = "UNLOCK!\nDWAYNE 'THE ROCK' JOHNSON";
 			m_hasRockDwayne = true;
 		} else if(!m_hasPaperDwayne) {
-			l_paperBtn.src = 'img/paper/Dwayne_paper.png';
+			m_paperBtn.src = 'img/paper/Dwayne_paper.png';
 			l_spellDescription = "UNLOCK!\nDWAYNE 'THE PAPER' JOHNSON";
 			m_hasPaperDwayne = true;
 		} else if(!m_hasScissorsDwayne) {
-			l_scissorsBtn.src = 'img/scissors/Dwayne_scissors.png';
+			m_scissorsBtn.src = 'img/scissors/Dwayne_scissors.png';
 			l_spellDescription = "UNLOCK!\nDWAYNE 'THE SCISSORS' JOHNSON";
 			m_hasScissorsDwayne = true;
 
 			//unlock achievement
 			showPopUp("achievement", "Unlock the full power of Dwayne The Rock Johnson");
 			m_paperDwayne.style.color = "green";
-			l_playerExperience += 1000;
-			l_experienceDisplay.innerText = l_playerExperience;
+			m_playerExperience += 1000;
+			m_experienceDisplay.innerText = m_playerExperience;
 
-			l_numLegendarySpells--;
+			m_numLegendarySpells--;
 		}
 	}
 
 	showPopUp('legendary', l_spellDescription);
 }
 
-l_scissorsBtn.addEventListener("click", function() {
+m_scissorsBtn.addEventListener("click", function() {
 	//increment the scissors counter (for achievement)
 	m_numScissorsPlays += 1;
 
 	//change image of userSelection to a scissors appropriate to their winnings
 	if(m_hasScissorsDwayne) {
-		l_userChoice.src = "img/scissors/Dwayne_scissors.png";
+		m_userChoice.src = "img/scissors/Dwayne_scissors.png";
 	} else {
-		switch(l_scissorsRank) {
+		switch(m_scissorsRank) {
 			case 1: //Kitchen Scissors
-				l_userChoice.src = "img/scissors/razor.png";
+				m_userChoice.src = "img/scissors/razor.png";
 				break;
 			case 2: //Trauma Scissors
-				l_userChoice.src = "img/scissors/shears.png";
+				m_userChoice.src = "img/scissors/shears.png";
 				break;
 			case 3: //Sheep Shears
-				l_userChoice.src = "img/scissors/ritualKnife.png";
+				m_userChoice.src = "img/scissors/ritualKnife.png";
 				break;
 			case 4: //Bolt Cutters
-				l_userChoice.src = "img/scissors/daisho.jpg";
+				m_userChoice.src = "img/scissors/daisho.jpg";
 				break;
 			case 5: //Gro'noth, Destroyer of Worlds
-				l_userChoice.src = "img/scissors/scythe.png";
+				m_userChoice.src = "img/scissors/scythe.png";
 				break;
 			default: //scissors
-				l_userChoice.src = "img/scissors/scissors.jpg";
+				m_userChoice.src = "img/scissors/scissors.jpg";
 				break;
 		}
 	}
@@ -1408,9 +1419,9 @@ l_scissorsBtn.addEventListener("click", function() {
 	let l_outcome = playRound("scissors");
 
 	//Spell to win draws
-	if(l_outcome == 0 && (l_spellWinNextDraw || l_spellWinAllDraws)) {
+	if(l_outcome == 0 && (m_spellWinNextDraw || m_spellWinAllDraws)) {
 		l_outcome = 1;
-		l_spellWinNextDraw = false;
+		m_spellWinNextDraw = false;
 	}
 
 	//rock special
@@ -1424,7 +1435,7 @@ l_scissorsBtn.addEventListener("click", function() {
 	let l_extraPoint = 0;
 	let l_rankVSpecial = false;
 	let l_determinator = getRandomInt(1, 100);
-	switch(l_scissorsRank) {
+	switch(m_scissorsRank) {
 		case 1: //Kitchen Scissors
 			if(getRandomInt(1, 4) == 1 && l_outcome == 1) {
 				l_extraPoint = 1;
@@ -1468,10 +1479,10 @@ l_scissorsBtn.addEventListener("click", function() {
 					l_extraPoint = 2;
 					showPopUp('scythSpecial', 'Extra 2 Point!');
 				} else if(l_determinator <= 70) {
-					l_playerPoints = 10;
-					l_userScore.innerText = l_playerPoints;
-					l_computerPoints = -10;
-					l_computerScore.innerText = l_computerPoints;
+					m_playerPoints = 10;
+					m_userScore.innerText = m_playerPoints;
+					m_computerPoints = -10;
+					m_computerScore.innerText = m_computerPoints;
 					showPopUp('scythSpecial', 'Consume Souls');
 				} else {
 					showPopUp('scissorsSpecial', 'Extra Point!');
@@ -1484,26 +1495,26 @@ l_scissorsBtn.addEventListener("click", function() {
 	//outcome logic
 	if(l_outcome == -1) { //loss
 		if(l_rankVSpecial) {
-			l_playerPoints += l_extraPoint;
+			m_playerPoints += l_extraPoint;
 		}
-		l_outcomeText.innerText = "You Lost!";
-		l_outcomeText.style.color = "red";
-		l_computerPoints++;
-		l_computerScore.innerText = l_computerPoints;
+		m_outcomeText.innerText = "You Lost!";
+		m_outcomeText.style.color = "red";
+		m_computerPoints++;
+		m_computerScore.innerText = m_computerPoints;
 	} else if(l_outcome == 0) { //draw
-		l_outcomeText.innerText = "Draw!";
-		l_outcomeText.style.color = "white";
+		m_outcomeText.innerText = "Draw!";
+		m_outcomeText.style.color = "white";
 	} else if(l_outcome == 1) { //win
-		l_outcomeText.innerText = "You won!";
-		l_outcomeText.style.color = "green";
-		l_playerPoints++;
-		l_playerPoints += l_extraPoint;
-		l_userScore.innerText = l_playerPoints;
+		m_outcomeText.innerText = "You won!";
+		m_outcomeText.style.color = "green";
+		m_playerPoints++;
+		m_playerPoints += l_extraPoint;
+		m_userScore.innerText = m_playerPoints;
 	}
 	//test if the player or computer has won the game
-	if(l_playerPoints >= 5) {
+	if(m_playerPoints >= 5) {
 		endGame(true);
-	} else if(l_computerPoints == 5) {
+	} else if(m_computerPoints == 5) {
 		endGame(false);
 	}
 });
@@ -1517,8 +1528,8 @@ function getComputerChoice() {
     //generate a number between 1-100
     let l_determinator = parseInt(Math.random() * 100) + 1;
 		
-		let l_rockDeterminator = l_rockChance;
-		let l_paperDeterminator = l_rockChance + l_paperChance;
+		let l_rockDeterminator = m_rockChance;
+		let l_paperDeterminator = m_rockChance + m_paperChance;
 
     //determine if that number will be a rock, paper or scissors
     if(l_determinator <= l_rockDeterminator) {
@@ -1528,7 +1539,7 @@ function getComputerChoice() {
 		} else {
 			l_computerSelection = "scissors";
 		}
-		l_computerChoice.src = `img/${l_computerSelection}/${l_computerSelection}.jpg`;
+		m_computerChoice.src = `img/${l_computerSelection}/${l_computerSelection}.jpg`;
     return l_computerSelection;
 }
 
@@ -1549,67 +1560,67 @@ function playRound(a_playerChoice) {
 //wraps up the final score
 function endGame(a_isVictorious) {
 	//reset game Elements
-	l_userScore.innerText = "0";
-	l_computerScore.innerText = "0";
-	l_outcomeText.innerText = "";
+	m_userScore.innerText = "0";
+	m_computerScore.innerText = "0";
+	m_outcomeText.innerText = "";
 	let l_experience;
 
 	if(a_isVictorious) {
 		returnToHome();
 
 		showResults();
-		l_victoryOrDeath.innerText = "VICTORY!";
-		l_victoryOrDeath.style.color ="green";
+		m_victoryOrDeath.innerText = "VICTORY!";
+		m_victoryOrDeath.style.color ="green";
 		
 		//calcuate points
-		l_experience = 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier * l_spellExperienceMultiplier + l_spellFlatExperienceBonus;
-		l_playerExperience += l_experience;
-		l_experienceDisplay.innerText = l_playerExperience + " xp";
+		l_experience = 5 * (m_playerPoints - m_computerPoints) * m_pointMultiplier * m_spellExperienceMultiplier + m_spellFlatExperienceBonus;
+		m_playerExperience += l_experience;
+		m_experienceDisplay.innerText = m_playerExperience + " xp";
 
 		//show breakown correctly
-		l_baseExpBreakdown.innerText = "5";
-		l_winMarginText.innerText = l_playerPoints - l_computerPoints;
-		l_expMultiplierBreakdown.innerText = l_pointMultiplier;
-		l_experienceFinal.innerText = l_experience;
+		m_baseExpBreakdown.innerText = "5";
+		m_winMarginText.innerText = m_playerPoints - m_computerPoints;
+		m_expMultiplierBreakdown.innerText = m_pointMultiplier;
+		m_experienceFinal.innerText = l_experience;
 
 		//if there was added xp from spells, add that in the table here
-		if(l_spellFlatExperienceBonus > 0) {
-			let l_addedFlatExpCellTitle = l_resultsHeaderRow.insertCell(4);
+		if(m_spellFlatExperienceBonus > 0) {
+			let l_addedFlatExpCellTitle = m_resultsHeaderRow.insertCell(4);
 			l_addedFlatExpCellTitle.innerText = "Flat Spell Bonus";
 			l_addedFlatExpCellTitle.style.fontSize = "16px";
 			l_addedFlatExpCellTitle.style.fontWeight = "bold";
-			let l_addedFlatExpCellData = l_resultsBreakdownRow.insertCell(4);
+			let l_addedFlatExpCellData = m_resultsBreakdownRow.insertCell(4);
 			l_addedFlatExpCellData.style.fontSize = "16px";
-			l_addedFlatExpCellData.innerText = `+ ${l_spellFlatExperienceBonus}`;
+			l_addedFlatExpCellData.innerText = `+ ${m_spellFlatExperienceBonus}`;
 		}
-		if(l_spellExperienceMultiplier > 1) { //tests if there was a multiplier added
-			let l_addedSpellMultiplierTitle = l_resultsHeaderRow.insertCell(4);
+		if(m_spellExperienceMultiplier > 1) { //tests if there was a multiplier added
+			let l_addedSpellMultiplierTitle = m_resultsHeaderRow.insertCell(4);
 			l_addedSpellMultiplierTitle.innerText = "Spell Multiplier";
 			l_addedSpellMultiplierTitle.style.fontSize = "16px";
 			l_addedSpellMultiplierTitle.style.fontWeight = "bold";
-			let l_addedSpellMultiplierData = l_resultsBreakdownRow.insertCell(4);
-			l_addedSpellMultiplierData.innerText = l_spellExperienceMultiplier;
+			let l_addedSpellMultiplierData = m_resultsBreakdownRow.insertCell(4);
+			l_addedSpellMultiplierData.innerText = m_spellExperienceMultiplier;
 		}
 	} else {
 		returnToHome();
 		showResults();
 
-		l_victoryOrDeath.innerText = "DEFEAT";
-		l_victoryOrDeath.style.color ="red";
+		m_victoryOrDeath.innerText = "DEFEAT";
+		m_victoryOrDeath.style.color ="red";
 
-		l_baseExpBreakdown.innerText = 0;
-		l_winMarginText.innerText = 0;
-		l_expMultiplierBreakdown.innerText = l_pointMultiplier;
-		l_experienceFinal.innerText = 0;
+		m_baseExpBreakdown.innerText = 0;
+		m_winMarginText.innerText = 0;
+		m_expMultiplierBreakdown.innerText = m_pointMultiplier;
+		m_experienceFinal.innerText = 0;
 
 		//spell effects on defeat
-		l_spellExperienceMultiplier = 1;
-		l_spellFlatExperienceBonus = 0;
+		m_spellExperienceMultiplier = 1;
+		m_spellFlatExperienceBonus = 0;
 	}
 
 	//reset spell effects
-	l_spellWinAllDraws = false;
-	l_spellWinNextDraw = false;
+	m_spellWinAllDraws = false;
+	m_spellWinNextDraw = false;
 
 	//achievements
 	//first game
@@ -1617,8 +1628,8 @@ function endGame(a_isVictorious) {
 		m_virginPlayer = false;
 		showPopUp("achievement", "Play Your First Game\n+5 xp");
 		document.getElementById("welcomeAchievment").style.color = "green";
-		l_playerExperience += 5;
-		l_experienceDisplay.innerText = l_playerExperience;
+		m_playerExperience += 5;
+		m_experienceDisplay.innerText = m_playerExperience;
 	}
 	//win by only choosing rock, paper, or scissors
 	if(!m_favoritism && a_isVictorious && (
@@ -1629,32 +1640,32 @@ function endGame(a_isVictorious) {
 		m_favoritism = true;
 		showPopUp("achievement", "Win a Game by Only Choosing Either Rock, Paper, or Scissors\n+10 xp");
 		document.getElementById("onlyOneAchievment").style.color = "green";
-		l_playerExperience += 10;
-		l_experienceDisplay.innerText = l_playerExperience;
+		m_playerExperience += 10;
+		m_experienceDisplay.innerText = m_playerExperience;
 	}
 	m_numRockPlays = 0;
 	m_numPaperPlays = 0;
 	m_numScissorsPlays = 0;
 	//win a perfect game
-	if(!m_perfection && l_playerPoints >= 5 && l_computerPoints <= 0) {
+	if(!m_perfection && m_playerPoints >= 5 && m_computerPoints <= 0) {
 		m_perfection = true;
 		showPopUp("achievement", "End a Game With a Score of 5 to 0\n+20 xp");
 		document.getElementById("perfectionAchievment").style.color = "green";
-		l_playerExperience += 20;
-		l_experienceDisplay.innerText = l_playerExperience;
+		m_playerExperience += 20;
+		m_experienceDisplay.innerText = m_playerExperience;
 	}
 	if(l_experience >= 10000 && !m_hasExpAchiev) {
 		m_hasExpAchiev = true;
 		showPopUp("achievement", "Earn over 10,000 xp in one game!");
 		document.getElementById("expAchievment").style.color = "green";
-		l_playerExperience += 1000;
-		l_experienceDisplay.innerText = l_playerExperience;
+		m_playerExperience += 1000;
+		m_experienceDisplay.innerText = m_playerExperience;
 	}
 
 	//reset activeEffects
-	l_activeEffects.innerText = "";
-	l_pointMultiplier = 1;
-	l_body.style.backgroundColor = "black";
+	m_activeEffects.innerText = "";
+	m_pointMultiplier = 1;
+	m_body.style.backgroundColor = "black";
 }
 
 async function showPopUp(a_title, a_description) {
@@ -1676,7 +1687,7 @@ async function showPopUp(a_title, a_description) {
 	l_spellEffectScreen.style.textAlign = "Center";
 	l_spellEffectScreen.style.pointerEvents = "none";
 
-	l_body.appendChild(l_spellEffectScreen);
+	m_body.appendChild(l_spellEffectScreen);
 
 	const l_spellEffectTitle = document.createElement("H1");
 	l_spellEffectTitle.style.color = "white";
@@ -1849,5 +1860,5 @@ function rollCredits() {
 	l_creditsScreen.appendChild(l_creditThanks);
 	l_creditsScreen.appendChild(l_creditExitBtn);
 
-	l_body.appendChild(l_creditsScreen);
+	m_body.appendChild(l_creditsScreen);
 }
