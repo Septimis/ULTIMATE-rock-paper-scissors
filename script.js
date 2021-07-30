@@ -8,7 +8,7 @@
  * m_ = member variable
  * a_ = argument variable
  */
-
+``
 //start the time 
 const m_startTime = new Date().getTime();
 //Initial VARIABLES
@@ -18,18 +18,6 @@ const m_body = document.getElementById("body");
 let m_guideIsOpen = false;
 showGuide(); //opens the guide by default
 const m_guideLink = document.getElementById("guideLink");
-
-//Results Overview
-const m_resultsScreen = document.getElementById("resultsPage");
-const m_closeResultsBtn = document.getElementById("closeResultsBtn");
-const m_victoryOrDeath = document.getElementById("victoryOrDeath");
-
-const m_baseExpBreakdown = document.getElementById("baseExpBreakdown");
-const m_winMarginText = document.getElementById("winMargin");
-const m_expMultiplierBreakdown = document.getElementById("expMultiplierBreakdown");
-const m_experienceFinal = document.getElementById("experienceBreakdown");
-const m_resultsHeaderRow = document.getElementById("resultsHeaderRow");
-const m_resultsBreakdownRow = document.getElementById("resultsBreakdownRow");
 
 //HOMESCREEN
 const m_homeScreenItems = document.querySelectorAll(".homeScreen");
@@ -91,9 +79,6 @@ const m_achievements = document.querySelectorAll(".achievments");
 for(let element of m_gameScreenItems) {
   element.remove();
 }
-
-//results is hidden by default
-m_resultsScreen.remove();
 
 //computer choice chances are 33.33% at the beginning
 let m_rockChance = 33.33;
@@ -580,30 +565,6 @@ function showGuide() {
 		m_body.appendChild(l_gameGuideContainer);
 	}
 }
-
-//results overview
-function showResults() {
-	m_body.appendChild(m_resultsScreen);
-}
-m_closeResultsBtn.addEventListener("click", function() {
-	//reset spell multiplier
-	if(m_spellExperienceMultiplier > 1) {
-		m_resultsHeaderRow.deleteCell(4);
-		m_resultsBreakdownRow.deleteCell(4);
-	}
-	//reset spell experience gains
-	if(m_spellFlatExperienceBonus > 0){
-		m_resultsHeaderRow.deleteCell(4);
-		m_resultsBreakdownRow.deleteCell(4);
-	}
-
-	//reset spell pertinent spell effects
-	m_spellFlatExperienceBonus = 0;
-	m_spellExperienceMultiplier = 1;
-	m_protected = false;
-
-	m_resultsScreen.remove();
-});
 
 //homeScreen
 m_startGameBtn.addEventListener("click", function(e) {
@@ -1559,59 +1520,44 @@ function playRound(a_playerChoice) {
 
 //wraps up the final score
 function endGame(a_isVictorious) {
+	//show the main results screen
+	const l_resultsScreen = document.createElement("div");
+	l_resultsScreen.style.position = "fixed";
+	l_resultsScreen.style.left = "50%";
+	l_resultsScreen.style.transform = "translate(-50%, 0)";
+	l_resultsScreen.style.top = "25%";
+	l_resultsScreen.style.zIndex = "2";
+	l_resultsScreen.style.minWidth = "50%";
+	l_resultsScreen.style.height = "35%";
+	l_resultsScreen.style.backgroundColor = "black";
+	l_resultsScreen.style.color = "white";
+	l_resultsScreen.style.border = "5px solid white";
+	l_resultsScreen.style.padding = "10px 10px 10px 10px";
+
+	const l_resultsTitle = document.createElement("h1");
+	l_resultsTitle.innerText = "Results";
+	l_resultsScreen.appendChild(l_resultsTitle);
+
 	//reset game Elements
 	m_userScore.innerText = "0";
 	m_computerScore.innerText = "0";
 	m_outcomeText.innerText = "";
+
+	//declare variables
 	let l_experience;
 
 	if(a_isVictorious) {
 		returnToHome();
 
-		showResults();
-		m_victoryOrDeath.innerText = "VICTORY!";
-		m_victoryOrDeath.style.color ="green";
+
 		
 		//calcuate points
 		l_experience = 5 * (m_playerPoints - m_computerPoints) * m_pointMultiplier * m_spellExperienceMultiplier + m_spellFlatExperienceBonus;
 		m_playerExperience += l_experience;
 		m_experienceDisplay.innerText = m_playerExperience + " xp";
 
-		//show breakown correctly
-		m_baseExpBreakdown.innerText = "5";
-		m_winMarginText.innerText = m_playerPoints - m_computerPoints;
-		m_expMultiplierBreakdown.innerText = m_pointMultiplier;
-		m_experienceFinal.innerText = l_experience;
-
-		//if there was added xp from spells, add that in the table here
-		if(m_spellFlatExperienceBonus > 0) {
-			let l_addedFlatExpCellTitle = m_resultsHeaderRow.insertCell(4);
-			l_addedFlatExpCellTitle.innerText = "Flat Spell Bonus";
-			l_addedFlatExpCellTitle.style.fontSize = "16px";
-			l_addedFlatExpCellTitle.style.fontWeight = "bold";
-			let l_addedFlatExpCellData = m_resultsBreakdownRow.insertCell(4);
-			l_addedFlatExpCellData.style.fontSize = "16px";
-			l_addedFlatExpCellData.innerText = `+ ${m_spellFlatExperienceBonus}`;
-		}
-		if(m_spellExperienceMultiplier > 1) { //tests if there was a multiplier added
-			let l_addedSpellMultiplierTitle = m_resultsHeaderRow.insertCell(4);
-			l_addedSpellMultiplierTitle.innerText = "Spell Multiplier";
-			l_addedSpellMultiplierTitle.style.fontSize = "16px";
-			l_addedSpellMultiplierTitle.style.fontWeight = "bold";
-			let l_addedSpellMultiplierData = m_resultsBreakdownRow.insertCell(4);
-			l_addedSpellMultiplierData.innerText = m_spellExperienceMultiplier;
-		}
 	} else {
 		returnToHome();
-		showResults();
-
-		m_victoryOrDeath.innerText = "DEFEAT";
-		m_victoryOrDeath.style.color ="red";
-
-		m_baseExpBreakdown.innerText = 0;
-		m_winMarginText.innerText = 0;
-		m_expMultiplierBreakdown.innerText = m_pointMultiplier;
-		m_experienceFinal.innerText = 0;
 
 		//spell effects on defeat
 		m_spellExperienceMultiplier = 1;
@@ -1666,6 +1612,15 @@ function endGame(a_isVictorious) {
 	m_activeEffects.innerText = "";
 	m_pointMultiplier = 1;
 	m_body.style.backgroundColor = "black";
+
+	//show results screen
+	m_body.appendChild(l_resultsScreen);
+}
+
+//results overview
+function showResults() {
+
+	
 }
 
 async function showPopUp(a_title, a_description) {

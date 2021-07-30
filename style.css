@@ -29,60 +29,7 @@ button {
     margin-top: 2px;
 }
 
-/* Game Guide */
-#gameGuide {
-  position: fixed;
-  top: 15%;
-  left: 25%;
-  z-index: 1;
-  width: 50%;
-  height: 70%;
-
-  background-color: black;
-  color:white;
-  border: 5px solid white;
-  text-align: center;
-  padding:10px 10px 10px 10px;
-}
-#guideContent {
-  position: fixed;
-  top: 25%;
-  left: 26.5%;
-  overflow-y:auto;
-  text-align: left;
-  border:1px solid white;
-  height: 55%;
-  width: 47%;
-  padding: 10px 10px 10px 10px;
-  margin-bottom: 10px;
-  font-size: 20px;
-}
-.textGuide {
-  color: red;
-  font-weight: bolder;
-}
-#closeGuideBtn {
-  position: absolute;
-  bottom: 10px;
-  left: 46%;
-  width: 80px;
-  height: 30px;
-}
-
 /* Results Breakdown Page */
-#resultsPage {
-	position: fixed;
-	top: 25%;
-	left: 27%;
-	z-index: 2;
-	width: 45%;
-	height: 35%;
-
-	background-color: black;
-	color: white;
-	border: 5px solid white;
-	padding: 10px 10px 10px 10px;
-}
 #resultsContent {
 	position: fixed;
 	top: 35%;
