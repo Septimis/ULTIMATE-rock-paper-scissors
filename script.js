@@ -4,9 +4,9 @@ const m_startTime = new Date().getTime();
 const l_body = document.getElementById("body");
 
 //GameGuide
-const l_gameGuide = document.getElementById("gameGuide");
+let m_guideIsOpen = false;
+showGuide(); //opens the guide by default
 const l_guideLink = document.getElementById("guideLink");
-const l_closeGuideBtn = document.getElementById("closeGuideBtn");
 
 //Results Overview
 const l_resultsScreen = document.getElementById("resultsPage");
@@ -134,107 +134,441 @@ let m_protected = false;
 
 //BUTTON FUNCTIONALITY
 //game guide
-l_guideLink.addEventListener("click", function() {
-	//create the game guide 
-	const l_gameGuideContainer = document.createElement("div");
-	l_gameGuideContainer.style.position = "fixed";
-	l_gameGuideContainer.style.top = "15%";
-	l_gameGuideContainer.style.left = "25%";
-	l_gameGuideContainer.style.zIndex = "1";
-	l_gameGuideContainer.style.width = "50%";
-	l_gameGuideContainer.style.height = "70%";
-	l_gameGuideContainer.style.backgroundColor = "black";
-	l_gameGuideContainer.style.color = "white";
-	l_gameGuideContainer.style.border = "5px solid white";
-	l_gameGuideContainer.style.textAlign = "center";
-	l_gameGuideContainer.style.padding = "10px 10px 10px 10px";
-	l_gameGuideContainer.classList.add("fadeInItems");
+l_guideLink.addEventListener("click", showGuide());
+function showGuide() {
+	//check if there is already a game guide open
+	if(!m_guideIsOpen) {
+		m_guideIsOpen = true;
+		//create the game guide 
+		const l_gameGuideContainer = document.createElement("div");
+		l_gameGuideContainer.style.position = "fixed";
+		l_gameGuideContainer.style.top = "15%";
+		l_gameGuideContainer.style.left = "25%";
+		l_gameGuideContainer.style.zIndex = "1";
+		l_gameGuideContainer.style.width = "50%";
+		l_gameGuideContainer.style.height = "70%";
+		l_gameGuideContainer.style.backgroundColor = "black";
+		l_gameGuideContainer.style.color = "white";
+		l_gameGuideContainer.style.border = "5px solid white";
+		l_gameGuideContainer.style.textAlign = "center";
+		l_gameGuideContainer.style.padding = "10px 10px 10px 10px";
+		l_gameGuideContainer.classList.add("fadeInItems");
 
-	const l_gameGuideTitle = document.createElement("h1");
-	l_gameGuideTitle.innerText = "Game Guide";
+		const l_gameGuideTitle = document.createElement("h1");
+		l_gameGuideTitle.innerText = "Game Guide";
 
-	l_gameGuideContainer.appendChild(l_gameGuideTitle);
+		l_gameGuideContainer.appendChild(l_gameGuideTitle);
 
-	const l_gameGuideContent = document.createElement("div");
-	l_gameGuideContent.style.position = "fixed";
-	l_gameGuideContent.style.top = "25%";
-	l_gameGuideContent.style.left = "26.5%";
-	l_gameGuideContent.style.overflowY = "auto";
-	l_gameGuideContent.style.textAlign = "left";
-	l_gameGuideContent.style.border = "1px solid white";
-	l_gameGuideContent.style.height = "55%";
-	l_gameGuideContent.style.width = "47%";
-	l_gameGuideContent.style.padding = "10px 10px 10px 10px";
-	l_gameGuideContent.style.marginBottom = "10px";
-	l_gameGuideContent.style.fontSize = "20px";
+		const l_gameGuideContent = document.createElement("div");
+		l_gameGuideContent.style.position = "fixed";
+		l_gameGuideContent.style.top = "25%";
+		l_gameGuideContent.style.left = "26.5%";
+		l_gameGuideContent.style.overflowY = "auto";
+		l_gameGuideContent.style.textAlign = "left";
+		l_gameGuideContent.style.border = "1px solid white";
+		l_gameGuideContent.style.height = "55%";
+		l_gameGuideContent.style.width = "47%";
+		l_gameGuideContent.style.padding = "10px 10px 10px 10px";
+		l_gameGuideContent.style.marginBottom = "10px";
+		l_gameGuideContent.style.fontSize = "20px";
 
-	l_gameGuideContainer.appendChild(l_gameGuideContent);
+		l_gameGuideContainer.appendChild(l_gameGuideContent);
 
-	//overview
-	const l_overviewH2 = document.createElement("h2");
-	l_overviewH2.innerText = "Overview";
-	l_overviewH2.style.textDecoration = "underline";
+		//overview
+		const l_h2_overview = document.createElement("h2");
+		l_h2_overview.innerText = "Overview";
+		l_h2_overview.style.textDecoration = "underline";
 
-	l_gameGuideContent.appendChild(l_overviewH2);
+		l_gameGuideContent.appendChild(l_h2_overview);
 
-	const l_span_initDescription1 = document.createElement("span");
-	l_span_initDescription1.innerText = "The game is simple, select your weapon: ";
+		const l_span1_initDescription = document.createElement("span");
+		l_span1_initDescription.innerText = "The game is simple, select your weapon: ";
 
-	l_gameGuideContent.appendChild(l_span_initDescription1);
+		l_gameGuideContent.appendChild(l_span1_initDescription);
 
-	const l_span_initDescription2 = document.createElement("span");
-	l_span_initDescription2.innerText = "Sturdy Rock, Mystical Paper, or Vicious Scissors";
-	l_span_initDescription2.classList.add("textGuide");
+		const l_span2_initDescription = document.createElement("span");
+		l_span2_initDescription.innerText = "Sturdy Rock, Mystical Paper, or Vicious Scissors";
+		l_span2_initDescription.classList.add("textGuide");
 
-	l_gameGuideContent.appendChild(l_span_initDescription2);
+		l_gameGuideContent.appendChild(l_span2_initDescription);
 
-	const l_span_initDescription3 = document.createElement("span");
-	l_span_initDescription3.innerText = ".Use these to fight the computer to win perks and upgrades that will aid you in later conquests.";
+		const l_span3_initDescription = document.createElement("span");
+		l_span3_initDescription.innerText = ".Use these to fight the computer to win perks and upgrades that will aid you in later conquests.";
 
-	l_gameGuideContent.appendChild(l_span_initDescription3);
+		l_gameGuideContent.appendChild(l_span3_initDescription);
 
-	//initial list
-	const l_ol_initDescription4 = document.createElement("ol");
-	l_gameGuideContent.appendChild(l_ol_initDescription4);
+		//initial list
+		const l_ol1_initPoints = document.createElement("ol");
+		l_gameGuideContent.appendChild(l_ol1_initPoints);
 
-	const l_li_initDescription4_1 = document.createElement("li");
-	l_li_initDescription4_1.innerText = "Each round, the player and computer will chose either Rock, Paper, or Scissors. The first to 5 points wins the game.";
-	l_ol_initDescription4.appendChild(l_li_initDescription4_1);
+		const l_ol1_li1 = document.createElement("li");
+		l_ol1_li1.innerText = "Each round, the player and computer will chose either Rock, Paper, or Scissors. The first to 5 points wins the game.";
+		l_ol1_initPoints.appendChild(l_ol1_li1);
 
-	const l_li_initDescription4_2 = document.createElement("li");
-	l_li_initDescription4_2.innerText = "Each game will reward you with points if you win.";
-	l_ol_initDescription4.appendChild(l_li_initDescription4_2);
+		const l_ol1_li2 = document.createElement("li");
+		l_ol1_li2.innerText = "Each game will reward you with points if you win.";
+		l_ol1_initPoints.appendChild(l_ol1_li2);
 
-	const l_ul_initSubDescription4 = document.createElement("ul");
-	l_gameGuideContent.appendChild(l_ul_initSubDescription4);
+		//unordered list within the ordered list
+		const l_ul1_pointsBreakdown = document.createElement("ul");
+		l_ol1_initPoints.appendChild(l_ul1_pointsBreakdown);
 
-	const l_li_initDescription4_3 = document.createElement("li");
-	l_li_initDescription4_3.innerText = "You may use points to buy upgrades for your rock, paper, or scissors and gain the upper hand. Asthetic upgrades and other rewards can also be earned.";
-	l_ol_initDescription4.appendChild(l_li_initDescription4_3);
+		const l_ul1_li1 = document.createElement("li");
+		l_ul1_li1.innerText = "You will recieve ";
+		l_ul1_pointsBreakdown.appendChild(l_ul1_li1);
 
-	const l_closeGuideBtn = document.createElement("button");
-	l_closeGuideBtn.style.position = "absolute";
-	l_closeGuideBtn.style.bottom = "10px";
-	l_closeGuideBtn.style.left = "46%";
-	l_closeGuideBtn.style.width = "80px";
-	l_closeGuideBtn.style.height = "30px";
-	l_closeGuideBtn.style.backgroundColor = "white";
-	l_closeGuideBtn.style.color = "black";
-	l_closeGuideBtn.style.paddingTop = "3px";
-	l_closeGuideBtn.innerText = "Close";
-	l_closeGuideBtn.classList.add("glow");
+		const l_ul1_li1_span1 = document.createElement("span");
+		l_ul1_li1_span1.innerText = "5 * the number of points you won by.";
+		l_ul1_li1_span1.style.color = "red";
+		l_ul1_li1.appendChild(l_ul1_li1_span1);
 
-	l_closeGuideBtn.addEventListener("click", function() {
-		l_gameGuideContainer.remove();
-	});
+		const l_ul1_li2 = document.createElement("li");
+		l_ul1_li2.innerText = "For example, if you win 5 to 4, you won by a margin of 1, so your points would be ";
+		l_ul1_pointsBreakdown.appendChild(l_ul1_li2);
 
-	l_gameGuideContainer.appendChild(l_closeGuideBtn);
+		const l_ul1_li2_span1 = document.createElement("span");
+		l_ul1_li2_span1.innerText = "5 * 1";
+		l_ul1_li2_span1.style.color = "red";
+		l_ul1_li2.appendChild(l_ul1_li2_span1);
 
-	l_body.appendChild(l_gameGuideContainer);
-});
-l_closeGuideBtn.addEventListener("click", function() {
-  l_gameGuide.remove();
-});
+		const l_ul1_li2_span2 = document.createElement("span");
+		l_ul1_li2_span2.innerText = ". If you win 5 to 0, you won by a margin of 5, so your points would be ";
+		l_ul1_li2.appendChild(l_ul1_li2_span2);
+
+		const l_ul1_li2_span3 = document.createElement("span");
+		l_ul1_li2_span3.innerText = "5 * 5";
+		l_ul1_li2_span3.style.color = "red";
+		l_ul1_li2.appendChild(l_ul1_li2_span3);
+
+		//last element of the ordered list
+		const l_ol1_li3 = document.createElement("li");
+		l_ol1_li3.innerText = "You may use points to buy upgrades for your rock, paper, or scissors and gain the upper hand. Asthetic upgrades and other rewards can also be earned.";
+		l_ol1_initPoints.appendChild(l_ol1_li3);
+
+		//Upgrades & Items
+		const l_h2_upgrades = document.createElement("h2");
+		l_h2_upgrades.innerText = "Upgrades & Items";
+		l_h2_upgrades.style.textDecoration = "underline";
+
+		l_gameGuideContent.appendChild(l_h2_upgrades);
+
+		//rock upgrades
+		const l_h3_rockUpgrades = document.createElement("h3");
+		l_h3_rockUpgrades.innerText = "ROCK";
+
+		l_gameGuideContent.appendChild(l_h3_rockUpgrades);
+
+		const l_ul2_rockRanks = document.createElement("ul");
+		l_gameGuideContent.appendChild(l_ul2_rockRanks);
+
+		const l_ul2_li1 = document.createElement("li");
+		l_ul2_li1.innerText = "Rank I: Coal - 50 xp to unlock";
+		l_ul2_rockRanks.appendChild(l_ul2_li1);
+
+		const l_ul2_coal = document.createElement("ul");
+		l_ul2_rockRanks.appendChild(l_ul2_coal);
+
+		const l_ul2_coal_li1 = document.createElement("li");
+		l_ul2_coal_li1.innerText = "There is a 25% chance on a loss this round that your opponent will not gain a point.\n\n";
+		l_ul2_coal.appendChild(l_ul2_coal_li1);
+
+		const l_ul2_li2 = document.createElement("li");
+		l_ul2_li2.innerText = "Rank II: Stone - 100 xp to unlock";
+		l_ul2_rockRanks.appendChild(l_ul2_li2);
+
+		const l_ul2_stone = document.createElement("ul");
+		l_ul2_rockRanks.appendChild(l_ul2_stone);
+
+		const l_ul2_stone_li1 = document.createElement("li");
+		l_ul2_stone_li1.innerText = "There is a 50% chance on a loss this round that your opponent will not gain a point.\n\n";
+		l_ul2_stone.appendChild(l_ul2_stone_li1);
+
+		const l_ul2_li3 = document.createElement("li");
+		l_ul2_li3.innerText = "Rank III: Crystal - 500 xp to unlock";
+		l_ul2_rockRanks.appendChild(l_ul2_li3);
+
+		const l_ul2_crystal = document.createElement("ul");
+		l_ul2_rockRanks.appendChild(l_ul2_crystal);
+
+		const l_ul2_crystal_li1 = document.createElement("li");
+		l_ul2_crystal_li1.innerText = "There is a 75% chance on your next loss this game that your opponent will not gain a point.\n\n";
+		l_ul2_crystal.appendChild(l_ul2_crystal_li1);	
+
+		const l_ul2_li4 = document.createElement("li");
+		l_ul2_li4.innerText = "Rank IV: Diamond - 1,000 xp to unlock";
+		l_ul2_rockRanks.appendChild(l_ul2_li4);
+
+		const l_ul2_diamond = document.createElement("ul");
+		l_ul2_rockRanks.appendChild(l_ul2_diamond);
+
+		const l_ul2_diamond_li1 = document.createElement("li");
+		l_ul2_diamond_li1.innerText = "There is a 75% chance on a loss this round that your opponent will not gain a point and a 50% chance that your opponent will not gain a point on your next loss this game.\n\n";
+		l_ul2_diamond.appendChild(l_ul2_diamond_li1);	
+
+		const l_ul2_li5 = document.createElement("li");
+		l_ul2_li5.innerText = "Rank V: Talisman - 5,000 xp to unlock";
+		l_ul2_rockRanks.appendChild(l_ul2_li5);
+
+		const l_ul2_talisman = document.createElement("ul");
+		l_ul2_rockRanks.appendChild(l_ul2_talisman);
+
+		const l_ul2_talisman_li1 = document.createElement("li");
+		l_ul2_talisman_li1.innerText = "There is a 90% chance on a loss this round that your opponent will not gain a point and a 90% chance on your next loss this game that your opponent will not gain a point.\n\n";
+		l_ul2_talisman.appendChild(l_ul2_talisman_li1);
+
+		//paper upgrades
+		const l_h3_paperUpgrades = document.createElement("h3");
+		l_h3_paperUpgrades.innerText = "PAPER";
+		l_gameGuideContent.appendChild(l_h3_paperUpgrades);
+
+		const l_ul3_paperRanks = document.createElement("ul");
+		l_gameGuideContent.appendChild(l_ul3_paperRanks);
+
+		const l_ul3_li1 = document.createElement("li");
+		l_ul3_li1.innerText = "Rank I: Scroll - 50 xp to unlock";
+		l_ul3_paperRanks.appendChild(l_ul3_li1);
+
+		const l_ul3_scroll = document.createElement("ul");
+		l_ul3_li1.appendChild(l_ul3_scroll);
+
+		const l_ul3_scroll_li1 = document.createElement("li");
+		l_ul3_scroll_li1.innerText = "Upon winning with paper, there is a 50% chance to activate a common spell, a 5% chance to activate a rare spell, and a 45% chance nothing will happen.\n\n";
+		l_ul3_scroll.appendChild(l_ul3_scroll_li1);
+
+		const l_ul3_li2 = document.createElement("li");
+		l_ul3_li2.innerText = "Rank II: Spellbook - 100 xp to unlock";
+		l_ul3_paperRanks.appendChild(l_ul3_li2);
+
+		const l_ul3_spellBook = document.createElement("ul");
+		l_ul3_li2.appendChild(l_ul3_spellBook);
+
+		const l_ul3_spellBook_li1 = document.createElement("li");
+		l_ul3_spellBook_li1.innerText = "Upon winning with paper, there is a 75% chance to activate a common spell, a 20% chance to activate a rare spell, and a 5% chance to activate an epic spell.\n\n";
+		l_ul3_spellBook.appendChild(l_ul3_spellBook_li1);
+
+		const l_ul3_li3 = document.createElement("li");
+		l_ul3_li3.innerText = "Rank III: Lexicon - 500 xp to unlock";
+		l_ul3_paperRanks.appendChild(l_ul3_li3);
+
+		const l_ul3_lexicon = document.createElement("ul");
+		l_ul3_li3.appendChild(l_ul3_lexicon);
+
+		const l_ul3_lexicon_li1 = document.createElement("li");
+		l_ul3_lexicon_li1.innerText = "Upon winning with paper, there is a 25% chance to activate a common spell, a 50% chance to activate a rare spell, and a 25% chance to activate an epic spell.\n\n";
+		l_ul3_lexicon.appendChild(l_ul3_lexicon_li1);
+
+		const l_ul3_li4 = document.createElement("li");
+		l_ul3_li4.innerText = "Rank IV: Grimoire - 1,000 xp to unlock";
+		l_ul3_paperRanks.appendChild(l_ul3_li4);
+
+		const l_ul3_grimoire = document.createElement("ul");
+		l_ul3_li4.appendChild(l_ul3_grimoire);
+
+		const l_ul3_grimoire_li1 = document.createElement("li");
+		l_ul3_grimoire_li1.innerText = "Upon winning with paper, there is a 60% chance to activate a rare spell, a 35% chance to activate an epic spell, and a 5% chance to activate a LEGENDARY spell.\n\n";
+		l_ul3_grimoire.appendChild(l_ul3_grimoire_li1);
+
+		const l_ul3_li5 = document.createElement("li");
+		l_ul3_li5.innerText = "Rank V: Necronomicon - 5,000 xp to unlock";
+		l_ul3_paperRanks.appendChild(l_ul3_li5);
+
+		const l_ul3_necronomicon = document.createElement("ul");
+		l_ul3_li5.appendChild(l_ul3_necronomicon);
+
+		const l_ul3_necronomicon_li1 = document.createElement("li");
+		l_ul3_necronomicon_li1.innerText = "Upon winning with paper, there is an 80% chance to activate an epic spell, and a 20% chance to activate a LEGENDARY spell.\n\n";
+		l_ul3_necronomicon.appendChild(l_ul3_necronomicon_li1);
+
+		//scissor upgrades
+		const l_h3_scissorsUpgrades = document.createElement("h3");
+		l_h3_scissorsUpgrades.innerText = "SCISSORS";
+		l_gameGuideContent.appendChild(l_h3_scissorsUpgrades);
+
+		const l_ul4_scissorsRanks = document.createElement("ul");
+		l_gameGuideContent.appendChild(l_ul4_scissorsRanks);
+
+		const l_ul4_li1 = document.createElement("li");
+		l_ul4_li1.innerText = "Rank I: Razor - 50 xp to unlock";
+		l_ul4_scissorsRanks.appendChild(l_ul4_li1);
+
+		const l_ul4_razor = document.createElement("ul");
+		l_ul4_li1.appendChild(l_ul4_razor);
+
+		const l_ul4_razor_li1 = document.createElement("li");
+		l_ul4_razor_li1.innerText = "Upon winning with scissors, there is a 25% chance to gain an additional point.\n\n";
+		l_ul4_razor.appendChild(l_ul4_razor_li1);
+
+		const l_ul4_li2 = document.createElement("li");
+		l_ul4_li2.innerText = "Rank II: Shears - 100 xp to unlock";
+		l_ul4_scissorsRanks.appendChild(l_ul4_li2);
+
+		const l_ul4_shears = document.createElement("ul");
+		l_ul4_li2.appendChild(l_ul4_shears);
+
+		const l_ul4_shears_li1 = document.createElement("li");
+		l_ul4_shears_li1.innerText = "Upon winning with scissors, there is a 50% chance to gain an additional point.\n\n";
+		l_ul4_shears.appendChild(l_ul4_shears_li1);
+
+		const l_ul4_li3 = document.createElement("li");
+		l_ul4_li3.innerText = "Rank III: Ritual Knife - 500 xp to unlock";
+		l_ul4_scissorsRanks.appendChild(l_ul4_li3);
+
+		const l_ul4_ritualKnife = document.createElement("ul");
+		l_ul4_li3.appendChild(l_ul4_ritualKnife);
+
+		const l_ul4_ritualKnife_li1 = document.createElement("li");
+		l_ul4_ritualKnife_li1.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 10% chance to gain 2 additional points.\n\n";
+		l_ul4_ritualKnife.appendChild(l_ul4_ritualKnife_li1);
+
+		const l_ul4_li4 = document.createElement("li");
+		l_ul4_li4.innerText = "Rank IV: Daisho - 1,000 xp to unlock";
+		l_ul4_scissorsRanks.appendChild(l_ul4_li4);
+
+		const l_ul4_daisho = document.createElement("ul");
+		l_ul4_li4.appendChild(l_ul4_daisho);
+
+		const l_ul4_daisho_li1 = document.createElement("li");
+		l_ul4_daisho_li1.innerText = "Upon winning with scissors, there is a 100% chance to gain an additional point, or a 30% chance to gain 2 additional points.\n\n";
+		l_ul4_daisho.appendChild(l_ul4_daisho_li1);
+
+		const l_ul4_li5 = document.createElement("li");
+		l_ul4_li5.innerText = "Rank V: Scyth - 5,000 xp to unlock";
+		l_ul4_scissorsRanks.appendChild(l_ul4_li5);
+
+			const l_ul4_scyth = document.createElement("ul");
+		l_ul4_li5.appendChild(l_ul4_scyth);
+
+		const l_ul4_scyth_li1 = document.createElement("li");
+		l_ul4_scyth_li1.innerText = "Upon losing with scissors, you have a 50% chance of gaining an additional point. If you win with scissors, there is a 100% chance to gain a point, a 50% chance to gain 2 additional points, and a 20% chance to set player points to 10 and computer points to -10.\n\n";
+		l_ul4_scyth.appendChild(l_ul4_scyth_li1);
+
+		//Spells overview
+		const l_h2_spells = document.createElement("h2");
+		l_h2_spells.innerText = "Spells";
+		l_gameGuideContent.appendChild(l_h2_spells);
+
+		const l_p_spellDescription = document.createElement("p");
+		l_p_spellDescription.innerText = "Each category has an equal chance to activate the spell. Flat experience gains will be added AFTER multipliers have been added. Experience multipliers will stack with each other at the end of the game. For example, suppose you cast a +10 experience spell, a x2 experience bonus, and a x4 experience bonus. Your final score would be calculated by: 5 x margin x purchased Experience Bonus' x 2 x 4 + 10. Some spell effects are permanent such as the Dwayne cards and the reduced cost of an experience bonus. Once you have unlocked these, they will be removed from the pool of available spells and can no longer be cast.";
+		l_gameGuideContent.appendChild(l_p_spellDescription);
+
+		//common spell list
+		const l_h3_commonSpell = document.createElement("h3");
+		l_h3_commonSpell.innerText = "Common";
+		l_gameGuideContent.appendChild(l_h3_commonSpell);
+
+		const l_ul5_commonSpells = document.createElement("ul");
+		l_gameGuideContent.appendChild(l_ul5_commonSpells);
+
+		const l_ul5_li1 = document.createElement("li");
+		l_ul5_li1.innerText = "+1-5 xp bonus on a win THIS game.";
+		l_ul5_commonSpells.appendChild(l_ul5_li1);
+
+		const l_ul5_li2 = document.createElement("li");
+		l_ul5_li2.innerText = "Set the background to a random (dark) color.";
+		l_ul5_commonSpells.appendChild(l_ul5_li2);
+
+		const l_ul5_li3 = document.createElement("li");
+		l_ul5_li3.innerText = "Randomize the scores. (Caution! This could not go in your favor!)";
+		l_ul5_commonSpells.appendChild(l_ul5_li3);
+
+		//rare spell list
+		const l_h3_rareSpell = document.createElement("h3");
+		l_h3_rareSpell.innerText = "Rare";
+		l_gameGuideContent.appendChild(l_h3_rareSpell);
+
+		const l_ul6_rareSpells = document.createElement("ul");
+		l_gameGuideContent.appendChild(l_ul6_rareSpells);
+
+		const l_ul6_li1 = document.createElement("li");
+		l_ul6_li1.innerText = "+20 xp bonus on a win THIS game.";
+		l_ul6_rareSpells.appendChild(l_ul6_li1);
+
+		const l_ul6_li2 = document.createElement("li");
+		l_ul6_li2.innerText = "Gain a x2 exp bonus THIS game.";
+		l_ul6_rareSpells.appendChild(l_ul6_li2);
+
+		const l_ul6_li3 = document.createElement("li");
+		l_ul6_li3.innerText = "You will win the next draw this game.";
+		l_ul6_rareSpells.appendChild(l_ul6_li3);
+
+		const l_ul6_li4 = document.createElement("li");
+		l_ul6_li4.innerText = "Reverse the scores (Caution! This could not go in your favor).";
+		l_ul6_rareSpells.appendChild(l_ul6_li4);
+
+		//epic spell list
+		const l_h3_epicSpell = document.createElement("h3");
+		l_h3_epicSpell.innerText = "Epic";
+		l_gameGuideContent.appendChild(l_h3_epicSpell);
+
+		const l_ul7_epicSpells = document.createElement("ul");
+		l_gameGuideContent.appendChild(l_ul7_epicSpells);
+
+		const l_ul7_li1 = document.createElement("li");
+		l_ul7_li1.innerText = "Experience bonus costs 10 xp instead of 25 xp.";
+		l_ul7_epicSpells.appendChild(l_ul7_li1);
+
+		const l_ul7_li2 = document.createElement("li");
+		l_ul7_li2.innerText = "Gain a x4 exp bonus THIS game.";
+		l_ul7_epicSpells.appendChild(l_ul7_li2);
+
+		const l_ul7_li3 = document.createElement("li");
+		l_ul7_li3.innerText = "You win all draws THIS game.";
+		l_ul7_epicSpells.appendChild(l_ul7_li3);
+
+		const l_ul7_li4 = document.createElement("li");
+		l_ul7_li4.innerText = "Set your opponents points to 0.";
+		l_ul7_epicSpells.appendChild(l_ul7_li4);
+
+		//legendary spell list
+		const l_h3_legendarySpell = document.createElement("h3");
+		l_h3_legendarySpell.innerText = "Legendary";
+		l_gameGuideContent.appendChild(l_h3_legendarySpell);
+
+		const l_ul8_legendarySpells = document.createElement("ul");
+		l_gameGuideContent.appendChild(l_ul8_legendarySpells);
+
+		const l_ul8_li1 = document.createElement("li");
+		l_ul8_li1.innerText = "Unlock Dwayne 'The Rock' Johnson";
+		l_ul8_legendarySpells.appendChild(l_ul8_li1);
+
+		const l_ul8_li2 = document.createElement("li");
+		l_ul8_li2.innerText = "Unlock Dwayne 'The Paper' Johnson";
+		l_ul8_legendarySpells.appendChild(l_ul8_li2);
+
+		const l_ul8_li3 = document.createElement("li");
+		l_ul8_li3.innerText = "Unlock Dwayne 'The Scissors' Johnson";
+		l_ul8_legendarySpells.appendChild(l_ul8_li3);
+
+		const l_ul8_li4 = document.createElement("li");
+		l_ul8_li4.innerText = "Gain a x10 xp bonus THIS game.";
+		l_ul8_legendarySpells.appendChild(l_ul8_li4);	
+		
+		const l_ul8_li5 = document.createElement("li");
+		l_ul8_li5.innerText = "Set the Score to 10 / -10";
+		l_ul8_legendarySpells.appendChild(l_ul8_li5);
+
+		const l_closeGuideBtn = document.createElement("button");
+		l_closeGuideBtn.style.position = "absolute";
+		l_closeGuideBtn.style.bottom = "10px";
+		l_closeGuideBtn.style.left = "46%";
+		l_closeGuideBtn.style.width = "80px";
+		l_closeGuideBtn.style.height = "30px";
+		l_closeGuideBtn.style.backgroundColor = "white";
+		l_closeGuideBtn.style.color = "black";
+		l_closeGuideBtn.style.paddingTop = "3px";
+		l_closeGuideBtn.innerText = "Close";
+		l_closeGuideBtn.classList.add("glow");
+
+		l_closeGuideBtn.addEventListener("click", function() {
+			m_guideIsOpen = false;
+			l_gameGuideContainer.remove();
+		});
+
+		l_gameGuideContainer.appendChild(l_closeGuideBtn);
+
+		l_body.appendChild(l_gameGuideContainer);
+	}
+}
 
 //results overview
 function showResults() {
@@ -300,7 +634,7 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 				}
 				break;
 			case 1:
-				l_rockUpgradeCost = 200;
+				l_rockUpgradeCost = 500;
 				l_equippedRock.innerText = "Stone";
 				l_rockRankText.innerText = "II";
 				l_rockUpgradeTitle.innerText = "Crystal";
@@ -310,7 +644,7 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 				}
 				break;
 			case 2:
-				l_rockUpgradeCost = 500;
+				l_rockUpgradeCost = 1000;
 				l_equippedRock.innerText = "Crystal"
 				l_rockRankText.innerText = "III";
 				l_rockUpgradeTitle.innerText = "Diamond";
@@ -320,7 +654,7 @@ l_rockUpgradeBtn.addEventListener("click", function() {
 				}
 				break;
 			case 3:
-				l_rockUpgradeCost = 1000;
+				l_rockUpgradeCost = 5000;
 				l_equippedRock.innerText = "Diamond";
 				l_rockRankText.innerText = "IV";
 				l_rockUpgradeTitle.innerText = "Talisman";
@@ -403,7 +737,7 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				
 				break;
 			case 1:
-				l_paperUpgradeCost = 200;
+				l_paperUpgradeCost = 500;
 				l_equippedPaper.innerText = "Spellbook";
 				l_paperRankText.innerText = "II";
 				l_paperUpgradeTitle.innerText = "Lexicon";
@@ -414,7 +748,7 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				
 				break;
 			case 2:
-				l_paperUpgradeCost = 500;
+				l_paperUpgradeCost = 1000;
 				l_equippedPaper.innerText = "Lexicon"
 				l_paperRankText.innerText = "III";
 				l_paperUpgradeTitle.innerText = "Grimoire";
@@ -424,7 +758,7 @@ l_paperUpgradeBtn.addEventListener("click", function() {
 				}
 				break;
 			case 3:
-				l_paperUpgradeCost = 1000;
+				l_paperUpgradeCost = 5000;
 				l_equippedPaper.innerText = "Grimoire";
 				l_paperRankText.innerText = "IV";
 				l_paperUpgradeTitle.innerText = "Necronomicon";
@@ -505,7 +839,7 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 				}
 				break;
 			case 1:
-				l_scissorsUpgradeCost = 200;
+				l_scissorsUpgradeCost = 500;
 				l_equippedScissors.innerText = "Shears";
 				l_scissorsRankText.innerText = "II";
 				l_scissorsUpgradeTitle.innerText = "Ritual Knife";
@@ -515,7 +849,7 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 				}
 				break;
 			case 2:
-				l_scissorsUpgradeCost = 500;
+				l_scissorsUpgradeCost = 1000;
 				l_equippedScissors.innerText = "Ritual Knife"
 				l_scissorsRankText.innerText = "III";
 				l_scissorsUpgradeTitle.innerText = "Daisho";
@@ -525,7 +859,7 @@ l_scissorUpgradeBtn.addEventListener("click", function() {
 				}
 				break;
 			case 3:
-				l_scissorsUpgradeCost = 1000;
+				l_scissorsUpgradeCost = 5000;
 				l_equippedScissors.innerText = "Daisho";
 				l_scissorsRankText.innerText = "IV";
 				l_scissorsUpgradeTitle.innerText = "Scyth";
@@ -615,7 +949,7 @@ m_endGameBtn.addEventListener("click", function() {
 							   m_hasScissorsDwayne &&
 							   m_hasExpAchiev; //has overloaded achievment
 
-	if(l_playerExperience >= 20000 && l_hasAllAchievments) {
+	if(l_playerExperience >= 100000 && l_hasAllAchievments) {
 		for(let i = 0; i < l_homeScreenItems.length; i++) {
 			//remove homescreen items
 			l_homeScreenItems[i].remove();
@@ -633,93 +967,6 @@ m_endGameBtn.addEventListener("click", function() {
 		}
 	}
 });
-
-//END GAME CREDITS
-function rollCredits() {
-	//calclate their game time
-	const l_finishTime = new Date((new Date().getTime() - m_startTime));
-
-	//create a floating div
-	const l_creditsScreen = document.createElement("div");
-	l_creditsScreen.classList.add("floatingItems");
-	l_creditsScreen.style.border = "2px solid white";
-	l_creditsScreen.style.color = "white";
-	l_creditsScreen.style.position = "fixed";
-	l_creditsScreen.style.left = "25%";
-	l_creditsScreen.style.top = "15%";
-	l_creditsScreen.style.zIndex = "1";
-	l_creditsScreen.style.width = "50%";
-	l_creditsScreen.style.height = "70%";
-	l_creditsScreen.style.padding = "0px 10px 10px 20px";
-
-	//create a header
-	const l_creditCongrats = document.createElement("p");
-	l_creditCongrats.innerText = "CONGRATULATIONS!";
-	l_creditCongrats.style.fontSize = "46px";
-	l_creditCongrats.style.textAlign = "Center";
-	l_creditCongrats.style.marginBottom = "0px";
-
-	const l_timePlayed = document.createElement("p");
-	l_timePlayed.innerText = `Your Time: ${l_finishTime.getUTCHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:${l_finishTime.getUTCMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:${l_finishTime.getUTCSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:${l_finishTime.getUTCMilliseconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}`;
-
-	l_timePlayed.style.textAlign = "Center";
-	l_timePlayed.style.fontSize = "18px";
-
-	const l_creditTitle = document.createElement("h2");
-	l_creditTitle.innerText = "Credits";
-	l_creditTitle.style.textDecoration = "underline";
-
-	//create the content
-	const l_creditCreatorTitle = document.createElement("span");
-	l_creditCreatorTitle.innerText = "Creator: ";
-	l_creditCreatorTitle.style.fontWeight = "bolder";
-	l_creditCreatorTitle.style.fontSize = "18px";
-
-	const l_creditCreator = document.createElement("span");
-	l_creditCreator.innerText = "Connor Meads\nHandled game design and the programming.\n\n";
-	l_creditCreator.style.fontSize = "18px";
-
-	const l_creditArtistTitle = document.createElement("span");
-	l_creditArtistTitle.innerText = "Artist: ";
-	l_creditArtistTitle.style.fontSize = "18px";
-	l_creditArtistTitle.style.fontWeight = "bolder";
-
-	const l_creditArtist = document.createElement("span");
-	l_creditArtist.innerText = "Jessica Allman\nHandled the upgrade names and designs.";
-	l_creditArtist.style.fontSize = "18px";
-
-	const l_creditThanks = document.createElement("h2");
-	l_creditThanks.innerText = "Thanks for playing my game!";
-	l_creditThanks.style.textAlign = "Center";
-	l_creditThanks.style.marginTop = "100px";
-
-	const l_creditExitBtn = document.createElement("button");
-	l_creditExitBtn.style.position = "absolute";
-	l_creditExitBtn.style.left = "44%";
-	l_creditExitBtn.style.height = "40px";
-	l_creditExitBtn.style.width = "100px";
-	l_creditExitBtn.style.fontSize = "18px";
-	l_creditExitBtn.classList.add("glow");
-	l_creditExitBtn.classList.add("progressButtons");
-	l_creditExitBtn.innerText = "Restart";
-
-	l_creditExitBtn.addEventListener("click", function() {
-		location.reload();
-	});
-
-	//add credits to the screen
-	l_creditsScreen.appendChild(l_creditCongrats);
-	l_creditsScreen.appendChild(l_timePlayed);
-	l_creditsScreen.appendChild(l_creditTitle);
-	l_creditsScreen.appendChild(l_creditCreatorTitle);
-	l_creditsScreen.appendChild(l_creditCreator);
-	l_creditsScreen.appendChild(l_creditArtistTitle);
-	l_creditsScreen.appendChild(l_creditArtist);
-	l_creditsScreen.appendChild(l_creditThanks);
-	l_creditsScreen.appendChild(l_creditExitBtn);
-
-	l_body.appendChild(l_creditsScreen);
-}
 
 //GAMESCREEN
 //button functionality
@@ -1305,6 +1552,7 @@ function endGame(a_isVictorious) {
 	l_userScore.innerText = "0";
 	l_computerScore.innerText = "0";
 	l_outcomeText.innerText = "";
+	let l_experience;
 
 	if(a_isVictorious) {
 		returnToHome();
@@ -1314,7 +1562,7 @@ function endGame(a_isVictorious) {
 		l_victoryOrDeath.style.color ="green";
 		
 		//calcuate points
-		let l_experience = 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier * l_spellExperienceMultiplier + l_spellFlatExperienceBonus;
+		l_experience = 5 * (l_playerPoints - l_computerPoints) * l_pointMultiplier * l_spellExperienceMultiplier + l_spellFlatExperienceBonus;
 		l_playerExperience += l_experience;
 		l_experienceDisplay.innerText = l_playerExperience + " xp";
 
@@ -1491,7 +1739,9 @@ async function showPopUp(a_title, a_description) {
 			break;
 		case 'achievement':
 			l_spellEffectTitle.innerText = "ACHIEVEMENT";
-			l_spellEffectScreen.style.backgroundColor = "#be29ec";
+			l_spellEffectScreen.style.backgroundColor = "black";
+			l_spellEffectScreen.style.borderColor = "#FFB101";
+			l_spellEffectScreen.style.borderWidth = "5px";
 	}	
 
 	l_spellEffectScreen.classList.add("popUpFadeInItems");
@@ -1513,4 +1763,91 @@ function getRandomInt(min, max) {
 //sleeps for ms amount (ref: https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep)
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+//END GAME CREDITS
+function rollCredits() {
+	//calclate their game time
+	const l_finishTime = new Date((new Date().getTime() - m_startTime));
+
+	//create a floating div
+	const l_creditsScreen = document.createElement("div");
+	l_creditsScreen.classList.add("floatingItems");
+	l_creditsScreen.style.border = "2px solid white";
+	l_creditsScreen.style.color = "white";
+	l_creditsScreen.style.position = "fixed";
+	l_creditsScreen.style.left = "25%";
+	l_creditsScreen.style.top = "15%";
+	l_creditsScreen.style.zIndex = "1";
+	l_creditsScreen.style.width = "50%";
+	l_creditsScreen.style.height = "70%";
+	l_creditsScreen.style.padding = "0px 10px 10px 20px";
+
+	//create a header
+	const l_creditCongrats = document.createElement("p");
+	l_creditCongrats.innerText = "CONGRATULATIONS!";
+	l_creditCongrats.style.fontSize = "46px";
+	l_creditCongrats.style.textAlign = "Center";
+	l_creditCongrats.style.marginBottom = "0px";
+
+	const l_timePlayed = document.createElement("p");
+	l_timePlayed.innerText = `Your Time: ${l_finishTime.getUTCHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:${l_finishTime.getUTCMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:${l_finishTime.getUTCSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:${l_finishTime.getUTCMilliseconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}`;
+
+	l_timePlayed.style.textAlign = "Center";
+	l_timePlayed.style.fontSize = "18px";
+
+	const l_creditTitle = document.createElement("h2");
+	l_creditTitle.innerText = "Credits";
+	l_creditTitle.style.textDecoration = "underline";
+
+	//create the content
+	const l_creditCreatorTitle = document.createElement("span");
+	l_creditCreatorTitle.innerText = "Creator: ";
+	l_creditCreatorTitle.style.fontWeight = "bolder";
+	l_creditCreatorTitle.style.fontSize = "18px";
+
+	const l_creditCreator = document.createElement("span");
+	l_creditCreator.innerText = "Connor Meads\nHandled game design and the programming.\n\n";
+	l_creditCreator.style.fontSize = "18px";
+
+	const l_creditArtistTitle = document.createElement("span");
+	l_creditArtistTitle.innerText = "Artist: ";
+	l_creditArtistTitle.style.fontSize = "18px";
+	l_creditArtistTitle.style.fontWeight = "bolder";
+
+	const l_creditArtist = document.createElement("span");
+	l_creditArtist.innerText = "Jessica Allman\nHandled the upgrade names and designs.";
+	l_creditArtist.style.fontSize = "18px";
+
+	const l_creditThanks = document.createElement("h2");
+	l_creditThanks.innerText = "Thanks for playing my game!";
+	l_creditThanks.style.textAlign = "Center";
+	l_creditThanks.style.marginTop = "100px";
+
+	const l_creditExitBtn = document.createElement("button");
+	l_creditExitBtn.style.position = "absolute";
+	l_creditExitBtn.style.left = "44%";
+	l_creditExitBtn.style.height = "40px";
+	l_creditExitBtn.style.width = "100px";
+	l_creditExitBtn.style.fontSize = "18px";
+	l_creditExitBtn.classList.add("glow");
+	l_creditExitBtn.classList.add("progressButtons");
+	l_creditExitBtn.innerText = "Restart";
+
+	l_creditExitBtn.addEventListener("click", function() {
+		location.reload();
+	});
+
+	//add credits to the screen
+	l_creditsScreen.appendChild(l_creditCongrats);
+	l_creditsScreen.appendChild(l_timePlayed);
+	l_creditsScreen.appendChild(l_creditTitle);
+	l_creditsScreen.appendChild(l_creditCreatorTitle);
+	l_creditsScreen.appendChild(l_creditCreator);
+	l_creditsScreen.appendChild(l_creditArtistTitle);
+	l_creditsScreen.appendChild(l_creditArtist);
+	l_creditsScreen.appendChild(l_creditThanks);
+	l_creditsScreen.appendChild(l_creditExitBtn);
+
+	l_body.appendChild(l_creditsScreen);
 }
