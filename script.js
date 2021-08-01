@@ -130,7 +130,9 @@ let m_protected = false;
 
 //BUTTON FUNCTIONALITY
 //game guide
-m_guideLink.addEventListener("click", showGuide());
+m_guideLink.addEventListener("click", function() {
+	showGuide();
+});
 function showGuide() {
 	//check if there is already a game guide open
 	if(!m_guideIsOpen) {
@@ -1858,12 +1860,6 @@ function endGame(a_isVictorious) {
 
 	//show results screen
 	m_body.appendChild(l_div_resultsScreen);
-}
-
-//results overview
-function showResults() {
-
-	
 }
 
 async function showPopUp(a_title, a_description) {
