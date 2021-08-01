@@ -29,42 +29,6 @@ button {
     margin-top: 2px;
 }
 
-/* Results Breakdown Page */
-#resultsContent {
-	position: fixed;
-	top: 35%;
-	left: 27%;
-	padding: 10px 10px 10px 10px;
-	width: 40%;
-	height: 24%;
-}
-#resultsTitle {
-	text-align: center;
-	text-decoration: underline;
-	margin-bottom: 0px;
-}
-#victoryOrDeath {
-	text-align: center;
-	border: 1px solid white;
-	margin-top: 0px;
-}
-#resultsBreakdown {
-	width: 100%;
-	text-align: center;
-}
-#resultsBreakdown td {
-	  padding: 15px;
-    text-align: center;
-		font-size: 19px;
-}
-#closeResultsBtn {
-	position: absolute;
-	bottom: 10px;
-	left: 42.5%;
-	width: 80px;
-	height: 30px;
-}
-
 /* BODY */
 .mainBody {
     color:white;

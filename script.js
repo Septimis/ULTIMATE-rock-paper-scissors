@@ -1520,57 +1520,186 @@ function playRound(a_playerChoice) {
 
 //wraps up the final score
 function endGame(a_isVictorious) {
+	//return to home screen
+	returnToHome();
+
 	//show the main results screen
-	const l_resultsScreen = document.createElement("div");
-	l_resultsScreen.style.position = "fixed";
-	l_resultsScreen.style.left = "50%";
-	l_resultsScreen.style.transform = "translate(-50%, 0)";
-	l_resultsScreen.style.top = "25%";
-	l_resultsScreen.style.zIndex = "2";
-	l_resultsScreen.style.minWidth = "50%";
-	l_resultsScreen.style.height = "35%";
-	l_resultsScreen.style.backgroundColor = "black";
-	l_resultsScreen.style.color = "white";
-	l_resultsScreen.style.border = "5px solid white";
-	l_resultsScreen.style.padding = "10px 10px 10px 10px";
+	const l_div_resultsScreen = document.createElement("div");
+	l_div_resultsScreen.style.position = "fixed";
+	l_div_resultsScreen.style.left = "50%";
+	l_div_resultsScreen.style.transform = "translate(-50%, 0)";
+	l_div_resultsScreen.style.top = "25%";
+	l_div_resultsScreen.style.zIndex = "2";
+	l_div_resultsScreen.style.minWidth = "50%";
+	l_div_resultsScreen.style.height = "35%";
+	l_div_resultsScreen.style.backgroundColor = "black";
+	l_div_resultsScreen.style.color = "white";
+	l_div_resultsScreen.style.border = "5px solid white";
+	l_div_resultsScreen.style.padding = "0px 10px 10px 10px";
+	l_div_resultsScreen.style.textAlign = "center";
+	l_div_resultsScreen.classList.add("fadeInItems");
 
-	const l_resultsTitle = document.createElement("h1");
-	l_resultsTitle.innerText = "Results";
-	l_resultsScreen.appendChild(l_resultsTitle);
+	const l_h1_resultsTitle = document.createElement("h1");
+	l_h1_resultsTitle.innerText = "Results";
+	l_h1_resultsTitle.style.textAlign = "center";
+	l_h1_resultsTitle.style.marginTop = "0px";
+	l_h1_resultsTitle.style.fontSize = "35px";
+	l_h1_resultsTitle.style.borderBottom = "2px solid white";
+	l_div_resultsScreen.appendChild(l_h1_resultsTitle);
 
-	//reset game Elements
-	m_userScore.innerText = "0";
-	m_computerScore.innerText = "0";
-	m_outcomeText.innerText = "";
+	//victory or defeat
+	const l_h2_result = document.createElement("h2");
+	l_h2_result.style.border = "2px solid white";
+	l_h2_result.style.width = "35%";
+	l_h2_result.style.position = "absolute";
+	l_h2_result.style.left = "50%";
+	l_h2_result.style.top = "40px";
+	l_h2_result.style.transform = "translate(-50%, 0)";
+	l_div_resultsScreen.appendChild(l_h2_result);
+
+	//results table
+	const l_table_resultsTable = document.createElement("table");
+	l_table_resultsTable.style.textAlign = "center";
+	l_table_resultsTable.style.marginTop = "25px";
+	l_table_resultsTable.style.position = "absolute";
+	l_table_resultsTable.style.left = "45%";
+	l_table_resultsTable.style.transform = "translate(-50%, 0)";
+	l_table_resultsTable.style.borderSpacing = "40px 10px";
+
+	l_div_resultsScreen.appendChild(l_table_resultsTable);
+
+	const l_tr_titles = document.createElement("tr");
+	l_tr_titles.style.fontWeight = "bolder";
+	l_tr_titles.style.textDecoration = "underline";
+	const l_tr_expBreakdown = document.createElement("tr");
+	l_table_resultsTable.appendChild(l_tr_titles);
+	l_table_resultsTable.appendChild(l_tr_expBreakdown);
+
+	//first column (title)
+	const l_td_blank = document.createElement("td");
+	l_tr_titles.appendChild(l_td_blank);
+	const l_td_expTitle = document.createElement("td");
+	l_td_expTitle.innerText = "Experience";
+	l_td_expTitle.style.fontWeight = "bolder";
+	l_tr_expBreakdown.appendChild(l_td_expTitle);
+
+	//second column (Base Experience)
+	const l_td_baseTitle = document.createElement("td");
+	l_td_baseTitle.innerText = "Base";
+	l_tr_titles.appendChild(l_td_baseTitle);
+
+	const l_td_baseExp = document.createElement("td");
+	l_td_baseExp.innerText = "5";
+	l_tr_expBreakdown.appendChild(l_td_baseExp);
+
+	//third column (Win Margin)
+	const l_td_marginTitle = document.createElement("td");
+	l_td_marginTitle.innerText = "Margin";
+	l_tr_titles.appendChild(l_td_marginTitle);
+
+	const l_td_winMargin = document.createElement("td");
+	l_td_winMargin.innerText = "0"; //default
+	l_tr_expBreakdown.appendChild(l_td_winMargin);
+
+	//fourth column (Purchased Multipliers) 
+	const l_td_multiplierTitle = document.createElement("td");
+	l_td_multiplierTitle.innerText = "Purchased Multiplier";
+	l_td_multiplierTitle.style.width = "30px";
+	l_tr_titles.appendChild(l_td_multiplierTitle);
+
+	const l_td_multiplier = document.createElement("td");
+	l_td_multiplier.innerText = m_pointMultiplier; //default
+	l_tr_expBreakdown.appendChild(l_td_multiplier);
+
+	//optional column (spell Exp Multiplier)
+	if(m_spellExperienceMultiplier > 1) {
+		//if there was a spell xp multiplier, add a column to reflect it
+		const l_td_spellMultTitle = document.createElement("td");
+		l_td_spellMultTitle.innerText = "Spell Multiplier";
+		l_td_spellMultTitle.style.width = "30px";
+		l_tr_titles.appendChild(l_td_spellMultTitle);
+
+		const l_td_spellMultiplier = document.createElement("td");
+		l_td_spellMultiplier.innerText = m_spellExperienceMultiplier;
+		l_tr_expBreakdown.appendChild(l_td_spellMultiplier);
+	}
+
+	//optional column(spell flat exp bonus)
+	if(m_spellFlatExperienceBonus > 0) {
+		//if there was a spell xp addition, add a column to reflect it
+		const l_td_flatBonusTitle = document.createElement("td");
+		l_td_flatBonusTitle.innerText = "Flat Exp Bonus";
+		l_td_flatBonusTitle.style.with = "30px";
+		l_tr_titles.appendChild(l_td_flatBonusTitle);
+
+		const l_td_flatBonus = document.createElement("td");
+		l_td_flatBonus.innerText = m_spellFlatExperienceBonus;
+		l_tr_expBreakdown.appendChild(l_td_flatBonus);
+	}
+
+	//final column (final)
+	const l_td_finalExpTitle = document.createElement("td");
+	l_td_finalExpTitle.innerText = "Final";
+	l_tr_titles.appendChild(l_td_finalExpTitle);
+
+	const l_td_finalExp = document.createElement("td");
+	l_td_finalExp.style.fontSize = "25px";
+	l_tr_expBreakdown.appendChild(l_td_finalExp);
+
+	//make the close button
+	const l_btn_closeResults = document.createElement("button");
+	l_btn_closeResults.innerText = "Close";
+	l_btn_closeResults.classList.add("glow");
+	l_btn_closeResults.classList.add("progressButtons");
+	l_btn_closeResults.style.position = "absolute";
+	l_btn_closeResults.style.left = "50%";
+	l_btn_closeResults.style.transform = "translate(-50%, 0)";
+	l_btn_closeResults.style.bottom = "20px";
+	l_btn_closeResults.style.width = "80px";
+	l_btn_closeResults.style.height = "30px";
+
+	l_btn_closeResults.addEventListener("click", function() {
+		l_div_resultsScreen.remove();
+	});
+
+
+	l_div_resultsScreen.appendChild(l_btn_closeResults);
 
 	//declare variables
 	let l_experience;
+	let l_winMargin;
 
+	//victorious dependant effects
 	if(a_isVictorious) {
-		returnToHome();
-
-
-		
-		//calcuate points
-		l_experience = 5 * (m_playerPoints - m_computerPoints) * m_pointMultiplier * m_spellExperienceMultiplier + m_spellFlatExperienceBonus;
-		m_playerExperience += l_experience;
-		m_experienceDisplay.innerText = m_playerExperience + " xp";
-
+		l_winMargin = m_playerPoints - m_computerPoints;
+		l_h2_result.innerText = "VICTORY";
+		l_h2_result.style.color = "green";
 	} else {
-		returnToHome();
-
-		//spell effects on defeat
-		m_spellExperienceMultiplier = 1;
-		m_spellFlatExperienceBonus = 0;
+		l_winMargin = 0;
+		l_h2_result.innerText = "DEFEAT";
+		l_h2_result.style.color = "red";
 	}
 
-	//reset spell effects
-	m_spellWinAllDraws = false;
-	m_spellWinNextDraw = false;
+	//calculate points
+	l_experience = 5 * l_winMargin * m_pointMultiplier * m_spellExperienceMultiplier + m_spellFlatExperienceBonus;
+	m_playerExperience += l_experience;
+	m_experienceDisplay.innerText = m_playerExperience + " xp";
+
+	//reflect those points on the breakdown
+	l_td_winMargin.innerText = l_winMargin;
+	l_td_finalExp.innerText = l_experience;
 
 	//achievements
+	let l_gotAchievement = false;
+	let l_playedFirstGame = false;
+	let l_gotFavortism = false;
+	let l_gotPerfection = false;
+	let l_gotExpAchiev = false;
 	//first game
 	if(m_virginPlayer) {
+		l_gotAchievement = true;
+		l_playedFirstGame = true;
+		
 		m_virginPlayer = false;
 		showPopUp("achievement", "Play Your First Game\n+5 xp");
 		document.getElementById("welcomeAchievment").style.color = "green";
@@ -1583,17 +1712,20 @@ function endGame(a_isVictorious) {
 		(m_numScissorsPlays == 0 && m_numRockPlays == 0 && m_numPaperPlays >= 5) ||
 		(m_numPaperPlays == 0 && m_numScissorsPlays == 0 && m_numRockPlays >= 5) 
 	)) {
+		l_gotAchievement = true;
+		l_gotFavortism = true;
+		
 		m_favoritism = true;
 		showPopUp("achievement", "Win a Game by Only Choosing Either Rock, Paper, or Scissors\n+10 xp");
 		document.getElementById("onlyOneAchievment").style.color = "green";
 		m_playerExperience += 10;
 		m_experienceDisplay.innerText = m_playerExperience;
 	}
-	m_numRockPlays = 0;
-	m_numPaperPlays = 0;
-	m_numScissorsPlays = 0;
 	//win a perfect game
 	if(!m_perfection && m_playerPoints >= 5 && m_computerPoints <= 0) {
+		l_gotAchievement = true;
+		l_gotPerfection = true;
+		
 		m_perfection = true;
 		showPopUp("achievement", "End a Game With a Score of 5 to 0\n+20 xp");
 		document.getElementById("perfectionAchievment").style.color = "green";
@@ -1601,6 +1733,9 @@ function endGame(a_isVictorious) {
 		m_experienceDisplay.innerText = m_playerExperience;
 	}
 	if(l_experience >= 10000 && !m_hasExpAchiev) {
+		l_gotAchievement = true;
+		l_gotExpAchiev = true;
+		
 		m_hasExpAchiev = true;
 		showPopUp("achievement", "Earn over 10,000 xp in one game!");
 		document.getElementById("expAchievment").style.color = "green";
@@ -1608,13 +1743,121 @@ function endGame(a_isVictorious) {
 		m_experienceDisplay.innerText = m_playerExperience;
 	}
 
+	//add an achievements addendum to the results page if they got an achievement
+	if(l_gotAchievement) {
+		//change the height of the results screen
+		l_div_resultsScreen.style.height = "50%";
+
+		//display achievments
+		const l_h2_achievements = document.createElement("h2");
+		l_h2_achievements.innerText = "Achievements Awarded";
+		l_h2_achievements.style.textDecoration = "underline";
+		l_h2_achievements.style.position = "absolute";
+		l_h2_achievements.style.left = "5%";
+		l_h2_achievements.style.top = "200px";
+		l_div_resultsScreen.appendChild(l_h2_achievements);
+
+		const l_table_achievementTable = document.createElement("table");
+		l_table_achievementTable.style.position = "absolute";
+		l_table_achievementTable.style.left = "5%";
+		l_table_achievementTable.style.top = "265px";
+		l_table_achievementTable.style.textAlign = "left";
+		l_table_achievementTable.style.borderSpacing = "0px 10px";
+		l_div_resultsScreen.appendChild(l_table_achievementTable);
+
+		//table header row
+		const l_tr_achievHeader = document.createElement("tr");
+		l_tr_achievHeader.style.fontWeight = "bolder";
+		l_tr_achievHeader.style.fontSize = "20px";
+		l_table_achievementTable.appendChild(l_tr_achievHeader);
+
+		const l_td_achieveName = document.createElement("td");
+		l_td_achieveName.style.width = "500px";
+		l_td_achieveName.innerText = "Name";
+		l_tr_achievHeader.appendChild(l_td_achieveName);
+
+		const l_td_expAwarded = document.createElement("td");
+		l_td_expAwarded.innerText = "Experience";
+		l_tr_achievHeader.appendChild(l_td_expAwarded);
+
+		//first win
+		if(l_playedFirstGame) {
+			const l_tr_firstPlayed = document.createElement("tr");
+			l_table_achievementTable.appendChild(l_tr_firstPlayed);
+
+			const l_td_firstPlayed = document.createElement("td");
+			l_td_firstPlayed.innerText = "Welcome!";
+			l_tr_firstPlayed.appendChild(l_td_firstPlayed);
+
+			const l_td_firstPlayedExp = document.createElement("td");
+			l_td_firstPlayedExp.innerText = "+5 xp";
+			l_tr_firstPlayed.appendChild(l_td_firstPlayedExp);
+		}
+
+		//Favortism
+		if(l_gotFavortism) {
+			const l_tr_favortism = document.createElement("tr");
+			l_table_achievementTable.appendChild(l_tr_favortism);
+
+			const l_td_favortismTitle = document.createElement("td");
+			l_td_favortismTitle.innerText = "Favortism";
+			l_tr_favortism.appendChild(l_td_favortismTitle);
+
+			const l_td_favortismExp = document.createElement("td");
+			l_td_favortismExp.innerText = "+10 xp";
+			l_tr_favortism.appendChild(l_td_favortismExp);
+		}
+
+		//Perfection
+		if(l_gotPerfection) {
+			const l_tr_perfection = document.createElement("tr");
+			l_table_achievementTable.appendChild(l_tr_perfection);
+
+			const l_td_perfection = document.createElement("td");
+			l_td_perfection.innerText = "Perfection";
+			l_tr_perfection.appendChild(l_td_perfection);
+
+			const l_td_perfectionExp = document.createElement("td");
+			l_td_perfectionExp.innerText = "+20 xp";
+			l_tr_perfection.appendChild(l_td_perfectionExp);
+		}
+
+		//Experience Achievment
+		if(l_gotExpAchiev) {
+			const l_tr_expAchiev = document.createElement("tr");
+			l_table_achievementTable.appendChild(l_tr_expAchiev);
+
+			const l_td_expAchiev = document.createElement("td");
+			l_td_expAchiev.innerText = "Overloaded";
+			l_tr_expAchiev.appendChild(l_td_expAchiev);
+
+			const l_td_expAchievExp = document.createElement("td");
+			l_td_expAchievExp.innerText = "+1,000 xp";
+			l_tr_expAchiev.appendChild(l_td_expAchievExp);
+		}
+	}
+
+	//reset spell effects
+	m_spellWinAllDraws = false;
+	m_spellWinNextDraw = false;
+	m_spellFlatExperienceBonus = 0;
+	m_spellExperienceMultiplier = 1;
+	m_numRockPlays = 0;
+	m_numPaperPlays = 0;
+	m_numScissorsPlays = 0;
+
+	//reset game Elements
+	m_userScore.innerText = "0";
+	m_computerScore.innerText = "0";
+	m_outcomeText.innerText = "";
+
 	//reset activeEffects
 	m_activeEffects.innerText = "";
 	m_pointMultiplier = 1;
 	m_body.style.backgroundColor = "black";
 
 	//show results screen
-	m_body.appendChild(l_resultsScreen);
+	m_body.appendChild(l_div_resultsScreen);
 }
 
 //results overview
