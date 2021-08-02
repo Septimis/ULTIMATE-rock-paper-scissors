@@ -916,7 +916,7 @@ m_xpTextBox.oninput = function() {
 }
 
 m_expBonusBtn.addEventListener("click", function() {
-	let l_cost = m_expBonusCost * m_xpTextBox.value;
+	let l_cost = m_expBonusCost * m_xpTextBox.value - m_expBonusCost;
 	console.log(m_xpTextBox.value);
 
 	//make sure user has enough points 
@@ -2005,7 +2005,28 @@ function sleep(ms) {
 //END GAME CREDITS
 function rollCredits() {
 	//calclate their game time
-	const l_finishTime = new Date((new Date().getTime() - m_startTime));
+	let l_finishTime = new Date((new Date().getTime() - m_startTime));
+	let l_days = 0;
+	let l_hours = 0;
+	let l_min = 0;
+	let l_sec = 0;
+
+	while(l_finishTime >= 86400000) {
+		l_days++;
+		l_finishTime -= 86400000;
+	}
+	while(l_finishTime >= 3600000) {
+		l_hours++;
+		l_finishTime -= 3600000;
+	}
+	while(l_finishTime >= 60000) {
+		l_min++;
+		l_finishTime -= 60000;
+	}
+	while(l_finishTime >= 1000) {
+		l_sec++;
+		l_finishTime -= 1000;
+	}
 
 	//create a floating div
 	const l_creditsScreen = document.createElement("div");
@@ -2028,7 +2049,7 @@ function rollCredits() {
 	l_creditCongrats.style.marginBottom = "0px";
 
 	const l_timePlayed = document.createElement("p");
-	l_timePlayed.innerText = `Your Time: ${l_finishTime.getUTCHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:${l_finishTime.getUTCMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:${l_finishTime.getUTCSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:${l_finishTime.getUTCMilliseconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}`;
+	l_timePlayed.innerText = `Your Time:\n${l_days} days\n${l_hours} hours\n${l_min} minutes\n${l_sec} seconds\n${l_finishTime} milliseconds`;
 
 	l_timePlayed.style.textAlign = "Center";
 	l_timePlayed.style.fontSize = "18px";
