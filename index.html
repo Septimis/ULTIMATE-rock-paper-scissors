@@ -85,13 +85,15 @@
                 </tr>
                 <tr>
                     <td>
-                        <strong>2x Experience Bonus</strong><br>
+                        <strong>Experience Multiplier</strong><br>
                     </td>
                     <td></td>
                     <td>
-                        <em>For your next game only.  You may equip as many as you'd like for a experience multiplier.</em>
+                        <input type="range" min="2" max="200" value="1" id="xpSlider"><br>
+                        <em>For your next game only.  You may equip up to x200 xp for an experience multiplier.</em>
                         </td>
                     <td>
+                        <input type="number" pattern="\d*" title="Numbers Only" value="1" id="xpTextBox">
                         <button id="expBonusBtn" class="progressButtons glow">Buy</button>
                     </td>
                     <td>

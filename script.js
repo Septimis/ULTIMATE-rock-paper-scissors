@@ -47,6 +47,9 @@ const m_rockUpgradeDescription = document.getElementById("rockUpgradeDescription
 const m_paperUpgradeDescription = document.getElementById("paperUpgradeDescription");
 const m_scissorsUpgradeDescription = document.getElementById("scissorsUpgradeDescription");
 
+const m_xpSlider = document.getElementById("xpSlider");
+const m_xpTextBox = document.getElementById("xpTextBox");
+
 const m_equippedRock = document.getElementById("equippedRock");
 const m_equippedPaper = document.getElementById("equippedPaper");
 const m_equippedScissors = document.getElementById("equippedScissors");
@@ -889,20 +892,49 @@ m_scissorUpgradeBtn.addEventListener("click", function() {
 	}
 });
 
+//active listeners to have the text box reflect the value of the slider
+m_xpTextBox.value = m_xpSlider.value;
+
+m_xpSlider.oninput = function() {
+	m_xpTextBox.value = this.value;
+	m_expBonusCostSpan.innerText = (m_expBonusCost * this.value - m_expBonusCost) + " xp";
+}
+
+//text box is restricted to just numbers
+m_xpTextBox.oninput = function() {
+	if(this.value > (200 - m_pointMultiplier)) {
+		alert("You can only buy up to x200 multiplier");
+		this.value = 200;
+	} else if(this.value < 2) {
+		alert("You cannot go below a x2 multiplier");
+		this.value = 2;
+	} else {
+		m_xpTextBox.value = m_xpTextBox.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+	}
+	m_expBonusCostSpan.innerText = (m_expBonusCost * this.value - m_expBonusCost) + " xp";
+	m_xpSlider.value = this.value;
+}
+
 m_expBonusBtn.addEventListener("click", function() {
+	let l_cost = m_expBonusCost * m_xpTextBox.value;
+	console.log(m_xpTextBox.value);
+
 	//make sure user has enough points 
-	if(m_playerExperience < m_expBonusCost) {
-		alert(`You need ${m_expBonusCost - m_playerExperience} more experience to buy that!`);
+	if(m_playerExperience < l_cost) {
+		alert(`You need ${l_cost - m_playerExperience} more experience to buy that!`);
+	} else if((parseInt(m_xpTextBox.value) + m_pointMultiplier - 1) > 200) {
+		alert(`You cannot go above x200 multiplier.\nYou can only buy ${200 - m_pointMultiplier} more.`);
 	} else {
 		//deduct experience from user
-		m_playerExperience -= m_expBonusCost;
+		m_playerExperience -= l_cost;
 
 		//apply bonus xp
 		if(m_pointMultiplier == 1) {
-			m_pointMultiplier = 2;
+			m_pointMultiplier += parseInt(m_xpTextBox.value) - 1;
 		} else {
-			m_pointMultiplier += 2;
+			m_pointMultiplier += parseInt(m_xpTextBox.value);
 		}
+		
 
 		//reflect changes on active activeEffects & experience
 		m_activeEffects.innerText = `Experience Bonus: ${m_pointMultiplier}`;

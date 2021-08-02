@@ -82,6 +82,13 @@ button {
     text-decoration: underline;
     text-align: justify;
 }
+#xpSlider {
+  width: 100%;
+}
+#xpTextBox {
+  width: 73px;
+  margin-bottom: 10px;
+}
 .progressButtons {
     width: 80px;
     height: 20px;
