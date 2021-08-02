@@ -144,7 +144,8 @@ function showGuide() {
 		const l_gameGuideContainer = document.createElement("div");
 		l_gameGuideContainer.style.position = "fixed";
 		l_gameGuideContainer.style.top = "15%";
-		l_gameGuideContainer.style.left = "25%";
+		l_gameGuideContainer.style.left = "50%";
+		l_gameGuideContainer.style.transform = "translate(-50%, 0)";
 		l_gameGuideContainer.style.zIndex = "1";
 		l_gameGuideContainer.style.width = "50%";
 		l_gameGuideContainer.style.height = "70%";
@@ -162,13 +163,14 @@ function showGuide() {
 
 		const l_gameGuideContent = document.createElement("div");
 		l_gameGuideContent.style.position = "fixed";
-		l_gameGuideContent.style.top = "25%";
-		l_gameGuideContent.style.left = "26.5%";
+		l_gameGuideContent.style.top = "15%";
+		l_gameGuideContent.style.left = "50%";
+		l_gameGuideContent.style.transform = "translate(-50%, 0)";
 		l_gameGuideContent.style.overflowY = "auto";
 		l_gameGuideContent.style.textAlign = "left";
 		l_gameGuideContent.style.border = "1px solid white";
-		l_gameGuideContent.style.height = "55%";
-		l_gameGuideContent.style.width = "47%";
+		l_gameGuideContent.style.height = "75%";
+		l_gameGuideContent.style.width = "94%";
 		l_gameGuideContent.style.padding = "10px 10px 10px 10px";
 		l_gameGuideContent.style.marginBottom = "10px";
 		l_gameGuideContent.style.fontSize = "20px";
@@ -461,7 +463,7 @@ function showGuide() {
 		l_gameGuideContent.appendChild(l_ul5_commonSpells);
 
 		const l_ul5_li1 = document.createElement("li");
-		l_ul5_li1.innerText = "+1-5 xp bonus on a win THIS game.";
+		l_ul5_li1.innerText = "+1-5 xp bonus THIS game regardless of outcome.";
 		l_ul5_commonSpells.appendChild(l_ul5_li1);
 
 		const l_ul5_li2 = document.createElement("li");
@@ -481,7 +483,7 @@ function showGuide() {
 		l_gameGuideContent.appendChild(l_ul6_rareSpells);
 
 		const l_ul6_li1 = document.createElement("li");
-		l_ul6_li1.innerText = "+20 xp bonus on a win THIS game.";
+		l_ul6_li1.innerText = "+20 xp bonus THIS game regardless of outcome.";
 		l_ul6_rareSpells.appendChild(l_ul6_li1);
 
 		const l_ul6_li2 = document.createElement("li");
@@ -2034,7 +2036,8 @@ function rollCredits() {
 	l_creditsScreen.style.border = "2px solid white";
 	l_creditsScreen.style.color = "white";
 	l_creditsScreen.style.position = "fixed";
-	l_creditsScreen.style.left = "25%";
+	l_creditsScreen.style.left = "50%";
+	l_creditsScreen.style.transform = "translate(-50%, 0)";
 	l_creditsScreen.style.top = "15%";
 	l_creditsScreen.style.zIndex = "1";
 	l_creditsScreen.style.width = "50%";
@@ -2084,7 +2087,8 @@ function rollCredits() {
 
 	const l_creditExitBtn = document.createElement("button");
 	l_creditExitBtn.style.position = "absolute";
-	l_creditExitBtn.style.left = "44%";
+	l_creditExitBtn.style.left = "50%";
+	l_creditExitBtn.style.transform = "translate(-50%, 0)";
 	l_creditExitBtn.style.height = "40px";
 	l_creditExitBtn.style.width = "100px";
 	l_creditExitBtn.style.fontSize = "18px";

@@ -50,11 +50,11 @@ The game is simple, select your weapon: <b>Sturdy Rock, Mystical Paper, or Vicio
 #### Spells
 Each category has an equal chance to activate the spell.  Flat experience gains will be added **AFTER** multipliers have been added.  Experience multipliers will stack with each other at the end of the game.  For example, suppose you cast a +10 experience spell, a x2 experience bonus, and a x4 experience bonus.  Your final score would be calculated by: *5 x margin x purchased Experience Bonus' x 2 x 4 + 10*.  Some spell effects are permanent such as the Dwayne cards and the reduced cost of an experience bonus.  Once you have unlocked these, they will be removed from the pool of available spells and can no longer be cast.
 ##### Common
- - +1-5 xp bonus on a win THIS game.
+ - +1-5 xp bonus THIS game regardless of outcome.
  - Set the background to a random (dark) color.
  - Randomize the scores. (Caution!  This could not go in your favor!)
 ##### Rare
- - +20 xp bonus on a win THIS game.
+ - +20 xp bonus THIS game regardless of outcome.
  - Gain a x2 exp bonus THIS game.
  - You will win the **next** draw this game.
  - Reverse the scores (Caution!  This could not go in your favor).
@@ -77,16 +77,21 @@ Each category has an equal chance to activate the spell.  Flat experience gains 
  - I learned the beauty and simplicity of a `<table>`.  Rows and columns were very easy to set up and style.
  - Nesting divs and spans are your best friend when it comes to positioning and styling.
 #### .CSS
- - I struggled a lot with getting my `background-image: linear-gradient()` to fill the entire screen regardless of the size of the screen.
  - In general, getting the website to look the same on different screens was a challenge.  I learned the correct time and place of pixel offsets to percentage.
+ - Learning about about transform was a big leap forward in centering items on any sized screen.
  - I learned a lot about different `position` styles and when to use them.
  - The pop-up `Game Guide` was a really good exercise in position elements as well as adding scroll bars to div's.
  - Overall this project felt more natural than previous ones in regards to placement of what I want.
 #### JavaScript
 - The \<script> tag needs to be specified at the bottom of an html page, not the top.  Otherwise the JavaScript file will have no idea what elements you're talking about.
+- I also learned to reference the JavaScript file in the Head element using 'defer'.
 - I had a difficult time getting animations to repeat afte they have already played.  I was able to accomplish this by adding and removing the elements and their classes. This [resource](https://css-tricks.com/restart-css-animation/) was very helpful.
 - Jumping between 2 different screens with only **one** html file was excellent practice in JavaScript *DOM Manipulation*.
-    - Namely I had to create all elements on the html page, then wipe out the ones I wasn't using immedietly using the `remove()` function, then add them on a button click.
+
+##### DOM Manipulation within JavaScript
+- Namely I had to create all elements on the html page, then wipe out the ones I wasn't using immedietly using the `remove()` function, then add them on a button click.
+- Originally I created all of my elements in html, then would toggle their visibility using JavaScript.  Once I learned more about DOM Manipulation, I decided it would be better instead to dynamically generate and delete these elements completely in the DOM instead of toggling their visibility.  This turned out to be a fantastic idea.
+- The pop up idea to display spells and effects activating was one of my best ideas as it really contributes to the progression of power the player will feel. 
 
 ### Resources
 Main reference: [w3Schools](https://www.w3schools.com/) \
