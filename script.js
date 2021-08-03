@@ -922,9 +922,6 @@ m_xpTextBox.oninput = function() {
 	if(this.value > (200 - m_pointMultiplier)) {
 		alert("You can only buy up to x200 multiplier");
 		this.value = 200;
-	} else if(this.value < 2) {
-		alert("You cannot go below a x2 multiplier");
-		this.value = 2;
 	} else {
 		m_xpTextBox.value = m_xpTextBox.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
 	}
@@ -934,13 +931,15 @@ m_xpTextBox.oninput = function() {
 
 m_expBonusBtn.addEventListener("click", function() {
 	let l_cost = m_expBonusCost * m_xpTextBox.value;
-	console.log(m_xpTextBox.value);
 
 	//make sure user has enough points 
 	if(m_playerExperience < l_cost) {
 		alert(`You need ${l_cost - m_playerExperience} more experience to buy that!`);
 	} else if((parseInt(m_xpTextBox.value) + m_pointMultiplier - 1) > 200) {
 		alert(`You cannot go above x200 multiplier.\nYou can only buy ${200 - m_pointMultiplier} more.`);
+	} else if(m_xpTextBox.value < 2) {
+		alert("You cannot go below a x2 multiplier");
+		m_xpTextBox.value = 2;
 	} else {
 		//deduct experience from user
 		m_playerExperience -= l_cost;
