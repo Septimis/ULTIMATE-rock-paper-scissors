@@ -763,14 +763,14 @@ m_paperUpgradeBtn.addEventListener("click", function() {
 				m_playerExperience += 50;
 				m_experienceDisplay.innerText = m_playerExperience;
 				break;
-
-				//check if all are at rank V
-				if(m_rockRank == 5 && m_scissorsRank == 5) {
-					showPopUp("achievement", "Upgrade Rock, Paper, and Scissors to Level 5\n+100 xp");
-					document.getElementById("trifectaAchievment").style.color = "green";
-					m_playerExperience += 100;
-					m_experienceDisplay.innerText = m_playerExperience;
-				}
+			}
+			//check if all are at rank V
+			if(m_rockRank == 5 && m_scissorsRank == 5) {
+				showPopUp("achievement", "Upgrade Rock, Paper, and Scissors to Level 5\n+100 xp");
+				document.getElementById("trifectaAchievment").style.color = "green";
+				m_playerExperience += 100;
+				m_experienceDisplay.innerText = m_playerExperience;
+			}
 		}
 
 		//incrase rank of paper
