@@ -424,7 +424,7 @@ function showGuide() {
 		l_ul4_ritualKnife.appendChild(l_ul4_ritualKnife_li1);
 
 		const l_ul4_li4 = document.createElement("li");
-		l_ul4_li4.innerText = "Rank IV: Daisho - 1,000 xp to unlock";
+		l_ul4_li4.innerText = "Rank IV: Sickle - 1,000 xp to unlock";
 		l_ul4_scissorsRanks.appendChild(l_ul4_li4);
 
 		const l_ul4_daisho = document.createElement("ul");
@@ -831,7 +831,7 @@ m_scissorUpgradeBtn.addEventListener("click", function() {
 				m_scissorsUpgradeCost = 1000;
 				m_equippedScissors.innerText = "Ritual Knife"
 				m_scissorsRankText.innerText = "III";
-				m_scissorsUpgradeTitle.innerText = "Daisho";
+				m_scissorsUpgradeTitle.innerText = "Sickle";
 				m_scissorsUpgradeDescription.innerText = "Upon winning with scissors, there is a 75% chance to gain an additional point, or a 20% chance to gain 2 additional points.";
 				if(!m_hasScissorsDwayne) {
 					m_scissorsBtn.src = "img/scissors/ritualKnife.png";
@@ -839,12 +839,12 @@ m_scissorUpgradeBtn.addEventListener("click", function() {
 				break;
 			case 3:
 				m_scissorsUpgradeCost = 5000;
-				m_equippedScissors.innerText = "Daisho";
+				m_equippedScissors.innerText = "Sickle";
 				m_scissorsRankText.innerText = "IV";
 				m_scissorsUpgradeTitle.innerText = "Scyth";
 				m_scissorsUpgradeDescription.innerText = "Upon losing with scissors, you have a 50% chance of gaining an additional point. If you win with scissors, there is a 50% chance to gain 2 additional points, and a 10% chance to win the game immedietly.";
 				if(!m_hasScissorsDwayne) {
-					m_scissorsBtn.src = "img/scissors/daisho.jpg";
+					m_scissorsBtn.src = "img/scissors/sickle.png";
 				}
 				break;
 			case 4:
@@ -984,15 +984,34 @@ m_returnBtn.addEventListener("click", function() {
 
 function returnToHome() {
 	for(let i = 0; i < m_gameScreenItems.length; i++) {
-    //remove gameScreen items
-    m_gameScreenItems[i].remove();
+		//remove gameScreen items
+		m_gameScreenItems[i].remove();
 
-    //add homeScreen items
-    m_body.appendChild(m_homeScreenItems[i]);
-  }
-  //reset the images of the choices
-  m_userChoice.src = "";
-  m_computerChoice.src = "";
+		//add homeScreen items
+		m_body.appendChild(m_homeScreenItems[i]);
+
+  	}
+	//reset the images of the choices
+	m_userChoice.src = "";
+	m_computerChoice.src = "";
+	//reset spell effects
+	m_spellWinAllDraws = false;
+	m_spellWinNextDraw = false;
+	m_spellFlatExperienceBonus = 0;
+	m_spellExperienceMultiplier = 1;
+	m_numRockPlays = 0;
+	m_numPaperPlays = 0;
+	m_numScissorsPlays = 0;
+
+	//reset game Elements
+	m_userScore.innerText = "0";
+	m_computerScore.innerText = "0";
+	m_outcomeText.innerText = "";
+
+	//reset activeEffects
+	m_activeEffects.innerText = "";
+	m_pointMultiplier = 1;
+	m_body.style.backgroundColor = "black";
 }
 
 //User Selection Buttons
@@ -1029,7 +1048,7 @@ m_rockBtn.addEventListener("click", function() {
 				m_userChoice.src = "img/rock/talisman.png";
 				break;
 			default: //rock
-				m_userChoice.src = "img/rock/rock.jpg";
+				m_userChoice.src = "img/rock/rock.png";
 				break;
 		}
 	}
@@ -1129,7 +1148,7 @@ m_paperBtn.addEventListener("click", function() {
 				m_userChoice.src = "img/paper/necronomicon.png";
 				break;
 			default: //paper
-				m_userChoice.src = "img/paper/paper.jpg";
+				m_userChoice.src = "img/paper/paper.png";
 				break;
 		}
 	}	
@@ -1402,13 +1421,13 @@ m_scissorsBtn.addEventListener("click", function() {
 				m_userChoice.src = "img/scissors/ritualKnife.png";
 				break;
 			case 4: //Bolt Cutters
-				m_userChoice.src = "img/scissors/daisho.jpg";
+				m_userChoice.src = "img/scissors/sickle.png";
 				break;
 			case 5: //Gro'noth, Destroyer of Worlds
 				m_userChoice.src = "img/scissors/scythe.png";
 				break;
 			default: //scissors
-				m_userChoice.src = "img/scissors/scissors.jpg";
+				m_userChoice.src = "img/scissors/scissors.png";
 				break;
 		}
 	}
@@ -1536,7 +1555,7 @@ function getComputerChoice() {
 		} else {
 			l_computerSelection = "scissors";
 		}
-		m_computerChoice.src = `img/${l_computerSelection}/${l_computerSelection}.jpg`;
+		m_computerChoice.src = `img/${l_computerSelection}/${l_computerSelection}.png`;
     return l_computerSelection;
 }
 
@@ -1556,9 +1575,6 @@ function playRound(a_playerChoice) {
 
 //wraps up the final score
 function endGame(a_isVictorious) {
-	//return to home screen
-	returnToHome();
-
 	//show the main results screen
 	const l_div_resultsScreen = document.createElement("div");
 	l_div_resultsScreen.style.position = "fixed";
@@ -1873,27 +1889,11 @@ function endGame(a_isVictorious) {
 		}
 	}
 
-	//reset spell effects
-	m_spellWinAllDraws = false;
-	m_spellWinNextDraw = false;
-	m_spellFlatExperienceBonus = 0;
-	m_spellExperienceMultiplier = 1;
-	m_numRockPlays = 0;
-	m_numPaperPlays = 0;
-	m_numScissorsPlays = 0;
-
-	//reset game Elements
-	m_userScore.innerText = "0";
-	m_computerScore.innerText = "0";
-	m_outcomeText.innerText = "";
-
-	//reset activeEffects
-	m_activeEffects.innerText = "";
-	m_pointMultiplier = 1;
-	m_body.style.backgroundColor = "black";
-
 	//show results screen
 	m_body.appendChild(l_div_resultsScreen);
+
+	//return to home screen
+	returnToHome();
 }
 
 async function showPopUp(a_title, a_description) {

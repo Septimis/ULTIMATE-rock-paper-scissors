@@ -43,7 +43,7 @@ The game is simple, select your weapon: <b>Sturdy Rock, Mystical Paper, or Vicio
         - Upon winning with scissors, there is a 50% chance to gain an additional point.
     - Rank III: Ritual Knife - 500 xp to unlock
         - Upon winning with scissors, there is a 75% chance to gain an additional point, or a 10% chance to gain 2 additional points.
-    - Rank IV: Daisho - 1,00 xp to unlock
+    - Rank IV: Sickle - 1,000 xp to unlock
         - Upon winning with scissors, there is a 100% chance to gain an additional point, or a 30% chance to gain 2 additional points.
     - Rank V: Scyth - 5,000 xp to unlock
         - Upon losing with scissors, you have a 50% chance of gaining an additional point.  If you win with scissors, there is a 100% chance to gain a point, a 50% chance to gain 2 additional points, and a 20% chance to set player points to 10 and computer points to -10.
