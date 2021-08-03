@@ -844,7 +844,7 @@ m_scissorUpgradeBtn.addEventListener("click", function() {
 				m_scissorsUpgradeTitle.innerText = "Scyth";
 				m_scissorsUpgradeDescription.innerText = "Upon losing with scissors, you have a 50% chance of gaining an additional point. If you win with scissors, there is a 50% chance to gain 2 additional points, and a 10% chance to win the game immedietly.";
 				if(!m_hasScissorsDwayne) {
-					m_scissorsBtn.src = "img/scissors/sickle.png";
+					m_scissorsBtn.src = "img/scissors/Sickle.png";
 				}
 				break;
 			case 4:
@@ -1148,7 +1148,7 @@ m_paperBtn.addEventListener("click", function() {
 				m_userChoice.src = "img/paper/necronomicon.png";
 				break;
 			default: //paper
-				m_userChoice.src = "img/paper/paper.png";
+				m_userChoice.src = "img/paper/Paper.png";
 				break;
 		}
 	}	
@@ -1411,23 +1411,23 @@ m_scissorsBtn.addEventListener("click", function() {
 		m_userChoice.src = "img/scissors/Dwayne_scissors.png";
 	} else {
 		switch(m_scissorsRank) {
-			case 1: //Kitchen Scissors
+			case 1: //Razor
 				m_userChoice.src = "img/scissors/razor.png";
 				break;
-			case 2: //Trauma Scissors
+			case 2: //Shears
 				m_userChoice.src = "img/scissors/shears.png";
 				break;
-			case 3: //Sheep Shears
+			case 3: //Ritual Knife
 				m_userChoice.src = "img/scissors/ritualKnife.png";
 				break;
-			case 4: //Bolt Cutters
-				m_userChoice.src = "img/scissors/sickle.png";
+			case 4: //Sickle
+				m_userChoice.src = "img/scissors/Sickle.png";
 				break;
-			case 5: //Gro'noth, Destroyer of Worlds
+			case 5: //Scythe
 				m_userChoice.src = "img/scissors/scythe.png";
 				break;
 			default: //scissors
-				m_userChoice.src = "img/scissors/scissors.png";
+				m_userChoice.src = "img/scissors/Scissors.png";
 				break;
 		}
 	}
@@ -1550,12 +1550,14 @@ function getComputerChoice() {
     //determine if that number will be a rock, paper or scissors
     if(l_determinator <= l_rockDeterminator) {
 			l_computerSelection = "rock";
+			m_computerChoice.src = `img/${l_computerSelection}/${l_computerSelection}.png`;
 		} else if(l_determinator <= l_paperDeterminator) {
 			l_computerSelection = "paper";
+			m_computerChoice.src = `img/${l_computerSelection}/Paper.png`;
 		} else {
 			l_computerSelection = "scissors";
+			m_computerChoice.src = `img/${l_computerSelection}/Scissors.png`;
 		}
-		m_computerChoice.src = `img/${l_computerSelection}/${l_computerSelection}.png`;
     return l_computerSelection;
 }
 
