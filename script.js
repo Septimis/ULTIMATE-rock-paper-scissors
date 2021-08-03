@@ -1119,7 +1119,7 @@ m_rockBtn.addEventListener("click", function() {
 	//test if the player or computer has won the game
 	if(m_playerPoints >= 5) {
 		endGame(true);
-	} else if(m_computerPoints == 5) {
+	} else if(m_computerPoints >= 5) {
 		endGame(false);
 	}
 });
