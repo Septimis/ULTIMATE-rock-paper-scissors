@@ -4,7 +4,6 @@ You can find my page here: https://septimis.github.io/rock-paper-sissors/
 ## Description
 Players will play rounds of Rock, Paper, Scissors against the computer.  The first one to 5 points wins the game.  Players are awarded experience points based off of their performance in the game and can use those points to upgrade their abilities or change the cosmetics to improve on their next game.  Try to unlock all of the abilities and cosmetics!  
 
-
 ## Game Guide
 The game is simple, select your weapon: <b>Sturdy Rock, Mystical Paper, or Vicious Scissors</b>.  Use these to fight the computer to win perks and upgrades that will aid you in later conquests.
 

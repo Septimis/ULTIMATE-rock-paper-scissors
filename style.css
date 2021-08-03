@@ -147,6 +147,21 @@ button {
   margin: 0px 10px 0px 10px;
   cursor: pointer;
 }
+#rockBtn {
+	background: url(img/rock/rock.png) no-repeat center;
+	background-size: contain;
+	border: none;
+}
+#paperBtn {
+	background: url(img/paper/Paper.png) no-repeat center;
+	background-size: contain;
+	border: none;
+}
+#scissorsBtn {
+	background: url(img/scissors/Scissors.png) no-repeat center;
+	background-size: contain;
+	border: none;
+}
 #battleTable {
   margin: 50px auto 0px auto;
 }
