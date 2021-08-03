@@ -97,7 +97,7 @@ let m_scissorsRank = 0;
 let m_rockUpgradeCost = 50;
 let m_paperUpgradeCost = 50;
 let m_scissorsUpgradeCost = 50;
-let m_expBonusCost = 25;
+let m_expBonusCost = 15;
 
 //players start the game at 0 xp
 let m_playerExperience = 0;
@@ -899,7 +899,7 @@ m_xpTextBox.value = m_xpSlider.value;
 
 m_xpSlider.oninput = function() {
 	m_xpTextBox.value = this.value;
-	m_expBonusCostSpan.innerText = (m_expBonusCost * this.value - m_expBonusCost) + " xp";
+	m_expBonusCostSpan.innerText = (m_expBonusCost * this.value) + " xp";
 }
 
 //text box is restricted to just numbers
@@ -913,12 +913,12 @@ m_xpTextBox.oninput = function() {
 	} else {
 		m_xpTextBox.value = m_xpTextBox.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
 	}
-	m_expBonusCostSpan.innerText = (m_expBonusCost * this.value - m_expBonusCost) + " xp";
+	m_expBonusCostSpan.innerText = (m_expBonusCost * this.value) + " xp";
 	m_xpSlider.value = this.value;
 }
 
 m_expBonusBtn.addEventListener("click", function() {
-	let l_cost = m_expBonusCost * m_xpTextBox.value - m_expBonusCost;
+	let l_cost = m_expBonusCost * m_xpTextBox.value;
 	console.log(m_xpTextBox.value);
 
 	//make sure user has enough points 
