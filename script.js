@@ -1743,6 +1743,9 @@ function endGame(a_isVictorious) {
 	l_td_winMargin.innerText = l_winMargin;
 	l_td_finalExp.innerText = l_experience;
 
+	//return to home screen
+	returnToHome();
+
 	//achievements
 	let l_gotAchievement = false;
 	let l_playedFirstGame = false;
@@ -1893,9 +1896,6 @@ function endGame(a_isVictorious) {
 
 	//show results screen
 	m_body.appendChild(l_div_resultsScreen);
-
-	//return to home screen
-	returnToHome();
 }
 
 async function showPopUp(a_title, a_description) {
