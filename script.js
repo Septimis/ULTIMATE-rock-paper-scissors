@@ -999,9 +999,6 @@ function returnToHome() {
 	m_spellWinNextDraw = false;
 	m_spellFlatExperienceBonus = 0;
 	m_spellExperienceMultiplier = 1;
-	m_numRockPlays = 0;
-	m_numPaperPlays = 0;
-	m_numScissorsPlays = 0;
 
 	//reset game Elements
 	m_userScore.innerText = "0";
@@ -1893,6 +1890,9 @@ function endGame(a_isVictorious) {
 			l_tr_expAchiev.appendChild(l_td_expAchievExp);
 		}
 	}
+	m_numRockPlays = 0;
+	m_numPaperPlays = 0;
+	m_numScissorsPlays = 0;
 
 	//show results screen
 	m_body.appendChild(l_div_resultsScreen);
