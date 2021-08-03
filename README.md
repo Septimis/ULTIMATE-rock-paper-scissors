@@ -45,7 +45,7 @@ The game is simple, select your weapon: <b>Sturdy Rock, Mystical Paper, or Vicio
     - Rank IV: Sickle - 1,000 xp to unlock
         - Upon winning with scissors, there is a 100% chance to gain an additional point, or a 30% chance to gain 2 additional points.
     - Rank V: Scyth - 5,000 xp to unlock
-        - Upon losing with scissors, you have a 50% chance of gaining an additional point.  If you win with scissors, there is a 100% chance to gain a point, a 50% chance to gain 2 additional points, and a 20% chance to set player points to 10 and computer points to -10.
+        - Upon losing with scissors, you have a 50% chance of gaining an additional point.  If you win with scissors, there is a 100% chance to gain a point, a 50% chance to gain 2 additional points, and a 20% chance to set player points to 20 and computer points to -20.
 #### Spells
 Each category has an equal chance to activate the spell.  Flat experience gains will be added **AFTER** multipliers have been added.  Experience multipliers will stack with each other at the end of the game.  For example, suppose you cast a +10 experience spell, a x2 experience bonus, and a x4 experience bonus.  Your final score would be calculated by: *5 x margin x purchased Experience Bonus' x 2 x 4 + 10*.  Some spell effects are permanent such as the Dwayne cards and the reduced cost of an experience bonus.  Once you have unlocked these, they will be removed from the pool of available spells and can no longer be cast.
 ##### Common

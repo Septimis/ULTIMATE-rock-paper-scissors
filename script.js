@@ -442,7 +442,7 @@ function showGuide() {
 		l_ul4_li5.appendChild(l_ul4_scyth);
 
 		const l_ul4_scyth_li1 = document.createElement("li");
-		l_ul4_scyth_li1.innerText = "Upon losing with scissors, you have a 50% chance of gaining an additional point. If you win with scissors, there is a 100% chance to gain a point, a 50% chance to gain 2 additional points, and a 20% chance to set player points to 10 and computer points to -10.\n\n";
+		l_ul4_scyth_li1.innerText = "Upon losing with scissors, you have a 50% chance of gaining an additional point. If you win with scissors, there is a 100% chance to gain a point, a 50% chance to gain 2 additional points, and a 20% chance to set player points to 20 and computer points to -20.\n\n";
 		l_ul4_scyth.appendChild(l_ul4_scyth_li1);
 
 		//Spells overview
@@ -1257,8 +1257,11 @@ m_paperBtn.addEventListener("click", function() {
 
 		m_outcomeText.innerText = "You won!";
 		m_outcomeText.style.color = "green";
-		m_playerPoints++;
-		m_userScore.innerText = m_playerPoints;
+		if(!m_playerPoints >= 10) {
+				m_playerPoints++;
+			m_userScore.innerText = m_playerPoints;
+		}
+		
 	}
 
 	//test if the player or computer has won the game
@@ -1513,7 +1516,7 @@ m_scissorsBtn.addEventListener("click", function() {
 				showPopUp('scissorsSpecial', 'Extra 2 Points!');
 			}
 			break;
-		case 4: //Bolt Cutters
+		case 4: //Sickle
 			if(l_outcome == 1) {
 				if(l_determinator <= 30) {
 					l_extraPoint = 2;
@@ -1525,7 +1528,7 @@ m_scissorsBtn.addEventListener("click", function() {
 			}
 			
 			break;
-		case 5: //Gro'noth, Destroyer of Worlds
+		case 5: //Scythe
 			if(l_outcome == -1 && l_determinator <= 50) {
 				l_rankVSpecial = true;
 				l_extraPoint = 1;
@@ -1535,9 +1538,9 @@ m_scissorsBtn.addEventListener("click", function() {
 					l_extraPoint = 2;
 					showPopUp('scythSpecial', 'Extra 2 Point!');
 				} else if(l_determinator <= 70) {
-					m_playerPoints = 10;
+					m_playerPoints = 20;
 					m_userScore.innerText = m_playerPoints;
-					m_computerPoints = -10;
+					m_computerPoints = -20;
 					m_computerScore.innerText = m_computerPoints;
 					showPopUp('scythSpecial', 'Consume Souls');
 				} else {
@@ -1552,6 +1555,7 @@ m_scissorsBtn.addEventListener("click", function() {
 	if(l_outcome == -1) { //loss
 		if(l_rankVSpecial) {
 			m_playerPoints += l_extraPoint;
+			m_userScore.innerText = m_playerPoints;
 		}
 		m_outcomeText.innerText = "You Lost!";
 		m_outcomeText.style.color = "red";
@@ -1563,7 +1567,9 @@ m_scissorsBtn.addEventListener("click", function() {
 	} else if(l_outcome == 1) { //win
 		m_outcomeText.innerText = "You won!";
 		m_outcomeText.style.color = "green";
-		m_playerPoints++;
+		if(!m_playerPoints >= 10) {
+			m_playerPoints++;
+		}
 		m_playerPoints += l_extraPoint;
 		m_userScore.innerText = m_playerPoints;
 	}
