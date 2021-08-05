@@ -1257,10 +1257,10 @@ m_paperBtn.addEventListener("click", function() {
 
 		m_outcomeText.innerText = "You won!";
 		m_outcomeText.style.color = "green";
-		if(!m_playerPoints >= 10) {
-				m_playerPoints++;
-			m_userScore.innerText = m_playerPoints;
+		if(m_playerPoints < 10) {
+			m_playerPoints++;
 		}
+		m_userScore.innerText = m_playerPoints;
 		
 	}
 
@@ -1567,7 +1567,7 @@ m_scissorsBtn.addEventListener("click", function() {
 	} else if(l_outcome == 1) { //win
 		m_outcomeText.innerText = "You won!";
 		m_outcomeText.style.color = "green";
-		if(!m_playerPoints >= 10) {
+		if(m_playerPoints < 10) {
 			m_playerPoints++;
 		}
 		m_playerPoints += l_extraPoint;
